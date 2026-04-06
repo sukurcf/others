@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sukumar P — Software Engineer</title>
+    <meta name="description" content="Sukumar P — Pythonista with 10 years across Python, DevOps, Cloud and the entire GitHub Stack.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-glow: rgba(99, 102, 241, 0.15);
+            --accent: #06b6d4;
+            --accent-glow: rgba(6, 182, 212, 0.15);
+            --text: #e2e8f0;
+            --text-dim: #94a3b8;
+            --text-bright: #f8fafc;
+            --bg: #0b0f1a;
+            --bg-card: #111827;
+            --bg-card-hover: #1e293b;
+            --border: rgba(99, 102, 241, 0.15);
+            --border-bright: rgba(99, 102, 241, 0.3);
+            --radius: 16px;
+            --radius-sm: 10px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* ── Animated Background ── */
+        .bg-grid {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background-image:
+                radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .bg-grid::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        /* ── Container ── */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 16px 0;
+            backdrop-filter: blur(20px);
+            background: rgba(11, 15, 26, 0.8);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--text-bright); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ── Hero ── */
+        .hero {
+            padding: 160px 0 80px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .hero-photo {
+            flex-shrink: 0;
+        }
+
+        .hero-photo .dev-scene {
+            width: 280px;
+            height: 280px;
+            position: relative;
+        }
+
+        .hero-photo .dev-scene svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 8px 30px rgba(99, 102, 241, 0.25));
+        }
+
+        .hero-photo .orbit-ring {
+            position: absolute;
+            inset: -12px;
+            border-radius: 50%;
+            border: 2px dashed rgba(99, 102, 241, 0.2);
+            animation: spin 25s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .float-code {
+            position: absolute;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 6px;
+            white-space: nowrap;
+            animation: float 6s ease-in-out infinite;
+            z-index: 3;
+        }
+
+        .float-code.c1 {
+            top: 8%; left: -30%;
+            background: rgba(99, 102, 241, 0.15);
+            color: #818cf8;
+            border: 1px solid rgba(99, 102, 241, 0.25);
+            animation-delay: 0s;
+        }
+
+        .float-code.c2 {
+            bottom: 15%; right: -25%;
+            background: rgba(6, 182, 212, 0.15);
+            color: #22d3ee;
+            border: 1px solid rgba(6, 182, 212, 0.25);
+            animation-delay: -2s;
+        }
+
+        .float-code.c3 {
+            top: 60%; left: -35%;
+            background: rgba(16, 185, 129, 0.15);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            animation-delay: -4s;
+        }
+
+        .float-code.c4 {
+            top: -5%; right: -15%;
+            background: rgba(249, 115, 22, 0.15);
+            color: #fb923c;
+            border: 1px solid rgba(249, 115, 22, 0.25);
+            animation-delay: -1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--primary-glow);
+            border: 1px solid var(--border-bright);
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hero-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: #10b981;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: 1.15rem;
+            color: var(--text-dim);
+            margin-bottom: 24px;
+            max-width: 520px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border-bright);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-glow);
+            border-color: var(--primary);
+            color: var(--text-bright);
+        }
+
+        /* ── Section Headers ── */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            color: var(--text-bright);
+            margin-bottom: 8px;
+        }
+
+        .section-header p {
+            color: var(--text-dim);
+            font-size: 1rem;
+        }
+
+        .section-line {
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+            margin: 16px auto 0;
+        }
+
+        /* ── Skills ── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: var(--border-bright);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.1);
+        }
+
+        .skill-card:hover::before { opacity: 1; }
+
+        .skill-card .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .skill-card h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 4px;
+        }
+
+        .skill-card p {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        .icon-purple { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+        .icon-cyan { background: rgba(6, 182, 212, 0.15); color: #22d3ee; }
+        .icon-green { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .icon-orange { background: rgba(249, 115, 22, 0.15); color: #fb923c; }
+        .icon-rose { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
+        .icon-yellow { background: rgba(234, 179, 8, 0.15); color: #facc15; }
+
+        /* ── Timeline ── */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(180deg, var(--primary), var(--accent), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: 40px;
+        }
+
+        .timeline-item:last-child { padding-bottom: 0; }
+
+        .timeline-dot {
+            position: absolute;
+            left: -40px;
+            top: 8px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 3px solid var(--primary);
+            z-index: 2;
+        }
+
+        .timeline-item:first-child .timeline-dot {
+            background: var(--primary);
+            box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
+        }
+
+        .timeline-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            transition: all 0.3s;
+        }
+
+        .timeline-card:hover {
+            border-color: var(--border-bright);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.08);
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-role {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-bright);
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--primary-glow);
+            padding: 4px 12px;
+            border-radius: 100px;
+            white-space: nowrap;
+        }
+
+        .timeline-company {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .timeline-location {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+
+        .timeline-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-card li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.875rem;
+            color: var(--text-dim);
+            line-height: 1.6;
+        }
+
+        .timeline-card li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        /* ── Contact ── */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .contact-card:hover {
+            border-color: var(--border-bright);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.1);
+        }
+
+        .contact-card .contact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-card h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-bright);
+        }
+
+        .contact-card p {
+            font-size: 0.825rem;
+            color: var(--text-dim);
+        }
+
+        /* ── Footer ── */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-credit {
+            font-size: 0.825rem;
+            color: var(--text-dim);
+            margin-bottom: 12px;
+        }
+
+        .footer-credit a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-credit a:hover { text-decoration: underline; }
+
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .footer-socials a {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .footer-socials a:hover { color: var(--primary); }
+
+        /* ── Stats Bar ── */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            padding: 0 0 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 24px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding-top: 120px;
+                gap: 32px;
+            }
+
+            .hero h1 { font-size: 2.2rem; }
+            .hero .subtitle { margin: 0 auto 24px; }
+            .hero-cta { justify-content: center; }
+            .hero-photo .photo-ring { width: 180px; height: 180px; }
+
+            .nav-links { display: none; }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(11, 15, 26, 0.95);
+                backdrop-filter: blur(20px);
+                padding: 20px 24px;
+                gap: 16px;
+                border-bottom: 1px solid var(--border);
+            }
+            .nav-toggle { display: block; }
+
+            .stats { grid-template-columns: repeat(2, 1fr); }
+
+            .timeline { padding-left: 30px; }
+            .timeline-dot { left: -30px; }
+
+            .timeline-header {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.8rem; }
+            .skills-grid { grid-template-columns: 1fr; }
+            .contact-grid { grid-template-columns: 1fr; }
+        }
+
+        /* ── Animations ── */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-logo">Sukumar P</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="about">
+        <div class="container" style="display:flex;align-items:center;gap:60px;flex-wrap:wrap;">
+            <div class="hero-photo fade-in">
+                <div class="dev-scene">
+                    <div class="orbit-ring"></div>
+                    <span class="float-code c1">&lt;code/&gt;</span>
+                    <span class="float-code c2">python</span>
+                    <span class="float-code c3">git push</span>
+                    <span class="float-code c4">CI/CD ✓</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+                        <defs>
+                            <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.15"/>
+                                <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.15"/>
+                            </linearGradient>
+                            <linearGradient id="screen-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#1e293b"/>
+                                <stop offset="100%" style="stop-color:#0f172a"/>
+                            </linearGradient>
+                            <linearGradient id="body-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1"/>
+                                <stop offset="100%" style="stop-color:#4f46e5"/>
+                            </linearGradient>
+                            <linearGradient id="skin-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#d4a574"/>
+                                <stop offset="100%" style="stop-color:#c4956a"/>
+                            </linearGradient>
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Background circle -->
+                        <circle cx="200" cy="200" r="190" fill="url(#bg-grad)" stroke="rgba(99,102,241,0.2)" stroke-width="1.5"/>
+                        <!-- Desk -->
+                        <rect x="70" y="275" width="260" height="12" rx="6" fill="#1e293b"/>
+                        <!-- Laptop base -->
+                        <rect x="120" y="265" width="160" height="10" rx="3" fill="#334155"/>
+                        <rect x="115" y="273" width="170" height="4" rx="2" fill="#475569"/>
+                        <!-- Laptop screen -->
+                        <rect x="125" y="185" width="150" height="82" rx="6" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+                        <!-- Screen content - code lines -->
+                        <rect x="138" y="198" width="55" height="4" rx="2" fill="#818cf8" opacity="0.8"/>
+                        <rect x="138" y="208" width="80" height="4" rx="2" fill="#34d399" opacity="0.6"/>
+                        <rect x="148" y="218" width="65" height="4" rx="2" fill="#94a3b8" opacity="0.4"/>
+                        <rect x="148" y="228" width="45" height="4" rx="2" fill="#fb923c" opacity="0.6"/>
+                        <rect x="138" y="238" width="70" height="4" rx="2" fill="#818cf8" opacity="0.5"/>
+                        <rect x="138" y="248" width="50" height="4" rx="2" fill="#22d3ee" opacity="0.6"/>
+                        <!-- Screen glow -->
+                        <rect x="130" y="190" width="140" height="72" rx="4" fill="none" stroke="rgba(99,102,241,0.3)" stroke-width="1" filter="url(#glow)"/>
+                        <!-- Coffee mug -->
+                        <rect x="295" y="255" width="20" height="22" rx="4" fill="#475569"/>
+                        <rect x="313" y="260" width="8" height="12" rx="4" fill="none" stroke="#475569" stroke-width="2.5"/>
+                        <ellipse cx="305" cy="254" rx="12" ry="3" fill="none" stroke="rgba(148,163,184,0.3)" stroke-width="1.5"/>
+                        <!-- Steam -->
+                        <path d="M300 248 Q302 240 298 234" fill="none" stroke="rgba(148,163,184,0.25)" stroke-width="1.5" stroke-linecap="round">
+                            <animate attributeName="d" values="M300 248 Q302 240 298 234;M300 248 Q298 238 302 232;M300 248 Q302 240 298 234" dur="3s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M306 246 Q308 238 304 232" fill="none" stroke="rgba(148,163,184,0.2)" stroke-width="1.5" stroke-linecap="round">
+                            <animate attributeName="d" values="M306 246 Q308 238 304 232;M306 246 Q304 236 308 230;M306 246 Q308 238 304 232" dur="2.5s" repeatCount="indefinite"/>
+                        </path>
+                        <!-- Body / torso -->
+                        <path d="M170 230 Q175 180 200 175 Q225 180 230 230" fill="url(#body-grad)" opacity="0.9"/>
+                        <!-- Neck -->
+                        <rect x="190" y="145" width="20" height="30" rx="8" fill="url(#skin-grad)"/>
+                        <!-- Head -->
+                        <ellipse cx="200" cy="120" rx="42" ry="48" fill="url(#skin-grad)"/>
+                        <!-- Hair -->
+                        <path d="M158 110 Q160 65 200 60 Q240 65 242 110 Q240 85 220 80 Q200 78 180 80 Q160 85 158 110Z" fill="#2c1810"/>
+                        <path d="M155 115 Q158 100 165 95" fill="none" stroke="#2c1810" stroke-width="6" stroke-linecap="round"/>
+                        <!-- Beard -->
+                        <path d="M172 138 Q175 160 200 168 Q225 160 228 138" fill="#3d2518" opacity="0.7"/>
+                        <path d="M168 130 Q170 145 172 138" fill="#3d2518" opacity="0.5"/>
+                        <path d="M232 130 Q230 145 228 138" fill="#3d2518" opacity="0.5"/>
+                        <!-- Glasses -->
+                        <rect x="168" y="108" width="28" height="22" rx="5" fill="none" stroke="#1e293b" stroke-width="3"/>
+                        <rect x="204" y="108" width="28" height="22" rx="5" fill="none" stroke="#1e293b" stroke-width="3"/>
+                        <line x1="196" y1="118" x2="204" y2="118" stroke="#1e293b" stroke-width="2.5"/>
+                        <line x1="168" y1="118" x2="162" y2="115" stroke="#1e293b" stroke-width="2.5"/>
+                        <line x1="232" y1="118" x2="238" y2="115" stroke="#1e293b" stroke-width="2.5"/>
+                        <!-- Eyes -->
+                        <circle cx="182" cy="118" r="3.5" fill="#1e293b"/>
+                        <circle cx="218" cy="118" r="3.5" fill="#1e293b"/>
+                        <circle cx="183" cy="117" r="1.2" fill="#fff"/>
+                        <circle cx="219" cy="117" r="1.2" fill="#fff"/>
+                        <!-- Smile -->
+                        <path d="M188 140 Q200 150 212 140" fill="none" stroke="#8b6a52" stroke-width="2" stroke-linecap="round"/>
+                        <!-- Arms -->
+                        <path d="M170 210 Q155 240 140 255 Q135 258 140 262" fill="none" stroke="url(#body-grad)" stroke-width="14" stroke-linecap="round"/>
+                        <path d="M230 210 Q245 240 260 255 Q265 258 260 262" fill="none" stroke="url(#body-grad)" stroke-width="14" stroke-linecap="round"/>
+                        <!-- Hands on keyboard -->
+                        <ellipse cx="145" cy="264" rx="12" ry="8" fill="url(#skin-grad)"/>
+                        <ellipse cx="255" cy="264" rx="12" ry="8" fill="url(#skin-grad)"/>
+                        <!-- GitHub icon on shirt -->
+                        <circle cx="200" cy="210" r="10" fill="rgba(255,255,255,0.15)"/>
+                        <path d="M200 202 C194 202 189 207 189 213 C189 218 192 222 196 223 C196.5 223.1 196.7 222.8 196.7 222.5 L196.7 221 C193 221.8 192.5 219.5 192.5 219.5 C192 218.5 191.3 218.2 191.3 218.2 C190.3 217.5 191.4 217.5 191.4 217.5 C192.5 217.6 193 218.6 193 218.6 C194 220.2 195.5 219.7 196.7 219.4 C196.8 218.6 197.1 218.1 197.5 217.8 C194.7 217.5 191.7 216.4 191.7 212 C191.7 210.8 192.1 209.8 193 209 C192.9 208.7 192.5 207.5 193.1 206 C193.1 206 194 205.7 196.7 207.1 C197.6 206.9 198.8 206.8 200 206.8 C201.2 206.8 202.4 206.9 203.3 207.1 C206 205.7 206.9 206 206.9 206 C207.5 207.5 207.1 208.7 207 209 C207.8 209.8 208.3 210.8 208.3 212 C208.3 216.4 205.3 217.5 202.5 217.8 C203 218.2 203.3 218.9 203.3 220 L203.3 222.5 C203.3 222.8 203.5 223.1 204 223 C208 222 211 218 211 213 C211 207 206 202 200 202Z" fill="rgba(255,255,255,0.6)"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="hero-text fade-in">
+                <h1>Hi, I'm <span class="gradient">Sukumar P</span></h1>
+                <p class="subtitle">Pythonista with 10 years across Python, DevOps &amp; Cloud. Delivered <strong style="color:#818cf8">100+ GitHub Copilot enablement sessions</strong> across multiple clients, training thousands of developers on the entire GitHub Stack — Copilot, Actions, Advanced Security, Migrations &amp; Admin.</p>
+                <div class="hero-cta">
+                    <a href="mailto:sukurcf@gmail.com" class="btn btn-primary">
+                        <i class="fa-solid fa-envelope"></i> Get in Touch
+                    </a>
+                    <a href="https://www.instagram.com/tec_in_sec/" target="_blank" rel="noopener" class="btn btn-outline">
+                        <i class="fa-brands fa-instagram"></i> Follow me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <div class="container">
+        <div class="stats fade-in">
+            <div class="stat-item">
+                <div class="stat-number">10</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Copilot Sessions</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">1000s</div>
+                <div class="stat-label">Developers Trained</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">∞</div>
+                <div class="stat-label">Curiosity</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Skills &amp; Competences</h2>
+                <p>Technologies and tools I work with daily</p>
+                <div class="section-line"></div>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card fade-in">
+                    <div class="icon icon-purple"><i class="fa-brands fa-github"></i></div>
+                    <h3>GitHub Stack</h3>
+                    <p>Copilot, Actions, Advanced Security, Admin, Migrations</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="icon icon-green"><i class="fa-brands fa-python"></i></div>
+                    <h3>Python &amp; Frameworks</h3>
+                    <p>Django, DRF, Flask, Marshmallow, SQLAlchemy, Celery</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="icon icon-cyan"><i class="fa-brands fa-docker"></i></div>
+                    <h3>Containers &amp; Orchestration</h3>
+                    <p>Docker, Kubernetes, OpenShift, Operators, CRDs</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="icon icon-orange"><i class="fa-brands fa-aws"></i></div>
+                    <h3>AWS Cloud</h3>
+                    <p>EC2, S3, Lambda, RDS, Glue, Airflow, Step Functions</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="icon icon-rose"><i class="fa-solid fa-database"></i></div>
+                    <h3>Databases</h3>
+                    <p>MongoDB, PostgreSQL, MySQL, Redis, Elasticsearch, Redshift</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="icon icon-yellow"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>Data &amp; APIs</h3>
+                    <p>PySpark, GraphQL, REST APIs, Web Scraping, Analytics</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="icon icon-purple"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>CI/CD &amp; DevOps</h3>
+                    <p>GitHub Actions, CircleCI, Jenkins, Terraform, Kokoro</p>
+                </div>
+                <div class="skill-card fade-in">
+                    <div class="icon icon-green"><i class="fa-brands fa-linux"></i></div>
+                    <h3>Platforms</h3>
+                    <p>Linux, macOS, Monitoring (PromQL, ElastAlert, PagerDuty)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Work Experience</h2>
+                <p>A journey through impactful roles</p>
+                <div class="section-line"></div>
+            </div>
+            <div class="timeline">
+
+                <!-- 1 -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-role">Associate Consultant 4</div>
+                            <div class="timeline-date">Sep 2023 — Jan 2025</div>
+                        </div>
+                        <div class="timeline-company">Saisystems</div>
+                        <div class="timeline-location"><i class="fa-solid fa-location-dot"></i> Remote</div>
+                        <ul>
+                            <li>Worked on SMS interaction by users for clicks and tracking for user experience</li>
+                            <li>Created cron jobs to migrate data from BigQuery to MySQL and PostgreSQL databases</li>
+                            <li>Fixed multiple vulnerabilities across docker images and improved build times by refactoring docker layers</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-role">Senior DevOps Engineer</div>
+                            <div class="timeline-date">Mar 2023 — Sep 2023</div>
+                        </div>
+                        <div class="timeline-company">Tweak Analytics</div>
+                        <div class="timeline-location"><i class="fa-solid fa-location-dot"></i> Hyderabad</div>
+                        <ul>
+                            <li>Migrated DevOps pipelines to GitHub Actions and created custom transformers and automation scripts</li>
+                            <li>Configured GHES, self-hosted runners, dashboards, Terraform flows, and post-processing scripts</li>
+                            <li>Developed Django/DRF/GraphQL apps, AWS integrations, and implemented black formatting and type-hinting</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-role">Senior Software Engineer</div>
+                            <div class="timeline-date">May 2022 — Nov 2022</div>
+                        </div>
+                        <div class="timeline-company">EPAM Systems</div>
+                        <div class="timeline-location"><i class="fa-solid fa-location-dot"></i> Hyderabad</div>
+                        <ul>
+                            <li>Worked on GGRC application, creating unit and integration tests using Pytest and Tox</li>
+                            <li>Performed web scraping, reporting, and analytics using Python, Pygal, and scraping libraries</li>
+                            <li>Developed PySpark and Glue scripts, configured Airflow pipelines, and automated builds via Kokoro</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 4 -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-role">Software Engineer III</div>
+                            <div class="timeline-date">Dec 2020 — May 2022</div>
+                        </div>
+                        <div class="timeline-company">Rackspace Technology</div>
+                        <div class="timeline-location"><i class="fa-solid fa-location-dot"></i> Hyderabad</div>
+                        <ul>
+                            <li>Worked on ObjectRocket to deploy MongoDB, Redis, and Elasticsearch on Kubernetes using operators and CRDs</li>
+                            <li>Built Django APIs, automated backup (Snapshot/PITR) mechanisms, and configured monitoring with PromQL, ElastAlert, and PagerDuty</li>
+                            <li>Fixed vulnerabilities, improved docker images, and performed K8s cluster maintenance and upgrades</li>
+                            <li>Configured CI/CD pipelines using CircleCI</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-role">Software Developer</div>
+                            <div class="timeline-date">Apr 2019 — Dec 2020</div>
+                        </div>
+                        <div class="timeline-company">Qvantel</div>
+                        <div class="timeline-location"><i class="fa-solid fa-location-dot"></i> Hyderabad</div>
+                        <ul>
+                            <li>Worked on SAS-Business-Prod Django application and developed APIs for employee PTO and AWS S3 interactions</li>
+                            <li>Built Flask-based applications using Marshmallow, SQLAlchemy, Celery, PySpark, and Redis for analysis</li>
+                            <li>Created pipelines to migrate and export data from Postgres to Redshift and S3</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="timeline-item fade-in">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-card">
+                        <div class="timeline-header">
+                            <div class="timeline-role">Software Engineer</div>
+                            <div class="timeline-date">Jul 2016 — Apr 2019</div>
+                        </div>
+                        <div class="timeline-company">Optum Global Solutions</div>
+                        <div class="timeline-location"><i class="fa-solid fa-location-dot"></i> Hyderabad</div>
+                        <ul>
+                            <li>Migrated on-premise Java/Struts apps to OpenShift using Jenkins, Docker, and GitHub</li>
+                            <li>Handled downtimes, log analysis, portal monitoring, and created Python/Django-based APIs</li>
+                            <li>Built multi-database solutions, implemented PEP-8 compliance, black formatting, and pre-commit hooks</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Let's Connect</h2>
+                <p>Feel free to reach out for opportunities or collaborations</p>
+                <div class="section-line"></div>
+            </div>
+            <div class="contact-grid">
+                <a href="mailto:sukurcf@gmail.com" class="contact-card fade-in">
+                    <div class="contact-icon icon-purple"><i class="fa-solid fa-envelope"></i></div>
+                    <h3>Email</h3>
+                    <p>sukurcf@gmail.com</p>
+                </a>
+                <a href="tel:+919043481098" class="contact-card fade-in">
+                    <div class="contact-icon icon-green"><i class="fa-solid fa-phone"></i></div>
+                    <h3>Phone</h3>
+                    <p>+91-9043481098</p>
+                </a>
+                <a href="https://www.youtube.com/@tec_in_sec" target="_blank" rel="noopener" class="contact-card fade-in">
+                    <div class="contact-icon icon-rose"><i class="fa-brands fa-youtube"></i></div>
+                    <h3>YouTube</h3>
+                    <p>@tec_in_sec</p>
+                </a>
+                <a href="https://www.instagram.com/tec_in_sec/" target="_blank" rel="noopener" class="contact-card fade-in">
+                    <div class="contact-icon icon-rose"><i class="fa-brands fa-instagram"></i></div>
+                    <h3>Instagram</h3>
+                    <p>@tec_in_sec</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="footer-credit">Developed by <a href="https://www.instagram.com/tec_in_sec/" target="_blank" rel="noopener">tec_in_sec</a></p>
+            <div class="footer-socials">
+                <a href="https://www.instagram.com/tec_in_sec/" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@tec_in_sec" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        document.getElementById('navToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        // Close mobile nav on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('active');
+            });
+        });
+
+        // Scroll-based fade-in
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
