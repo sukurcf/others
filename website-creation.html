@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sukumar — Professional Websites for Your Business | Ready in Hours</title>
+    <meta name="description" content="Get a stunning, professional website for your small or medium business — delivered in hours, not weeks. 10+ years IT experience. Call now!">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --primary-deeper: #3730a3;
+            --primary-light: #e0e7ff;
+            --primary-glow: rgba(99, 102, 241, 0.3);
+            --accent: #06b6d4;
+            --accent-dark: #0891b2;
+            --accent-light: #cffafe;
+            --orange: #f97316;
+            --orange-light: #fff7ed;
+            --green: #10b981;
+            --green-light: #d1fae5;
+            --rose: #f43f5e;
+            --rose-light: #fff1f2;
+            --text: #0f172a;
+            --text-mid: #334155;
+            --text-light: #64748b;
+            --text-white: #ffffff;
+            --bg: #ffffff;
+            --bg-soft: #f8fafc;
+            --bg-muted: #f1f5f9;
+            --bg-dark: #0f172a;
+            --bg-dark-soft: #1e293b;
+            --border: #e2e8f0;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
+            --shadow-lg: 0 4px 12px rgba(0,0,0,0.08), 0 24px 48px rgba(0,0,0,0.12);
+            --shadow-glow: 0 0 40px rgba(99, 102, 241, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text);
+            line-height: 1.7;
+            background: var(--bg);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; }
+
+        /* ── Animations ── */
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        @keyframes pulse-glow { 0%, 100% { box-shadow: 0 0 20px var(--primary-glow); } 50% { box-shadow: 0 0 40px var(--primary-glow), 0 0 60px rgba(6, 182, 212, 0.2); } }
+        @keyframes slide-up { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slide-in-left { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slide-in-right { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes count-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        @keyframes bounce-subtle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+        @keyframes gradient-shift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+        .animate-on-scroll { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .animate-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── Navbar ── */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+        .navbar.scrolled { box-shadow: var(--shadow); }
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            padding: 14px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+        }
+        .nav-links { display: flex; gap: 32px; list-style: none; }
+        .nav-links a {
+            text-decoration: none; color: var(--text-mid);
+            font-weight: 500; font-size: 0.95rem;
+            transition: color 0.3s; position: relative;
+        }
+        .nav-links a::after {
+            content: ''; position: absolute; bottom: -4px; left: 0;
+            width: 0; height: 2px; background: var(--primary);
+            transition: width 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white !important; padding: 10px 24px;
+            border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+            text-decoration: none; transition: all 0.3s; border: none; cursor: pointer;
+            display: inline-flex; align-items: center; gap: 8px;
+        }
+        .nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--primary-glow); }
+        .nav-cta::after { display: none !important; }
+
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+        .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+        /* ── Hero ── */
+        .hero {
+            min-height: 100vh; display: flex; align-items: center;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #312e81 70%, #1e293b 100%);
+            position: relative; overflow: hidden; padding: 120px 24px 80px;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; right: -30%;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(99,102,241,0.15) 0%, transparent 70%);
+            animation: rotate-slow 30s linear infinite;
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -30%; left: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%);
+            animation: rotate-slow 25s linear infinite reverse;
+        }
+        .hero-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(99,102,241,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99,102,241,0.06) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .hero-inner {
+            max-width: 1200px; margin: 0 auto; width: 100%;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+            align-items: center; position: relative; z-index: 2;
+        }
+        .hero-content { animation: slide-in-left 1s ease; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(99,102,241,0.15); border: 1px solid rgba(99,102,241,0.3);
+            padding: 8px 18px; border-radius: 50px;
+            font-size: 0.85rem; font-weight: 600; color: #a5b4fc;
+            margin-bottom: 24px;
+        }
+        .hero-badge .dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #10b981; animation: blink 2s infinite;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: white; margin-bottom: 12px;
+            font-weight: 700; letter-spacing: -0.02em;
+        }
+        .hero h1 .gradient-text {
+            background: linear-gradient(135deg, #818cf8, #06b6d4, #818cf8);
+            background-size: 200% auto;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 4s ease infinite;
+        }
+        .hero-sub {
+            font-size: 1.2rem; color: #94a3b8;
+            margin-bottom: 16px; line-height: 1.8; max-width: 520px;
+        }
+        .hero-highlight {
+            display: flex; align-items: center; gap: 12px;
+            background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 14px 20px; border-radius: var(--radius-sm);
+            margin-bottom: 36px; max-width: 520px;
+        }
+        .hero-highlight .icon { font-size: 1.5rem; }
+        .hero-highlight p { color: #6ee7b7; font-weight: 600; font-size: 1rem; }
+        .hero-highlight span { color: #94a3b8; font-weight: 400; font-size: 0.9rem; }
+        .hero-buttons { display: flex; gap: 16px; flex-wrap: wrap; }
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 36px; border-radius: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white; font-weight: 700; font-size: 1.05rem;
+            text-decoration: none; border: none; cursor: pointer;
+            transition: all 0.3s; animation: pulse-glow 3s ease infinite;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 32px var(--primary-glow); }
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 16px 36px; border-radius: 50px;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+            color: white; font-weight: 600; font-size: 1.05rem;
+            text-decoration: none; transition: all 0.3s; cursor: pointer;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            animation: pulse-glow 3s ease infinite;
+            --primary-glow: rgba(37, 211, 102, 0.3);
+        }
+
+        /* Hero Right — Floating Cards */
+        .hero-visual { animation: slide-in-right 1s ease; position: relative; }
+        .hero-visual-wrapper { position: relative; height: 480px; }
+        .float-card {
+            position: absolute; background: rgba(255,255,255,0.06);
+            backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: var(--radius); padding: 24px;
+            animation: float 6s ease infinite; transition: transform 0.3s;
+        }
+        .float-card:hover { transform: scale(1.05); }
+        .float-card-1 { top: 0; right: 0; width: 280px; animation-delay: 0s; }
+        .float-card-2 { top: 120px; left: 0; width: 260px; animation-delay: 1s; }
+        .float-card-3 { bottom: 40px; right: 20px; width: 300px; animation-delay: 2s; }
+        .float-card .card-icon { font-size: 2rem; margin-bottom: 12px; }
+        .float-card h4 { color: white; font-size: 1.05rem; margin-bottom: 6px; }
+        .float-card p { color: #94a3b8; font-size: 0.85rem; }
+        .float-card .stat-num {
+            font-size: 2rem; font-weight: 800; color: #818cf8;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .float-card .stat-label { color: #94a3b8; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ── Scrolling Badge ── */
+        .trust-bar {
+            background: var(--bg-soft); border-bottom: 1px solid var(--border);
+            padding: 20px 24px; text-align: center;
+        }
+        .trust-bar p { color: var(--text-light); font-size: 0.85rem; font-weight: 500; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+        .trust-badges { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; align-items: center; }
+        .trust-badge {
+            display: flex; align-items: center; gap: 8px;
+            color: var(--text-mid); font-weight: 600; font-size: 0.95rem;
+        }
+        .trust-badge .icon { font-size: 1.3rem; }
+
+        /* ── Section Common ── */
+        section { padding: 100px 24px; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-label {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: var(--primary-light); color: var(--primary);
+            padding: 8px 18px; border-radius: 50px; font-size: 0.8rem;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px;
+            margin-bottom: 16px;
+        }
+        .section-header h2 { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--text); margin-bottom: 16px; }
+        .section-header p { font-size: 1.1rem; color: var(--text-light); max-width: 600px; margin: 0 auto; }
+
+        /* ── Why Choose Me ── */
+        .why-section { background: var(--bg-soft); }
+        .why-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px;
+        }
+        .why-card {
+            background: white; border-radius: var(--radius); padding: 36px;
+            border: 1px solid var(--border);
+            transition: all 0.4s; position: relative; overflow: hidden;
+        }
+        .why-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0;
+            height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+        }
+        .why-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .why-card:hover::before { transform: scaleX(1); }
+        .why-card .card-emoji { font-size: 2.5rem; margin-bottom: 18px; display: block; }
+        .why-card h3 { font-size: 1.2rem; margin-bottom: 10px; color: var(--text); }
+        .why-card p { color: var(--text-light); font-size: 0.95rem; }
+
+        /* ── Pricing ── */
+        .pricing-section { background: linear-gradient(135deg, #0f172a, #1e1b4b); }
+        .pricing-section .section-label { background: rgba(99,102,241,0.2); color: #a5b4fc; }
+        .pricing-section .section-header h2 { color: white; }
+        .pricing-section .section-header p { color: #94a3b8; }
+        .pricing-grid {
+            max-width: 1000px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px;
+        }
+        .price-card {
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius); padding: 40px; position: relative;
+            transition: all 0.4s;
+        }
+        .price-card:hover { transform: translateY(-8px); border-color: rgba(99,102,241,0.3); }
+        .price-card.featured {
+            background: rgba(99,102,241,0.08); border-color: rgba(99,102,241,0.3);
+            box-shadow: 0 0 40px rgba(99,102,241,0.1);
+        }
+        .price-card .popular-tag {
+            position: absolute; top: -1px; right: 32px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white; padding: 6px 16px; border-radius: 0 0 8px 8px;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+        }
+        .price-card h3 { color: white; font-size: 1.3rem; margin-bottom: 8px; }
+        .price-card .price {
+            font-size: 3rem; font-weight: 800; color: white;
+            font-family: 'Space Grotesk', sans-serif; margin-bottom: 4px;
+        }
+        .price-card .price span { font-size: 1rem; font-weight: 400; color: #94a3b8; }
+        .price-card .price-note { color: #94a3b8; font-size: 0.85rem; margin-bottom: 28px; }
+        .price-card ul { list-style: none; margin-bottom: 32px; }
+        .price-card li {
+            color: #cbd5e1; font-size: 0.95rem; padding: 8px 0;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .price-card li::before { content: '✓'; color: #10b981; font-weight: 700; }
+        .price-card .btn-price {
+            display: block; text-align: center; padding: 14px 28px;
+            border-radius: 50px; font-weight: 700; font-size: 1rem;
+            text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; width: 100%;
+        }
+        .btn-price-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+        }
+        .btn-price-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--primary-glow); }
+        .btn-price-secondary {
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+            color: white;
+        }
+        .btn-price-secondary:hover { background: rgba(255,255,255,0.12); }
+
+        /* ── Portfolio ── */
+        .portfolio-grid {
+            max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;
+        }
+        .portfolio-card {
+            background: white; border-radius: var(--radius); overflow: hidden;
+            border: 1px solid var(--border); transition: all 0.4s;
+        }
+        .portfolio-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); }
+        .portfolio-thumb {
+            height: 200px; position: relative; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .portfolio-thumb .thumb-icon { font-size: 4rem; }
+        .portfolio-thumb-1 { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+        .portfolio-thumb-2 { background: linear-gradient(135deg, #1a1a2e, #c9a84c); }
+        .portfolio-thumb-3 { background: linear-gradient(135deg, #4EC5F1, #FFB830); }
+        .portfolio-overlay {
+            position: absolute; inset: 0; background: rgba(0,0,0,0.5);
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transition: opacity 0.3s;
+        }
+        .portfolio-card:hover .portfolio-overlay { opacity: 1; }
+        .portfolio-overlay span {
+            background: white; color: var(--text); padding: 10px 24px;
+            border-radius: 50px; font-weight: 600; font-size: 0.9rem;
+        }
+        .portfolio-body { padding: 28px; }
+        .portfolio-tag {
+            display: inline-block; background: var(--primary-light); color: var(--primary);
+            padding: 4px 12px; border-radius: 20px; font-size: 0.75rem;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .portfolio-body h3 { font-size: 1.2rem; margin-bottom: 8px; }
+        .portfolio-body p { color: var(--text-light); font-size: 0.9rem; }
+
+        /* ── Process ── */
+        .process-section { background: var(--bg-soft); }
+        .process-grid {
+            max-width: 900px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr; gap: 0;
+        }
+        .process-step {
+            display: grid; grid-template-columns: 60px 1fr; gap: 24px;
+            padding: 32px 0; position: relative;
+        }
+        .process-num-col { display: flex; flex-direction: column; align-items: center; }
+        .process-num {
+            width: 52px; height: 52px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white; font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700; font-size: 1.2rem;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .process-line {
+            width: 2px; flex: 1; background: linear-gradient(180deg, var(--primary), var(--accent)); margin-top: 8px;
+            opacity: 0.3;
+        }
+        .process-step:last-child .process-line { display: none; }
+        .process-content h3 { font-size: 1.2rem; margin-bottom: 6px; }
+        .process-content p { color: var(--text-light); font-size: 0.95rem; }
+        .process-time {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: var(--green-light); color: #059669;
+            padding: 4px 12px; border-radius: 20px; font-size: 0.8rem;
+            font-weight: 600; margin-top: 8px;
+        }
+
+        /* ── Testimonial / Social Proof ── */
+        .social-section {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            position: relative; overflow: hidden;
+        }
+        .social-section::before {
+            content: ''; position: absolute; inset: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .social-inner {
+            max-width: 800px; margin: 0 auto; text-align: center;
+            position: relative; z-index: 2;
+        }
+        .social-inner h2 { color: white; font-size: clamp(2rem, 4vw, 2.5rem); margin-bottom: 16px; }
+        .social-inner p { color: rgba(255,255,255,0.85); font-size: 1.15rem; margin-bottom: 32px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .social-channels { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .social-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.25);
+            padding: 14px 28px; border-radius: 50px;
+            color: white; font-weight: 600; font-size: 1rem;
+            text-decoration: none; transition: all 0.3s;
+        }
+        .social-link:hover { background: rgba(255,255,255,0.25); transform: translateY(-3px); }
+        .social-link .s-icon { font-size: 1.3rem; }
+        .svg-icon { display: inline-block; vertical-align: middle; fill: currentColor; }
+        .svg-icon-sm { width: 18px; height: 18px; }
+        .svg-icon-md { width: 22px; height: 22px; }
+        .svg-icon-lg { width: 28px; height: 28px; }
+        .svg-icon-xl { width: 34px; height: 34px; }
+        .contact-icon .svg-icon { width: 24px; height: 24px; }
+        .footer-socials .svg-icon { width: 18px; height: 18px; }
+        .floating-wa .svg-icon { width: 32px; height: 32px; fill: white; }
+        .s-icon .svg-icon { width: 20px; height: 20px; fill: white; }
+
+        /* ── CTA Banner ── */
+        .cta-section { background: var(--bg); }
+        .cta-box {
+            max-width: 900px; margin: 0 auto;
+            background: linear-gradient(135deg, #0f172a, #1e1b4b);
+            border-radius: 24px; padding: 60px 48px; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .cta-box::before {
+            content: ''; position: absolute; top: -50%; right: -30%;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%);
+        }
+        .cta-box h2 { color: white; font-size: clamp(1.8rem, 3.5vw, 2.5rem); margin-bottom: 12px; position: relative; }
+        .cta-box p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 36px; position: relative; }
+        .cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; position: relative; }
+        .cta-phone {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            margin-top: 24px; position: relative;
+        }
+        .cta-phone a {
+            color: #818cf8; font-size: 1.4rem; font-weight: 700;
+            text-decoration: none; font-family: 'Space Grotesk', sans-serif;
+            transition: color 0.3s;
+        }
+        .cta-phone a:hover { color: #a5b4fc; }
+
+        /* ── Contact ── */
+        .contact-section { background: var(--bg-soft); }
+        .contact-grid {
+            max-width: 1000px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+        }
+        .contact-info h3 { font-size: 1.5rem; margin-bottom: 20px; }
+        .contact-info p { color: var(--text-light); margin-bottom: 28px; }
+        .contact-item {
+            display: flex; align-items: center; gap: 16px;
+            padding: 16px 0; border-bottom: 1px solid var(--border);
+        }
+        .contact-item:last-child { border-bottom: none; }
+        .contact-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; flex-shrink: 0;
+        }
+        .contact-icon.phone-icon { background: var(--green-light); }
+        .contact-icon.whatsapp-icon { background: #dcfce7; }
+        .contact-icon.email-icon { background: var(--primary-light); }
+        .contact-icon.location-icon { background: var(--orange-light); }
+        .contact-item-text h4 { font-size: 0.85rem; color: var(--text-light); font-weight: 500; text-transform: uppercase; letter-spacing: 1px; font-family: 'Inter', sans-serif; }
+        .contact-item-text p { color: var(--text); font-weight: 600; margin: 0; }
+        .contact-item-text a { color: var(--primary); font-weight: 600; text-decoration: none; }
+        .contact-item-text a:hover { text-decoration: underline; }
+
+        .contact-form { background: white; border-radius: var(--radius); padding: 36px; border: 1px solid var(--border); }
+        .contact-form h3 { font-size: 1.3rem; margin-bottom: 24px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; color: var(--text-mid); }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 12px 16px; border: 1px solid var(--border);
+            border-radius: var(--radius-sm); font-size: 1rem;
+            font-family: 'Inter', sans-serif; transition: border-color 0.3s;
+            background: var(--bg-soft);
+        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-light);
+        }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .form-submit {
+            width: 100%; padding: 14px 28px; border-radius: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white; font-weight: 700; font-size: 1rem;
+            border: none; cursor: pointer; transition: all 0.3s;
+        }
+        .form-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--primary-glow); }
+
+        /* ── Footer ── */
+        .footer {
+            background: var(--bg-dark); color: #94a3b8; padding: 48px 24px 28px;
+        }
+        .footer-inner {
+            max-width: 1200px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 20px;
+        }
+        .footer-brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.3rem; color: white; }
+        .footer-text { font-size: 0.9rem; }
+        .footer-socials { display: flex; gap: 16px; }
+        .footer-socials a {
+            width: 40px; height: 40px; border-radius: 50%;
+            background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+            display: flex; align-items: center; justify-content: center;
+            color: #94a3b8; text-decoration: none; font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+        .footer-socials a:hover { background: var(--primary); color: white; border-color: var(--primary); }
+
+        /* ── Floating WhatsApp ── */
+        .floating-wa {
+            position: fixed; bottom: 28px; right: 28px; z-index: 999;
+            width: 64px; height: 64px; border-radius: 50%;
+            background: #25d366; color: white; font-size: 2rem;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s; animation: bounce-subtle 3s ease infinite;
+        }
+        .floating-wa:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5); }
+
+        /* ── Floating Call ── */
+        .floating-call {
+            position: fixed; bottom: 28px; left: 28px; z-index: 999;
+            display: flex; align-items: center; gap: 10px;
+            padding: 14px 24px; border-radius: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white; text-decoration: none; font-weight: 700;
+            box-shadow: 0 4px 20px var(--primary-glow);
+            transition: all 0.3s; animation: pulse-glow 3s ease infinite;
+        }
+        .floating-call:hover { transform: translateY(-3px); }
+        .floating-call .call-icon { font-size: 1.3rem; }
+
+        /* ── Counter Animation ── */
+        .stats-row {
+            display: flex; justify-content: center; gap: 48px; flex-wrap: wrap;
+            margin-top: 40px;
+        }
+        .stat-item { text-align: center; }
+        .stat-item .stat-number {
+            font-size: 2.5rem; font-weight: 800; color: white;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .stat-item .stat-text { color: #94a3b8; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; text-align: center; }
+            .hero-content { order: 1; }
+            .hero-visual { order: 2; display: none; }
+            .hero-sub, .hero-highlight { margin-left: auto; margin-right: auto; }
+            .hero-buttons { justify-content: center; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .nav-links.active {
+                display: flex; flex-direction: column;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: white; padding: 20px 24px; gap: 16px;
+                border-bottom: 1px solid var(--border);
+                box-shadow: var(--shadow);
+            }
+            .contact-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
+            .stats-row { gap: 28px; }
+            .floating-call span { display: none; }
+            .floating-call { padding: 14px; border-radius: 50%; }
+        }
+
+        @media (max-width: 600px) {
+            section { padding: 60px 16px; }
+            .hero { padding: 100px 16px 60px; }
+            .cta-box { padding: 40px 24px; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">&lt;Sukumar /&gt;</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">Why Me</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#process">Process</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="tel:+918978830132" class="nav-cta">📞 Call Now</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-inner">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="dot"></span> Available for new projects
+                </div>
+                <h1>
+                    I Build <span class="gradient-text">Stunning Websites</span><br>
+                    For Your Business
+                </h1>
+                <p class="hero-sub">
+                    Professional websites for small &amp; medium businesses — delivered in <strong style="color:#e0e7ff">hours, not weeks</strong>. At prices that won't break the bank.
+                </p>
+                <div class="hero-highlight">
+                    <span class="icon">⚡</span>
+                    <div>
+                        <p>Website Ready in Under 24 Hours</p>
+                        <span>Most projects delivered same day</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="tel:+918978830132" class="btn-primary">
+                        📞 Call Now — Free Consultation
+                    </a>
+                    <a href="https://wa.me/918978830132?text=Hi%20Sukumar%2C%20I%20need%20a%20website%20for%20my%20business" class="btn-secondary btn-whatsapp" target="_blank" rel="noopener">
+                        <svg class="svg-icon svg-icon-sm" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp Me
+                    </a>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="10">10+</div>
+                        <div class="stat-text">Years in IT</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="50">50+</div>
+                        <div class="stat-text">Projects Done</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="100">100%</div>
+                        <div class="stat-text">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-visual-wrapper">
+                    <div class="float-card float-card-1">
+                        <div class="card-icon">🚀</div>
+                        <h4>Lightning Fast</h4>
+                        <p>Websites delivered in hours, not weeks. Your business goes online today.</p>
+                    </div>
+                    <div class="float-card float-card-2">
+                        <div class="stat-num">₹</div>
+                        <h4>Affordable Pricing</h4>
+                        <p>Premium quality at a fraction of agency costs.</p>
+                    </div>
+                    <div class="float-card float-card-3">
+                        <div class="card-icon">📱</div>
+                        <h4>Mobile Responsive</h4>
+                        <p>Looks perfect on every device — phone, tablet, or desktop.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Bar -->
+    <div class="trust-bar">
+        <p>Trusted Technologies</p>
+        <div class="trust-badges">
+            <div class="trust-badge"><span class="icon">⚛️</span> React</div>
+            <div class="trust-badge"><span class="icon">🟢</span> Node.js</div>
+            <div class="trust-badge"><span class="icon">🌐</span> HTML/CSS/JS</div>
+            <div class="trust-badge"><span class="icon">🐍</span> Python</div>
+            <div class="trust-badge"><span class="icon">☁️</span> Cloud</div>
+            <div class="trust-badge"><span class="icon">📱</span> Responsive</div>
+        </div>
+    </div>
+
+    <!-- Why Choose Me -->
+    <section class="why-section" id="about">
+        <div class="section-header animate-on-scroll">
+            <div class="section-label">✨ Why Choose Me</div>
+            <h2>Your Website, Built Right</h2>
+            <p>10+ years of IT experience combined with a passion for helping small businesses succeed online.</p>
+        </div>
+        <div class="why-grid">
+            <div class="why-card animate-on-scroll">
+                <span class="card-emoji">⚡</span>
+                <h3>Delivered in Hours</h3>
+                <p>While agencies take weeks, I deliver production-ready websites within hours. Your business goes live today, not next month.</p>
+            </div>
+            <div class="why-card animate-on-scroll">
+                <span class="card-emoji">💰</span>
+                <h3>Unbeatable Pricing</h3>
+                <p>No bloated agency fees. You get a professional website at a fraction of the cost — perfect for small and medium businesses.</p>
+            </div>
+            <div class="why-card animate-on-scroll">
+                <span class="card-emoji">🎨</span>
+                <h3>Beautiful Design</h3>
+                <p>Every website is custom-designed to match your brand. Modern, clean, and built to impress your customers.</p>
+            </div>
+            <div class="why-card animate-on-scroll">
+                <span class="card-emoji">📱</span>
+                <h3>Mobile-First</h3>
+                <p>70% of users browse on mobile. Every site I build looks perfect on phones, tablets, and desktops.</p>
+            </div>
+            <div class="why-card animate-on-scroll">
+                <span class="card-emoji">🔍</span>
+                <h3>SEO Optimized</h3>
+                <p>Built with search engines in mind so your customers can find you on Google. Better visibility = more business.</p>
+            </div>
+            <div class="why-card animate-on-scroll">
+                <span class="card-emoji">🤝</span>
+                <h3>Personal Support</h3>
+                <p>You deal directly with me — no middlemen. Quick responses, unlimited revisions, and ongoing support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing-section" id="pricing">
+        <div class="section-header animate-on-scroll">
+            <div class="section-label">💎 Pricing</div>
+            <h2>Simple, Honest Pricing</h2>
+            <p>No hidden fees. No surprises. Get a premium website at a price you'll love.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="price-card animate-on-scroll">
+                <h3>Starter</h3>
+                <div class="price">₹2,999 <span>one-time</span></div>
+                <p class="price-note">Perfect for personal brands & freelancers</p>
+                <ul>
+                    <li>Single-page responsive website</li>
+                    <li>Mobile-optimized design</li>
+                    <li>Contact form integration</li>
+                    <li>WhatsApp click-to-chat</li>
+                    <li>SEO basics included</li>
+                    <li>Delivered in 24 hours</li>
+                </ul>
+                <a href="https://wa.me/918978830132?text=Hi%20Sukumar%2C%20I'm%20interested%20in%20the%20Starter%20plan" class="btn-price btn-price-secondary" target="_blank" rel="noopener">Get Started</a>
+            </div>
+            <div class="price-card featured animate-on-scroll">
+                <div class="popular-tag">Most Popular</div>
+                <h3>Business</h3>
+                <div class="price">₹5,999 <span>one-time</span></div>
+                <p class="price-note">Perfect for small & medium businesses</p>
+                <ul>
+                    <li>Multi-page professional website</li>
+                    <li>Custom design & branding</li>
+                    <li>Google Maps integration</li>
+                    <li>WhatsApp & call buttons</li>
+                    <li>Full SEO optimization</li>
+                    <li>Social media integration</li>
+                    <li>1 month free support</li>
+                </ul>
+                <a href="https://wa.me/918978830132?text=Hi%20Sukumar%2C%20I'm%20interested%20in%20the%20Business%20plan" class="btn-price btn-price-primary" target="_blank" rel="noopener">Get Started — Best Value</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process -->
+    <section class="process-section" id="process">
+        <div class="section-header animate-on-scroll">
+            <div class="section-label">🔧 How It Works</div>
+            <h2>From Idea to Live Website</h2>
+            <p>A simple 4-step process that gets your business online in record time.</p>
+        </div>
+        <div class="process-grid">
+            <div class="process-step animate-on-scroll">
+                <div class="process-num-col">
+                    <div class="process-num">1</div>
+                    <div class="process-line"></div>
+                </div>
+                <div class="process-content">
+                    <h3>📞 Quick Call</h3>
+                    <p>Tell me about your business, what you need, and your brand preferences. A 10-minute call is all it takes.</p>
+                    <div class="process-time">⏱ 10 minutes</div>
+                </div>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="process-num-col">
+                    <div class="process-num">2</div>
+                    <div class="process-line"></div>
+                </div>
+                <div class="process-content">
+                    <h3>🎨 Design & Build</h3>
+                    <p>I create a custom, beautiful website tailored to your brand and business needs.</p>
+                    <div class="process-time">⏱ 2-6 hours</div>
+                </div>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="process-num-col">
+                    <div class="process-num">3</div>
+                    <div class="process-line"></div>
+                </div>
+                <div class="process-content">
+                    <h3>👀 Review & Refine</h3>
+                    <p>You review the website and request any changes. Unlimited revisions until you're 100% happy.</p>
+                    <div class="process-time">⏱ 1-2 hours</div>
+                </div>
+            </div>
+            <div class="process-step animate-on-scroll">
+                <div class="process-num-col">
+                    <div class="process-num">4</div>
+                    <div class="process-line"></div>
+                </div>
+                <div class="process-content">
+                    <h3>🚀 Go Live!</h3>
+                    <p>Your website is live and ready to bring in customers.</p>
+                    <div class="process-time">⏱ 30 minutes</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social / Follow -->
+    <section class="social-section" id="social">
+        <div class="social-inner animate-on-scroll">
+            <h2>Follow Me for Tech Tips & Tutorials</h2>
+            <p>I share web development tips, tech tutorials, and behind-the-scenes content on my channels. Join the community!</p>
+            <div class="social-channels">
+                <a href="https://www.youtube.com/@tec_in_sec" class="social-link" target="_blank" rel="noopener">
+                    <span class="s-icon"><svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></span> YouTube — @tec_in_sec
+                </a>
+                <a href="https://www.instagram.com/tec_in_sec" class="social-link" target="_blank" rel="noopener">
+                    <span class="s-icon"><svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 1 0 0-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 1 1-2.88 0 1.441 1.441 0 0 1 2.88 0z"/></svg></span> Instagram — @tec_in_sec
+                </a>
+                <a href="https://wa.me/918978830132" class="social-link" target="_blank" rel="noopener">
+                    <span class="s-icon"><svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></span> WhatsApp — tec_in_sec
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-section">
+        <div class="cta-box animate-on-scroll">
+            <h2>Ready to Get Your Business Online?</h2>
+            <p>Don't let your competitors get ahead. Get a professional website today — call me for a free consultation.</p>
+            <div class="cta-buttons">
+                <a href="tel:+918978830132" class="btn-primary">📞 Call Now — It's Free</a>
+                <a href="https://wa.me/918978830132?text=Hi%20Sukumar%2C%20I%20want%20a%20website%20for%20my%20business" class="btn-secondary btn-whatsapp" target="_blank" rel="noopener"><svg class="svg-icon svg-icon-sm" style="fill:white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg> WhatsApp Me</a>
+            </div>
+            <div class="cta-phone">
+                <a href="tel:+918978830132">+91-8978830132</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+        <div class="section-header animate-on-scroll">
+            <div class="section-label">📬 Contact</div>
+            <h2>Let's Talk About Your Project</h2>
+            <p>Reach out through any channel. I reply within minutes, not days.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-info animate-on-scroll">
+                <h3>Get in Touch</h3>
+                <p>Whether you need a brand new website or want to revamp an existing one, I'm here to help. No project is too small.</p>
+                <div class="contact-item">
+                    <div class="contact-icon phone-icon">📞</div>
+                    <div class="contact-item-text">
+                        <h4>Phone</h4>
+                        <a href="tel:+918978830132">+91-8978830132</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon whatsapp-icon"><svg class="svg-icon" style="fill:#25d366" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+                    <div class="contact-item-text">
+                        <h4>WhatsApp</h4>
+                        <a href="https://wa.me/918978830132" target="_blank" rel="noopener">Chat on WhatsApp</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon email-icon"><svg class="svg-icon" style="fill:#E4405F" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 1 0 0-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 1 1-2.88 0 1.441 1.441 0 0 1 2.88 0z"/></svg></div>
+                    <div class="contact-item-text">
+                        <h4>Instagram</h4>
+                        <a href="https://www.instagram.com/tec_in_sec" target="_blank" rel="noopener">@tec_in_sec</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon location-icon"><svg class="svg-icon" style="fill:#FF0000" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></div>
+                    <div class="contact-item-text">
+                        <h4>YouTube</h4>
+                        <a href="https://www.youtube.com/@tec_in_sec" target="_blank" rel="noopener">@tec_in_sec</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form animate-on-scroll">
+                <h3>Send a Quick Message</h3>
+                <form id="contactForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+91-XXXXXXXXXX" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="business">Business Type</label>
+                        <select id="business" name="business">
+                            <option value="">Select your business type</option>
+                            <option value="restaurant">Restaurant / Food</option>
+                            <option value="retail">Retail / Shop</option>
+                            <option value="services">Professional Services</option>
+                            <option value="education">Education / Coaching</option>
+                            <option value="healthcare">Healthcare / Clinic</option>
+                            <option value="real-estate">Real Estate</option>
+                            <option value="personal">Personal / Portfolio</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Tell me about your project</label>
+                        <textarea id="message" name="message" placeholder="I need a website for my..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">Send Message →</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div>
+                <div class="footer-brand">&lt;Sukumar /&gt;</div>
+                <p class="footer-text">Professional websites for your business.</p>
+            </div>
+            <p class="footer-text">&copy; 2026 Sukumar. All rights reserved.</p>
+            <div class="footer-socials">
+                <a href="https://www.youtube.com/@tec_in_sec" target="_blank" rel="noopener" aria-label="YouTube"><svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+                <a href="https://www.instagram.com/tec_in_sec" target="_blank" rel="noopener" aria-label="Instagram"><svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 1 0 0-12.324zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405a1.441 1.441 0 1 1-2.88 0 1.441 1.441 0 0 1 2.88 0z"/></svg></a>
+                <a href="https://wa.me/918978830132" target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/918978830132?text=Hi%20Sukumar%2C%20I%20need%20a%20website" class="floating-wa" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg class="svg-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+
+    <!-- Floating Call Button -->
+    <a href="tel:+918978830132" class="floating-call">
+        <span class="call-icon">📞</span>
+        <span>Call Now</span>
+    </a>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Hamburger menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => navLinks.classList.remove('active'));
+        });
+
+        // Scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+        // Form → WhatsApp redirect
+        function handleSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const business = document.getElementById('business').value;
+            const message = document.getElementById('message').value;
+
+            const text = encodeURIComponent(
+                `Hi Sukumar! I'm ${name}.\n` +
+                `Phone: ${phone}\n` +
+                `Business: ${business}\n` +
+                `Message: ${message}\n\n` +
+                `I'd like to get a website for my business!`
+            );
+
+            window.open(`https://wa.me/918978830132?text=${text}`, '_blank');
+        }
+    </script>
+</body>
+</html>
