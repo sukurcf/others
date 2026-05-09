@@ -1,0 +1,2628 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head><script data-od-sandbox-shim>(function(){
+  function makeStore(){
+    var data = {};
+    var api = {
+      getItem: function(k){ return Object.prototype.hasOwnProperty.call(data, k) ? data[k] : null; },
+      setItem: function(k, v){ data[k] = String(v); },
+      removeItem: function(k){ delete data[k]; },
+      clear: function(){ data = {}; },
+      key: function(i){ return Object.keys(data)[i] || null; }
+    };
+    Object.defineProperty(api, 'length', { get: function(){ return Object.keys(data).length; } });
+    return api;
+  }
+  function tryShim(name){
+    var works = false;
+    try { works = !!window[name] && typeof window[name].getItem === 'function'; void window[name].length; }
+    catch (_) { works = false; }
+    if (works) return;
+    try { Object.defineProperty(window, name, { configurable: true, value: makeStore() }); }
+    catch (_) { try { window[name] = makeStore(); } catch (__) {} }
+  }
+  tryShim('localStorage');
+  tryShim('sessionStorage');
+})();</script>
+<meta charset='utf-8' />
+<meta name='viewport' content='width=device-width, initial-scale=1' />
+<title>Gopinath Edugundla — Senior AI Data Engineer — 6 yrs · Python · PySpark · AWS · GenAI</title>
+<meta name='description' content='Experienced Software Engineer with 6 years in Python, PySpark, SQL, Pandas, and AWS, specializing in data migration, ETL, and data modeling. Skilled in GenAI, Agentic AI, LLMs, RAG, and LangChain.' />
+<link rel='preconnect' href='https://fonts.googleapis.com' />
+<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+<link href='https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500&display=swap' rel='stylesheet' />
+<style>/*
+ * Atelier Zero — canonical landing-page stylesheet.
+ *
+ * This file is the SINGLE SOURCE OF TRUTH for the open-design-landing
+ * skill's visual system. It is consumed by:
+ *
+ *   1. `scripts/compose.ts` — inlined into the standalone HTML output.
+ *   2. `apps/landing-page/app/globals.css` — copied verbatim for the
+ *      Astro static deployable counterpart.
+ *   3. `example.html` — the pre-rendered known-good demo.
+ *
+ * If you change tokens, layout, motion, or component styles, edit them
+ * here. The `@import` at top loads the four Google fonts the system
+ * requires (Inter Tight, Inter, Playfair Display, JetBrains Mono).
+ *
+ * Tokens, grid posture, and motion language are defined by
+ * `design-systems/atelier-zero/DESIGN.md`. Do not invent new colors or
+ * typefaces here; either extend the design system first.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;1,400;1,500;1,600;1,700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  --paper: #efe7d2;
+  --paper-warm: #ece4cf;
+  --paper-dark: #ddd2b6;
+  --ink: #15140f;
+  --ink-soft: #2a2620;
+  --ink-mute: #5a5448;
+  --ink-faint: #8b8676;
+  --coral: #ed6f5c;
+  --coral-soft: #f08e7c;
+  --mustard: #e9b94a;
+  --olive: #6e7448;
+  --bone: #f7f1de;
+  --line: rgba(21, 20, 15, 0.16);
+  --line-soft: rgba(21, 20, 15, 0.08);
+  --line-faint: rgba(21, 20, 15, 0.05);
+  --shadow: 0 30px 60px -30px rgba(21, 20, 15, 0.18);
+  --serif: 'Playfair Display', 'Times New Roman', serif;
+  --sans: 'Inter Tight', 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --body: 'Inter', -apple-system, system-ui, sans-serif;
+  --mono: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { background: var(--paper); color: var(--ink); }
+body {
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* paper texture overlay across the whole page */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(106, 92, 56, 0.07) 0, transparent 28%),
+    radial-gradient(circle at 88% 72%, rgba(106, 92, 56, 0.06) 0, transparent 32%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.18  0 0 0 0 0.16  0 0 0 0 0.12  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: auto, auto, 240px 240px;
+  mix-blend-mode: multiply;
+  opacity: 0.92;
+}
+
+.shell { position: relative; z-index: 2; }
+.container {
+  max-width: 1360px;
+  padding: 0 64px;
+  margin: 0 auto;
+  position: relative;
+}
+.container.wide { max-width: 1480px; }
+
+/* fixed side rails — rotated brand text on the right edge */
+.side-rail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 36px;
+  z-index: 3;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.side-rail.right { right: 0; border-left: 1px solid var(--line-faint); }
+.side-rail.left { left: 0; border-right: 1px solid var(--line-faint); }
+.side-rail .rail-text {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+.side-rail.right .rail-text { transform: rotate(180deg); }
+.side-rail.left .rail-text { writing-mode: vertical-rl; transform: none; }
+
+/* top metadata strip */
+.topbar {
+  border-bottom: 1px solid var(--line);
+  padding: 10px 0;
+  background: var(--paper);
+  position: relative;
+  z-index: 4;
+}
+.topbar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.topbar-inner b { color: var(--ink); font-weight: 600; }
+.topbar-inner .coral { color: var(--coral); }
+.topbar-inner > span { white-space: nowrap; }
+.topbar-inner .mid { display: inline-flex; gap: 26px; }
+.topbar-inner .mid > span { white-space: nowrap; }
+.topbar-inner .right { display: inline-flex; gap: 18px; align-items: center; }
+.topbar-inner .right > span,
+.topbar-inner .right > a { white-space: nowrap; }
+.topbar-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.topbar-link:hover { color: var(--coral); border-bottom-color: var(--coral); }
+.topbar .pulse {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+  display: inline-block;
+  margin-right: 6px;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+/* nav */
+/*
+ * Headroom-style sticky header.
+ *
+ * The element is always `position: sticky`, so the browser docks it to the
+ * top of the viewport once the topbar has scrolled away. The
+ * `<Header />` client island then toggles the `is-hidden` modifier based
+ * on scroll direction, which animates the bar in and out via `transform`.
+ *
+ * When the user is at the very top of the page, the topbar is still
+ * visible above the nav and `position: sticky` simply leaves the nav in
+ * its natural flow position — exactly the brief.
+ */
+.nav {
+  padding: 22px 0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--paper);
+  transform: translateY(0);
+  transition: transform 360ms cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+  border-bottom: 1px solid transparent;
+  will-change: transform;
+}
+/*
+ * Subtle visual cue once we leave the top of the page. We can't tell from
+ * CSS alone whether the bar is "stuck"; the deadband + class toggle in
+ * <Header /> approximates it well enough for our purpose. We rely on the
+ * `is-hidden` toggle to flicker the border while moving and a steady
+ * border once docked.
+ */
+.nav.is-hidden {
+  transform: translateY(-100%);
+  pointer-events: none;
+  box-shadow: none;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--sans);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 18px;
+}
+.brand-mark {
+  width: 36px; height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink);
+  background: transparent;
+}
+.brand-meta {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  line-height: 1.3;
+  margin-left: 4px;
+  border-left: 1px solid var(--line);
+  padding-left: 14px;
+}
+.brand-meta b { display: block; color: var(--ink); font-weight: 600; }
+
+.nav-links {
+  display: flex;
+  gap: 38px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--ink);
+  text-decoration: none;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.18s ease;
+  position: relative;
+}
+.nav-links a:hover { color: var(--coral); }
+.nav-links a .num {
+  font-size: 9px;
+  color: var(--ink-faint);
+  position: absolute;
+  top: -7px;
+  right: -16px;
+  letter-spacing: 0.04em;
+}
+.nav-side {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+}
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.nav-cta [data-github-stars],
+.nav-cta [data-github-version] {
+  font-variant-numeric: tabular-nums;
+}
+.nav-cta::after {
+  content: '★';
+  color: var(--mustard);
+  font-size: 11px;
+}
+.status-dot {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.status-dot::after {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+/* ---------- typography primitives ---------- */
+.label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--coral);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.label::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--coral);
+  display: inline-block;
+}
+.label .ix {
+  color: var(--ink-faint);
+  font-weight: 500;
+  margin-left: 4px;
+}
+.display {
+  font-family: var(--sans);
+  font-weight: 800;
+  letter-spacing: -0.028em;
+  color: var(--ink);
+  line-height: 1.0;
+}
+.display em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.018em;
+}
+.display .dot { color: var(--coral); }
+.lead {
+  font-family: var(--body);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 36ch;
+}
+.meta {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.coord {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-faint);
+}
+.roman {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--coral);
+}
+
+/* buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 0.18s ease, background 0.18s ease, color 0.18s ease;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--coral);
+  color: #fff;
+  box-shadow: 0 14px 26px -16px rgba(237, 111, 92, 1);
+}
+.btn-primary:hover { transform: translateY(-1px); background: #e25e4a; }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border-color: rgba(21, 20, 15, 0.2);
+}
+.btn-ghost:hover { background: rgba(21, 20, 15, 0.04); }
+.btn .arrow {
+  width: 16px; height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn .arrow svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+
+/* helper used inline in headlines */
+.code-inline {
+  font-family: var(--mono);
+  font-size: 14px;
+  background: var(--bone);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  padding: 0;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  border-bottom: 1px solid var(--line);
+}
+.hero > .container { flex: 0 0 auto; }
+.hero > .container.hero-grid { flex: 1 1 auto; }
+.hero::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--line-soft);
+  z-index: 0;
+  display: none;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+  gap: 36px;
+  align-items: stretch;
+  width: 100%;
+  position: relative;
+}
+.hero-copy {
+  padding: 4vh 0 4vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.hero-copy .label { margin-bottom: 28px; }
+.hero-copy .lead { margin-bottom: 30px; max-width: 38ch; font-size: 16px; }
+.hero h1 {
+  font-size: clamp(44px, 5vw, 78px);
+  line-height: 1.0;
+  margin-bottom: 28px;
+}
+.hero-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 38px;
+}
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: nowrap;
+  margin-bottom: 28px;
+}
+.hero-stats .stat { display: inline-flex; align-items: center; gap: 9px; white-space: nowrap; }
+.hero-stats .stat .ring {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  border: 1px dashed var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.hero-stats .stat .ring.solid { border-style: solid; }
+.hero-stats .stat .ring.coral { border-color: var(--coral); color: var(--coral); }
+.hero-stats .stat-label {
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1.25;
+  color: var(--ink-soft);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.hero-stats .stat-label b { display: block; font-weight: 700; color: var(--ink); font-size: 12px; }
+
+.hero-foot {
+  margin-top: auto;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+.hero-foot .meta { line-height: 1.4; }
+
+.hero-art {
+  position: relative;
+  height: calc(100vh - 160px);
+  max-height: 860px;
+  margin-left: auto;
+  margin-right: -12px;
+  width: 100%;
+  overflow: visible;
+}
+.hero-art img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  object-position: right center;
+  display: block;
+}
+/* image annotations */
+.annot {
+  position: absolute;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.annot.has-line::before {
+  content: '';
+  position: absolute;
+  background: var(--ink-faint);
+}
+.annot-tl { top: 14px; left: 14px; }
+.annot-tr { top: 14px; right: 14px; text-align: right; }
+.annot-bl { bottom: 14px; left: 14px; }
+.annot-br { bottom: 14px; right: 14px; text-align: right; }
+.annot.coord { font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; text-transform: none; }
+
+.hero-art .index {
+  position: absolute;
+  right: 12px;
+  top: 36%;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  background: rgba(239, 231, 210, 0.7);
+  padding: 10px 12px;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  backdrop-filter: blur(2px);
+}
+.hero-art .index span { display: block; line-height: 1.6; }
+.hero-art .index span .n { color: var(--coral); margin-right: 6px; font-weight: 700; }
+.hero-art .index span.on { color: var(--ink); font-weight: 700; }
+.hero-art .index span.on .n { color: var(--coral); }
+
+.hero-art .corner {
+  position: absolute;
+  width: 22px; height: 22px;
+  border-color: var(--ink-faint);
+  border-style: solid;
+  border-width: 0;
+}
+.hero-art .corner.tl { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+.hero-art .corner.tr { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+.hero-art .corner.bl { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+.hero-art .corner.br { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+
+/* ---------- common section header ---------- */
+section { position: relative; padding: 130px 0; }
+section.tight { padding: 90px 0; }
+.sec-rule {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  margin-bottom: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.sec-rule .roman {
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--coral);
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+.sec-rule .meta-grp { display: inline-flex; gap: 26px; }
+.sec-rule .dot-mark { color: var(--coral); }
+
+.section-header { margin-bottom: 70px; }
+.section-header .label { margin-bottom: 32px; }
+.section-header h2 {
+  font-size: clamp(40px, 4.6vw, 66px);
+  max-width: 22ch;
+}
+.section-header .lead { margin-top: 22px; }
+
+/* ---------- WIRE / GLOBAL TICKER ----------
+ *
+ * Slim editorial strip between the hero and the About section. Two
+ * counter-scrolling marquees (cities → and contributors ←) signal that
+ * the project is global and community-driven, without disrupting the
+ * existing roman-numeral section count. Pure CSS animation; the track
+ * content is duplicated in markup so the loop wraps seamlessly.
+ */
+.wire {
+  border-bottom: 1px solid var(--line);
+  padding: 26px 0 28px;
+  background: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+.wire-inner {
+  display: grid;
+  grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+}
+.wire-left {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  border-right: 1px solid var(--line);
+  padding-right: 24px;
+  min-height: 56px;
+}
+.wire-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.wire-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+  display: inline-block;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+.wire-title {
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1.4;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.wire-title b {
+  color: var(--ink);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.wire-title span {
+  color: var(--ink-faint);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.wire-rows {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.wire-row {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+}
+.marquee-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 36px;
+  width: max-content;
+  white-space: nowrap;
+  animation: marquee-x 52s linear infinite;
+  will-change: transform;
+}
+.wire-row.reverse .marquee-track {
+  animation-direction: reverse;
+  animation-duration: 64s;
+}
+.wire-row:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.wire-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-mute);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+.wire-item .wire-dot {
+  color: var(--coral);
+  font-size: 16px;
+  line-height: 0;
+  position: relative;
+  top: -1px;
+  margin-right: 2px;
+}
+.wire-item .wire-coord {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  letter-spacing: 0;
+}
+.wire-item .wire-name {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink);
+  font-weight: 500;
+}
+.wire-item .wire-handle {
+  font-family: var(--mono);
+  color: var(--ink);
+  font-size: 11.5px;
+  font-weight: 500;
+}
+.wire-item .wire-role {
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--coral);
+  font-size: 10px;
+}
+.wire-item.is-link {
+  transition: color 160ms ease;
+}
+.wire-item.is-link:hover .wire-handle {
+  color: var(--coral);
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ---------- ABOUT ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.about h2 {
+  font-size: clamp(44px, 5.4vw, 78px);
+  margin: 30px 0 36px;
+}
+.about .label { margin-bottom: 28px; }
+.about .lead { margin-bottom: 36px; max-width: 42ch; font-size: 17px; }
+.about .footer-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 56px;
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.about .footer-row .mark {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink);
+}
+.about .stamp {
+  margin-left: auto;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  line-height: 1.4;
+}
+.about .stamp span:first-child { color: var(--coral); }
+.about-art {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 620px;
+  margin-left: auto;
+}
+.about-art img { width: 100%; height: 100%; object-fit: contain; }
+.about-side-note {
+  position: absolute;
+  right: -8px;
+  top: 26px;
+  text-align: right;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  line-height: 1.55;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+  max-width: 16ch;
+}
+.about-side-note b {
+  display: block;
+  color: var(--coral);
+  width: 36px;
+  height: 1px;
+  background: var(--coral);
+  margin: 0 0 10px auto;
+}
+.about-caption {
+  position: absolute;
+  right: 18px;
+  bottom: 4px;
+  font-family: var(--sans);
+  font-size: 9.5px;
+  color: var(--ink-faint);
+  text-align: right;
+  letter-spacing: 0.06em;
+  line-height: 1.45;
+}
+.about-caption b { color: var(--ink); display: block; }
+
+/* ---------- CAPABILITIES ---------- */
+.capabilities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 70px;
+  align-items: center;
+}
+.capabilities-art {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 600px;
+}
+.capabilities-art img { width: 100%; height: 100%; object-fit: contain; }
+.capabilities-art .ribbon {
+  position: absolute;
+  right: -42px;
+  top: 50%;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+.capabilities-art .ribbon b { color: var(--coral); }
+.capabilities-art .corner { position: absolute; width: 22px; height: 22px; border-color: var(--ink-faint); border-style: solid; border-width: 0; }
+.capabilities-art .corner.tl { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+.capabilities-art .corner.br { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+.capabilities-copy h2 { font-size: clamp(40px, 4.8vw, 64px); margin: 22px 0 30px; }
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 22px;
+}
+.card {
+  padding: 28px 26px 32px;
+  background: var(--bone);
+  border-radius: 18px;
+  box-shadow: var(--shadow), inset 0 0 0 1px rgba(21, 20, 15, 0.06);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+.card:hover { transform: translateY(-3px); }
+.card .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--coral);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.card .num .tag {
+  font-family: var(--sans);
+  font-size: 9.5px;
+  color: var(--ink-faint);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 500;
+}
+.card .icon {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+.card h3 {
+  font-family: var(--sans);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.014em;
+  margin-bottom: 14px;
+}
+.card p {
+  font-family: var(--body);
+  font-size: 13.5px;
+  color: var(--ink-mute);
+  line-height: 1.55;
+  max-width: 24ch;
+}
+.card .arrow-mark {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  width: 28px; height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  transition: all 0.18s ease;
+}
+.card:hover .arrow-mark { background: var(--coral); border-color: var(--coral); color: #fff; }
+.card .arrow-mark svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+
+/* ---------- LABS ---------- */
+.labs-head {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 60px;
+  align-items: end;
+  margin-bottom: 48px;
+}
+.labs-head h2 { font-size: clamp(40px, 4.8vw, 68px); }
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.pill {
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.pill:hover { background: rgba(21, 20, 15, 0.04); }
+.pill.active {
+  background: var(--coral);
+  border-color: var(--coral);
+  color: #fff;
+}
+.pill .count {
+  font-size: 10px;
+  color: var(--ink-faint);
+  border-left: 1px solid var(--line);
+  padding-left: 8px;
+}
+.pill.active .count { color: rgba(255,255,255,0.7); border-color: rgba(255,255,255,0.3); }
+.labs-meta {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 22px;
+  margin-bottom: 30px;
+}
+.labs-meta .ring {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  border: 1px dashed var(--ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+}
+.labs-meta .meta-text {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.55;
+  color: var(--ink-faint);
+  max-width: 28ch;
+}
+.labs-meta .meta-text b { display: block; color: var(--ink); }
+.labs-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 22px;
+}
+.lab {
+  display: flex;
+  flex-direction: column;
+}
+.lab-img {
+  aspect-ratio: 4 / 5;
+  background: var(--bone);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow);
+  position: relative;
+}
+.lab-img img { width: 100%; height: 100%; object-fit: cover; }
+.lab-img .badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(239, 231, 210, 0.9);
+  color: var(--ink);
+  padding: 4px 9px;
+  border-radius: 4px;
+  font-family: var(--sans);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.lab .num-row {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  color: var(--ink-faint);
+  letter-spacing: 0.14em;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  text-transform: uppercase;
+}
+.lab h4 {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.014em;
+  margin-bottom: 8px;
+}
+.lab p {
+  font-family: var(--body);
+  font-size: 13px;
+  color: var(--ink-mute);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+.lab .arrow-mark {
+  width: 28px; height: 28px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  margin-top: auto;
+  align-self: flex-start;
+}
+.lab .arrow-mark svg { width: 11px; height: 11px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+.labs-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 50px;
+  border-top: 1px dashed var(--line);
+  padding-top: 22px;
+}
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.progress span {
+  width: 26px; height: 2px;
+  background: var(--line);
+  border-radius: 2px;
+}
+.progress span.on { background: var(--coral); }
+
+/* ---------- METHOD ---------- */
+.method-head {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 80px;
+}
+.method-head h2 { font-size: clamp(44px, 5.2vw, 76px); }
+.method-head .right {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding-top: 14px;
+}
+.method-head .plus {
+  color: var(--coral);
+  font-size: 24px;
+  line-height: 1;
+  font-family: var(--sans);
+}
+.method-head .right p {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-soft);
+  max-width: 22ch;
+  line-height: 1.55;
+}
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  position: relative;
+}
+.method-grid::before {
+  content: '';
+  position: absolute;
+  top: 60px;
+  left: 50px;
+  right: 50px;
+  height: 1px;
+  background: var(--line-soft);
+}
+.method-step { position: relative; }
+.method-step .num {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 78px;
+  color: var(--coral);
+  line-height: 0.85;
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+  background: var(--paper);
+  display: inline-block;
+  padding-right: 12px;
+  position: relative;
+  z-index: 1;
+}
+.method-step h4 {
+  font-family: var(--sans);
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 18px;
+}
+.method-step h4 .arrow-r {
+  color: var(--ink-faint);
+  font-size: 22px;
+  line-height: 1;
+}
+.method-step:last-child h4 .arrow-r { display: none; }
+.method-step p {
+  font-family: var(--body);
+  font-size: 13.5px;
+  color: var(--ink-mute);
+  line-height: 1.55;
+  margin-bottom: 24px;
+  max-width: 24ch;
+}
+.method-step .img {
+  aspect-ratio: 1 / 1;
+  background: var(--bone);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.method-step .img img { width: 100%; height: 100%; object-fit: cover; }
+.method-foot {
+  margin-top: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px dashed var(--line);
+  padding-top: 24px;
+}
+.method-foot .left,
+.method-foot .right {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.method-foot .left {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.method-foot .left .ring {
+  width: 20px; height: 20px;
+  border: 1px dashed var(--ink-faint);
+  border-radius: 50%;
+}
+.method-foot .right b { color: var(--ink); }
+
+/* ---------- WORK ---------- */
+.work {
+  background: #15140f;
+  color: var(--paper);
+  border-radius: 32px;
+  margin: 0 64px;
+  overflow: hidden;
+  position: relative;
+  padding: 110px 64px;
+}
+.work::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n2'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 0.95  0 0 0 0 0.85  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n2)'/></svg>");
+  background-size: 240px 240px;
+  opacity: 0.6;
+  mix-blend-mode: screen;
+}
+.work-rule {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgba(247, 241, 222, 0.16);
+  padding-top: 16px;
+  margin-bottom: 60px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(247, 241, 222, 0.55);
+}
+.work-rule .roman { color: var(--coral); font-family: var(--serif); font-style: italic; font-size: 14px; letter-spacing: 0.04em; text-transform: none; }
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+}
+.work .label { color: var(--coral); }
+.work .label::before { background: var(--coral); }
+.work-copy h2 {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: clamp(40px, 5vw, 66px);
+  line-height: 1.0;
+  letter-spacing: -0.024em;
+  margin: 28px 0 36px;
+  color: var(--paper);
+}
+.work-copy h2 em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+}
+.work-copy h2 .dot { color: var(--coral); }
+.work-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 14px;
+  text-decoration: none;
+  border-bottom: 2px solid var(--coral);
+  padding-bottom: 12px;
+  width: fit-content;
+}
+.work-link::after { content: '↗'; color: var(--coral); }
+.work-card {
+  background: var(--paper);
+  color: var(--ink);
+  border-radius: 18px;
+  padding: 32px 30px;
+  position: relative;
+  transform: rotate(-1.2deg);
+  text-decoration: none;
+  display: block;
+  transition: transform 280ms ease, box-shadow 280ms ease;
+}
+.work-card:hover {
+  transform: rotate(-1.2deg) translateY(-4px);
+  box-shadow: var(--shadow);
+}
+.work-card.alt {
+  transform: rotate(2.4deg) translateY(20px);
+  padding: 28px 26px;
+}
+.work-card.alt:hover {
+  transform: rotate(2.4deg) translateY(16px);
+  box-shadow: var(--shadow);
+}
+.work-card .label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+.work-card .small-label {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  color: var(--coral);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.work-card .index {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-faint);
+  letter-spacing: 0.04em;
+}
+.work-card h3 {
+  font-family: var(--sans);
+  font-size: clamp(26px, 2.4vw, 38px);
+  font-weight: 800;
+  letter-spacing: -0.022em;
+  line-height: 1.05;
+  margin-bottom: 14px;
+}
+.work-card p {
+  font-family: var(--body);
+  font-size: 14px;
+  color: var(--ink-mute);
+  line-height: 1.55;
+  margin-bottom: 22px;
+  max-width: 28ch;
+}
+.work-card .img {
+  aspect-ratio: 4 / 3;
+  background: var(--bone);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 22px;
+}
+.work-card .img img { width: 100%; height: 100%; object-fit: cover; }
+.work-card .meta-row {
+  display: flex;
+  justify-content: space-between;
+  color: var(--ink-faint);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+}
+.work-card .year { color: var(--coral); font-weight: 600; }
+.work-arrows {
+  position: absolute;
+  right: 64px;
+  bottom: 64px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.work-arrows .nav-btn {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  border: 1px solid rgba(247, 241, 222, 0.2);
+  background: transparent;
+  color: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.work-arrows .nav-btn.active { background: var(--coral); border-color: var(--coral); }
+
+/* ---------- TESTIMONIAL / COLLABORATORS ---------- */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.testimonial-copy h2 {
+  font-family: var(--sans);
+  font-size: clamp(36px, 4vw, 54px);
+  font-weight: 700;
+  letter-spacing: -0.022em;
+  line-height: 1.12;
+  margin-bottom: 36px;
+}
+.testimonial-copy h2 em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+}
+.author {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 22px;
+}
+.author .avatar {
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  background: var(--ink);
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--paper);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 24px;
+}
+.author p {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  font-weight: 600;
+}
+.author p span {
+  display: block;
+  color: var(--ink-mute);
+  font-weight: 400;
+}
+.divider {
+  border-top: 1px solid var(--line);
+  margin: 60px 0 32px;
+}
+.partners-text {
+  font-family: var(--body);
+  font-size: 14px;
+  color: var(--ink-mute);
+  margin-bottom: 26px;
+  max-width: 38ch;
+}
+.partners {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 22px;
+  align-items: end;
+}
+.partner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 220ms ease;
+}
+.partner:hover { transform: translateY(-2px); }
+.partner:hover .glyph { color: var(--coral); }
+.partner:hover span { color: var(--coral); }
+.partner .glyph {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  color: var(--ink);
+  transition: color 220ms ease;
+}
+.partner .glyph svg { height: 100%; width: auto; max-width: 90px; }
+.partner span {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink);
+  letter-spacing: -0.005em;
+  font-weight: 600;
+  transition: color 220ms ease;
+}
+.partner small {
+  font-family: var(--sans);
+  font-size: 10px;
+  color: var(--ink-faint);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.read-more {
+  margin-top: 56px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  border-bottom: 1px solid var(--coral);
+  padding-bottom: 6px;
+}
+.read-more::after { content: '→'; color: var(--coral); }
+.testimonial-art {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 560px;
+}
+.testimonial-art img { width: 100%; height: 100%; object-fit: contain; }
+
+/* ---------- CTA ---------- */
+.cta-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: 50px;
+  align-items: center;
+}
+.cta h2 {
+  font-size: clamp(54px, 6.6vw, 100px);
+  margin: 32px 0 32px;
+}
+.cta .lead { margin-bottom: 36px; max-width: 36ch; font-size: 16px; }
+.cta-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+.email-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px 14px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.email-pill .arrow-circle {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--paper);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+.cta-foot {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.cta-foot .stamp { color: var(--coral); font-weight: 600; }
+.cta-art {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 620px;
+  margin-left: auto;
+}
+.cta-art img { width: 100%; height: 100%; object-fit: contain; }
+.cta-art .index {
+  position: absolute;
+  right: 8px;
+  top: 24px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 28px;
+  color: var(--ink-faint);
+}
+.cta-art .ribbon {
+  position: absolute;
+  left: -32px;
+  top: 50%;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  border-top: 1px solid var(--line);
+  padding: 60px 0 30px;
+  margin-top: 60px;
+}
+.foot-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+.foot-brand .brand { margin-bottom: 18px; }
+.foot-brand p {
+  font-family: var(--body);
+  font-size: 13.5px;
+  color: var(--ink-mute);
+  line-height: 1.55;
+  max-width: 38ch;
+}
+.foot-brand p .inline-link,
+.inline-link {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--line);
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.inline-link:hover {
+  color: var(--coral);
+  border-bottom-color: var(--coral);
+}
+.method-repo-link {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 160ms ease, border-color 160ms ease;
+}
+.method-repo-link:hover {
+  color: var(--coral);
+  border-bottom-color: var(--coral);
+}
+.library-link {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 160ms ease;
+}
+.library-link:hover { border-bottom-color: var(--coral); }
+.foot-col h5 {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+.foot-col ul { list-style: none; }
+.foot-col li { margin-bottom: 10px; }
+.foot-col a {
+  font-family: var(--body);
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  text-decoration: none;
+}
+.foot-col a:hover { color: var(--coral); }
+.foot-bottom {
+  border-top: 1px solid var(--line);
+  padding-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.foot-bottom .right { display: inline-flex; gap: 24px; align-items: center; }
+.foot-bottom .pulse {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--coral);
+  display: inline-block;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+.foot-mega {
+  margin-top: 60px;
+  padding-top: 0;
+  padding-bottom: 12px;
+  border-top: 1px solid var(--line);
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+.foot-mega .word {
+  font-family: var(--sans);
+  font-weight: 900;
+  font-size: 200px;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--ink);
+  white-space: nowrap;
+  margin-top: 30px;
+  padding-bottom: 0.18em;
+}
+.foot-mega .word em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--coral);
+}
+
+/* ---------- scroll-reveal motion ----------
+ *
+ * Driven by `app/_components/reveal-root.tsx`. Elements with
+ * `data-reveal` start hidden + offset; the observer sets
+ * `data-revealed='true'` once they enter the viewport, triggering
+ * the transition.
+ *
+ * Uses `translate` / `scale` longhand properties (not `transform`) so
+ * that elements like `.work-card` keep their static `transform: rotate()`
+ * intact while still translating in.
+ */
+[data-reveal] {
+  opacity: 0;
+  translate: 0 28px;
+  transition:
+    opacity 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    translate 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    scale 900ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+  will-change: opacity, translate, scale;
+}
+[data-reveal='left'] { translate: -36px 0; }
+[data-reveal='right'] { translate: 36px 0; }
+[data-reveal='scale'] { translate: 0 0; scale: 0.96; }
+[data-reveal='rise-lg'] { translate: 0 64px; scale: 0.985; }
+[data-reveal][data-revealed='true'] {
+  opacity: 1;
+  translate: 0 0;
+  scale: 1;
+}
+
+/* stagger primitives — set --reveal-delay on grid children so siblings
+ * appear in sequence rather than all at once. */
+.cards > .card[data-reveal]:nth-child(1) { --reveal-delay: 0ms; }
+.cards > .card[data-reveal]:nth-child(2) { --reveal-delay: 90ms; }
+.cards > .card[data-reveal]:nth-child(3) { --reveal-delay: 180ms; }
+.cards > .card[data-reveal]:nth-child(4) { --reveal-delay: 270ms; }
+
+.labs-grid > .lab[data-reveal]:nth-child(1) { --reveal-delay: 0ms; }
+.labs-grid > .lab[data-reveal]:nth-child(2) { --reveal-delay: 90ms; }
+.labs-grid > .lab[data-reveal]:nth-child(3) { --reveal-delay: 180ms; }
+.labs-grid > .lab[data-reveal]:nth-child(4) { --reveal-delay: 270ms; }
+.labs-grid > .lab[data-reveal]:nth-child(5) { --reveal-delay: 360ms; }
+
+.method-grid > .method-step[data-reveal]:nth-child(1) { --reveal-delay: 0ms; }
+.method-grid > .method-step[data-reveal]:nth-child(2) { --reveal-delay: 110ms; }
+.method-grid > .method-step[data-reveal]:nth-child(3) { --reveal-delay: 220ms; }
+.method-grid > .method-step[data-reveal]:nth-child(4) { --reveal-delay: 330ms; }
+
+.partners > .partner[data-reveal]:nth-child(1) { --reveal-delay: 0ms; }
+.partners > .partner[data-reveal]:nth-child(2) { --reveal-delay: 70ms; }
+.partners > .partner[data-reveal]:nth-child(3) { --reveal-delay: 140ms; }
+.partners > .partner[data-reveal]:nth-child(4) { --reveal-delay: 210ms; }
+.partners > .partner[data-reveal]:nth-child(5) { --reveal-delay: 280ms; }
+.partners > .partner[data-reveal]:nth-child(6) { --reveal-delay: 350ms; }
+
+/* hero copy — let label, headline, lead, actions, stats arrive in sequence
+ * so the headline isn't waiting on a single block-level reveal. */
+.hero-copy > [data-reveal]:nth-of-type(1) { --reveal-delay: 0ms; }
+.hero-copy > [data-reveal]:nth-of-type(2) { --reveal-delay: 80ms; }
+.hero-copy > [data-reveal]:nth-of-type(3) { --reveal-delay: 160ms; }
+.hero-copy > [data-reveal]:nth-of-type(4) { --reveal-delay: 240ms; }
+.hero-copy > [data-reveal]:nth-of-type(5) { --reveal-delay: 320ms; }
+.hero-copy > [data-reveal]:nth-of-type(6) { --reveal-delay: 400ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    translate: 0 0 !important;
+    scale: 1 !important;
+    transition: none !important;
+  }
+  /* Skip the slide-in on the sticky header for users who prefer no motion;
+   * the show/hide still toggles, just instantly. */
+  .nav { transition: none !important; }
+}
+
+/* responsive */
+@media (max-width: 1280px) {
+  .container { padding: 0 44px; }
+  .work { margin: 0 44px; padding: 90px 44px; }
+  .side-rail { display: none; }
+}
+/* hide topbar mid text early — between 1200 and 1280 it crowds even with nowrap */
+@media (max-width: 1200px) {
+  .topbar-inner .mid { display: none; }
+}
+/* nav: between 1080 and 1180 the brand tail + 5 nav links + 2 CTAs + dot
+ * crowd the row. Drop the brand sub-meta first, then tighten link spacing,
+ * so the Star CTA never has to compress. */
+@media (max-width: 1180px) {
+  .nav-inner { gap: 18px; }
+  .brand-meta { display: none; }
+  .nav-links { gap: 28px; }
+}
+@media (max-width: 1080px) {
+  .container { padding: 0 32px; }
+  .hero h1 { font-size: clamp(36px, 4.6vw, 54px); }
+  .section-header h2 { font-size: clamp(32px, 4vw, 50px); }
+  .labs-grid { grid-template-columns: repeat(5, 1fr); gap: 14px; }
+  .partners { grid-template-columns: repeat(3, 1fr); gap: 18px; row-gap: 28px; }
+  .foot-grid { grid-template-columns: 2fr 1fr 1fr; }
+  .foot-grid .foot-col:nth-child(4),
+  .foot-grid .foot-col:nth-child(5) { display: none; }
+}
+@media (max-width: 880px) {
+  .container { padding: 0 24px; }
+  .hero-grid, .about-grid, .capabilities-grid, .testimonial-grid, .cta-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+  .labs-head, .method-head { grid-template-columns: 1fr; }
+  .labs-grid { grid-template-columns: repeat(2, 1fr); }
+  .method-grid { grid-template-columns: repeat(2, 1fr); gap: 36px; }
+  .method-grid::before { display: none; }
+  .work { margin: 0 12px; padding: 60px 24px; }
+  .work-grid { grid-template-columns: 1fr; }
+  .partners { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .nav-links, .brand-meta, .nav-cta { display: none; }
+  /* wire — stack the field label above the marquee rows */
+  .wire-inner { grid-template-columns: 1fr; gap: 14px; }
+  .wire-left {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding-right: 0;
+    padding-bottom: 12px;
+    min-height: 0;
+  }
+}
+@media (max-width: 560px) {
+  .container { padding: 0 16px; }
+  .hero h1 { font-size: 38px; }
+  .labs-grid { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; }
+  .pills { justify-content: flex-start; }
+  section { padding: 80px 0; }
+  .topbar-inner { font-size: 9px; }
+}
+
+.code-inline {
+  font-family: var(--mono);
+  font-size: 14px;
+  background: var(--bone);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.code-inline.sm { font-size: 12px; padding: 0 4px; }
+</style>
+</head>
+<body>
+
+<div class='side-rail right' data-od-id='rail-right'>
+  <span class='rail-text'>Gopinath Edugundla — Portfolio · Senior AI Data Engineer · MMXXVI</span>
+</div>
+<div class='side-rail left' data-od-id='rail-left'>
+  <span class='rail-text'>Python · PySpark · AWS · GenAI · RAG · LangChain</span>
+</div>
+<div class='shell'>
+
+<div class='topbar' data-od-id='topbar'>
+  <div class='container topbar-inner'>
+    <span><b>OD / 2026</b> &nbsp;·&nbsp; Vol. 01 / Issue Nº 01</span>
+    <span class='mid'>
+      <span>Filed under <b class='coral'>AI · Data Engineering</b></span>
+      <span>Open to opportunities · Made on Earth</span>
+    </span>
+    <span class='right'>
+      <a class='topbar-link' href='https://linkedin.com/in/gopinath-edugundla/releases' target='_blank' rel='noreferrer noopener'><span class='pulse'></span>Open · 2026</a>
+      <span><b>EN</b> · HI · TE</span>
+    </span>
+  </div>
+</div>
+
+<header class='nav' data-od-id='nav'>
+  <div class='container nav-inner'>
+    <a href='#top' class='brand'>
+      <span class='brand-mark'>G</span>
+      <span>Gopinath Edugundla</span>
+      <span class='brand-meta'><b>Portfolio Nº 01</b>Hyderabad / India</span>
+    </a>
+    <nav>
+      <ul class='nav-links'>
+          <li><a href='#about'>Experience<span class='num'>03</span></a></li>
+          <li><a href='#agents'>Skills<span class='num'>30+</span></a></li>
+          <li><a href='#labs'>Projects<span class='num'>05</span></a></li>
+          <li><a href='#method'>Method</a></li>
+          <li><a href='#contact'>Contact</a></li>
+      </ul>
+    </nav>
+    <div class='nav-side'>
+      <a class='nav-cta' href='https://linkedin.com/in/gopinath-edugundla' target='_blank' rel='noreferrer noopener'>Connect</a>
+      <span class='status-dot' aria-hidden='true'></span>
+    </div>
+  </div>
+</header>
+
+<section class='hero' id='top' data-od-id='hero'>
+  <div class='container'>
+    <div class='sec-rule'>
+      <span class='roman'>I.</span>
+      <span class='meta-grp'>
+        <span>Hero / Cover Plate</span>
+        <span class='dot-mark'>•</span>
+        <span>Gopinath Edugundla / Volume 01</span>
+      </span>
+      <span>001 / 008</span>
+    </div>
+  </div>
+  <div class='container hero-grid'>
+    <div class='hero-copy'>
+      <span class='label' data-reveal>Senior AI Data Engineer <span class='ix'>· Nº 01</span></span>
+      <h1 class='display' data-reveal>Engineering <em>intelligence</em> with data, <em>precision,</em> and <em>code</em><span class='dot'>.</span></h1>
+      <p class='lead' data-reveal>6 years building production data pipelines, ETL systems, and GenAI applications across pharmaceutical lifecycle management and financial analytics. Python, PySpark, SQL, AWS — turning complex data into compliant, actionable intelligence.</p>
+      <div class='hero-actions' data-reveal>
+        <a class='btn btn-primary' href='https://linkedin.com/in/gopinath-edugundla' target='_blank' rel='noreferrer noopener'>
+          Connect on LinkedIn
+          <span class='arrow'><svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg></span>
+        </a>
+        <a class='btn btn-ghost' href='mailto:edugundla.gopinath@gmail.com' target='_blank' rel='noreferrer noopener'>
+          Download résumé
+          <span class='arrow'><svg viewBox='0 0 24 24'><circle cx='12' cy='12' r='9'/><path d='M9 12h6M12 9v6'/></svg></span>
+        </a>
+      </div>
+      <div class='hero-stats' data-reveal>
+          <div class='stat'>
+    <span class='ring solid'>6+</span>
+    <span class='stat-label'><b>years</b>experience</span>
+  </div>
+          <div class='stat'>
+    <span class='ring'>30+</span>
+    <span class='stat-label'><b>skills</b>production</span>
+  </div>
+          <div class='stat'>
+    <span class='ring coral'>70%</span>
+    <span class='stat-label'><b>reduced</b>manual effort</span>
+  </div>
+      </div>
+      <div class='hero-foot' data-reveal>
+        <span class='meta'>↳ &nbsp; edugundla.gopinath@gmail.com &nbsp; · &nbsp; +91 7675914740</span>
+        <span class='coord'>17.3850° N · 78.4867° E</span>
+      </div>
+    </div>
+    <div class='hero-art' data-reveal='scale'>
+      <span class='corner tl'></span>
+      <span class='corner tr'></span>
+      <span class='corner bl'></span>
+      <span class='corner br'></span>
+      <span class='annot annot-tl coord'>FIG. 01 / GE-26</span>
+      <span class='annot annot-tr'>Plate Nº 01</span>
+      <span class='annot annot-bl coord'>B.Tech · JNTU · 8.23 GPA</span>
+      <span class='annot annot-br'>Composed in&nbsp;<span style='color:var(--coral);'>Open Design</span></span>
+      <img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24taGVybyc+PGZlVHVyYnVsZW5jZSB0eXBlPSdmcmFjdGFsTm9pc2UnIGJhc2VGcmVxdWVuY3k9JzAuNjUnIG51bU9jdGF2ZXM9JzMnIHN0aXRjaFRpbGVzPSdzdGl0Y2gnLz48ZmVDb2xvck1hdHJpeCB2YWx1ZXM9JzAgMCAwIDAgMC4xOCAwIDAgMCAwIDAuMTYgMCAwIDAgMCAwLjEyIDAgMCAwIDAuMDYgMCcvPjwvZmlsdGVyPgogIDwvZGVmcz48cmVjdCB3aWR0aD0nMTAyNCcgaGVpZ2h0PScxMDI0JyBmaWx0ZXI9J3VybCgjbi1oZXJvKScvPjxjaXJjbGUgY3g9JzUxMicgY3k9JzQyMCcgcj0nMjIwJyBmaWxsPSdub25lJyBzdHJva2U9JyM4Yjg2NzYnIHN0cm9rZS13aWR0aD0nMScgc3Ryb2tlLWRhc2hhcnJheT0nNCA4Jy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDIwJyByPScxODAnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2VkNmY1Yycgc3Ryb2tlLXdpZHRoPScxLjUnIHN0cm9rZS1kYXNoYXJyYXk9JzIgMTInLz48Y2lyY2xlIGN4PSc1MTInIGN5PSc0MjAnIHI9JzE0MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGI4Njc2JyBzdHJva2Utd2lkdGg9JzAuNScvPjxyZWN0IHg9JzM2MCcgeT0nMzAwJyB3aWR0aD0nMzA0JyBoZWlnaHQ9JzI0MCcgZmlsbD0nI2Y1ZjBlMycgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzEnIHRyYW5zZm9ybT0ncm90YXRlKC0yIDUxMiA0MjApJy8+PGxpbmUgeDE9JzM4MCcgeTE9JzMyMCcgeDI9JzYxNCcgeTI9JzMyMCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNScvPjxsaW5lIHgxPSczODAnIHkxPSczNDgnIHgyPSc2MTEnIHkyPSczNDgnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjUnLz48bGluZSB4MT0nMzgwJyB5MT0nMzc2JyB4Mj0nNjM0JyB5Mj0nMzc2JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC41Jy8+PGxpbmUgeDE9JzM4MCcgeTE9JzQwNCcgeDI9JzYyMScgeTI9JzQwNCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNScvPjxsaW5lIHgxPSczODAnIHkxPSc0MzInIHgyPSc2MjUnIHkyPSc0MzInIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjUnLz48bGluZSB4MT0nMzgwJyB5MT0nNDYwJyB4Mj0nNjIxJyB5Mj0nNDYwJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC41Jy8+PGxpbmUgeDE9JzM4MCcgeTE9JzQ4OCcgeDI9JzYxMScgeTI9JzQ4OCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNScvPjxsaW5lIHgxPSczODAnIHkxPSc1MTYnIHgyPSc1ODknIHkyPSc1MTYnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjUnLz48cmVjdCB4PSc2MjAnIHk9JzM1MCcgd2lkdGg9JzYwJyBoZWlnaHQ9JzYwJyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjgnLz48cmVjdCB4PSc2MjAnIHk9JzQyMCcgd2lkdGg9JzYwJyBoZWlnaHQ9JzQnIGZpbGw9JyMxNTE0MGYnIG9wYWNpdHk9JzAuMTUnLz48cGF0aCBkPSdNODAgODAgTDgwIDUwIEwxMTAgNTAnIHN0cm9rZT0nIzhiODY3NicgZmlsbD0nbm9uZScgc3Ryb2tlLXdpZHRoPScxLjUnLz48cGF0aCBkPSdNOTQ0IDgwIEw5NDQgNTAgTDkxNCA1MCcgc3Ryb2tlPScjOGI4Njc2JyBmaWxsPSdub25lJyBzdHJva2Utd2lkdGg9JzEuNScvPjxwYXRoIGQ9J004MCA5NDQgTDgwIDk3NCBMMTEwIDk3NCcgc3Ryb2tlPScjOGI4Njc2JyBmaWxsPSdub25lJyBzdHJva2Utd2lkdGg9JzEuNScvPjxwYXRoIGQ9J005NDQgOTQ0IEw5NDQgOTc0IEw5MTQgOTc0JyBzdHJva2U9JyM4Yjg2NzYnIGZpbGw9J25vbmUnIHN0cm9rZS13aWR0aD0nMS41Jy8+PHRleHQgeD0nMTIwJyB5PSc3MicgZm9udC1mYW1pbHk9J0pldEJyYWlucyBNb25vLG1vbm9zcGFjZScgZm9udC1zaXplPScxNCcgZmlsbD0nIzhiODY3Nic+MTcuMzg1wrBOIDc4LjQ4N8KwRTwvdGV4dD48dGV4dCB4PSc5MDQnIHk9JzcyJyB0ZXh0LWFuY2hvcj0nZW5kJyBmb250LWZhbWlseT0nSmV0QnJhaW5zIE1vbm8sbW9ub3NwYWNlJyBmb250LXNpemU9JzE0JyBmaWxsPScjZWQ2ZjVjJz5QTEFURcK3STwvdGV4dD48dGV4dCB4PSc1MTInIHk9JzY4MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J1BsYXlmYWlyIERpc3BsYXksR2VvcmdpYSxzZXJpZicgZm9udC1zdHlsZT0naXRhbGljJyBmb250LXNpemU9JzQ4JyBmaWxsPScjM2EzODMwJyBvcGFjaXR5PScwLjcnPlBvcnRmb2xpbzwvdGV4dD48bGluZSB4MT0nMzgwJyB5MT0nNzAwJyB4Mj0nNjQ0JyB5Mj0nNzAwJyBzdHJva2U9JyNlZDZmNWMnIHN0cm9rZS13aWR0aD0nMScgc3Ryb2tlLWRhc2hhcnJheT0nMiA0Jy8+PGNpcmNsZSBjeD0nNzgzJyBjeT0nNTA2JyByPScxLjYnIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuNDMnLz48Y2lyY2xlIGN4PSczNjgnIGN5PScxNTInIHI9JzEuNScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC41MScvPjxjaXJjbGUgY3g9JzczMycgY3k9JzExNicgcj0nMS45JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjQ5Jy8+PGNpcmNsZSBjeD0nODYyJyBjeT0nNTIzJyByPScyLjknIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuMjAnLz48Y2lyY2xlIGN4PSczMzEnIGN5PSc3MTcnIHI9JzEuMScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zNScvPjxjaXJjbGUgY3g9JzU0NScgY3k9JzEzMScgcj0nMi4wJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjM4Jy8+PGNpcmNsZSBjeD0nMTg1JyBjeT0nMzAyJyByPScyLjQnIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuNDgnLz48Y2lyY2xlIGN4PSc1NTknIGN5PSc3OTInIHI9JzEuOScgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4yMScvPjxjaXJjbGUgY3g9JzY3OScgY3k9JzE3OScgcj0nMS4wJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjE2Jy8+PGNpcmNsZSBjeD0nNzMzJyBjeT0nNzQyJyByPScxLjUnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNDAnLz48Y2lyY2xlIGN4PSc0NzYnIGN5PSc4NCcgcj0nMi42JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjQwJy8+PGNpcmNsZSBjeD0nNzU4JyBjeT0nNTc0JyByPScxLjInIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuNTQnLz48Y2lyY2xlIGN4PSc1MzcnIGN5PSc3OTEnIHI9JzEuNCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xOCcvPjxjaXJjbGUgY3g9Jzc4MCcgY3k9JzQ2NCcgcj0nMS43JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjU1Jy8+PGNpcmNsZSBjeD0nMjQwJyBjeT0nNTYxJyByPScxLjcnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMzInLz48Y2lyY2xlIGN4PSc4NzInIGN5PSc0NzEnIHI9JzEuOScgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4yMicvPjxjaXJjbGUgY3g9JzM3NicgY3k9JzEyMCcgcj0nMi41JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjM0Jy8+PGNpcmNsZSBjeD0nMjY0JyBjeT0nNTYxJyByPScxLjAnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMzcnLz48Y2lyY2xlIGN4PSc0MTUnIGN5PSc4MDYnIHI9JzIuNicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xOScvPjxjaXJjbGUgY3g9JzgzNScgY3k9JzMyMicgcj0nMi4yJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjE5Jy8+PC9zdmc+' alt='' />
+      <div class='index'>
+      <span><span class='n'>01</span>Develop</span>
+      <span class='on'><span class='n'>02</span>Engineer</span>
+      <span><span class='n'>03</span>Optimize</span>
+      <span><span class='n'>04</span>Deploy</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class='wire' data-od-id='wire' aria-label='Global wire — cities and contributors'>
+  <div class='container wire-inner'>
+    <div class='wire-left'>
+      <span class='wire-mark' aria-hidden='true'><span class='wire-pulse'></span></span>
+      <span class='wire-title'>
+        <b>From the field</b>
+        <span>Open · 12 cities · 4 contributors</span>
+      </span>
+    </div>
+    <div class='wire-rows'>
+      <div class='wire-row'>
+        <div class='marquee-track' aria-hidden='true'>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>17.39°N</span><span class='wire-name'>Hyderabad</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>12.97°N</span><span class='wire-name'>Bangalore</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>19.08°N</span><span class='wire-name'>Mumbai</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>28.61°N</span><span class='wire-name'>Delhi</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>13.08°N</span><span class='wire-name'>Chennai</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>18.52°N</span><span class='wire-name'>Pune</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>1.35°N</span><span class='wire-name'>Singapore</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>25.20°N</span><span class='wire-name'>Dubai</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>40.71°N</span><span class='wire-name'>New York</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>37.77°N</span><span class='wire-name'>San Francisco</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>51.51°N</span><span class='wire-name'>London</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>52.52°N</span><span class='wire-name'>Berlin</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>17.39°N</span><span class='wire-name'>Hyderabad</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>12.97°N</span><span class='wire-name'>Bangalore</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>19.08°N</span><span class='wire-name'>Mumbai</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>28.61°N</span><span class='wire-name'>Delhi</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>13.08°N</span><span class='wire-name'>Chennai</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>18.52°N</span><span class='wire-name'>Pune</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>1.35°N</span><span class='wire-name'>Singapore</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>25.20°N</span><span class='wire-name'>Dubai</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>40.71°N</span><span class='wire-name'>New York</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>37.77°N</span><span class='wire-name'>San Francisco</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>51.51°N</span><span class='wire-name'>London</span></span>
+          <span class='wire-item'><span class='wire-dot'>·</span><span class='wire-coord'>52.52°N</span><span class='wire-name'>Berlin</span></span>
+        </div>
+      </div>
+      <div class='wire-row reverse'>
+        <div class='marquee-track'>
+          <a class='wire-item is-link' href='https://www.modeln.com' target='_blank' rel='noreferrer noopener' aria-label='Open Model N on GitHub'><span class='wire-dot'>·</span><span class='wire-handle'>@Model N</span><span class='wire-role'>current</span></a>
+          <a class='wire-item is-link' href='https://www.deloitte.com' target='_blank' rel='noreferrer noopener' aria-label='Open Deloitte on GitHub'><span class='wire-dot'>·</span><span class='wire-handle'>@Deloitte</span><span class='wire-role'>consulting</span></a>
+          <a class='wire-item is-link' href='#' aria-label='Open Tweak Talent on GitHub'><span class='wire-dot'>·</span><span class='wire-handle'>@Tweak Talent</span><span class='wire-role'>startup</span></a>
+          <a class='wire-item is-link' href='#' aria-label='Open JNTU on GitHub'><span class='wire-dot'>·</span><span class='wire-handle'>@JNTU</span><span class='wire-role'>education</span></a>
+          <a class='wire-item is-link' href='https://linkedin.com/in/gopinath-edugundla' target='_blank' rel='noreferrer noopener' aria-label='Open you on GitHub'><span class='wire-dot'>·</span><span class='wire-handle'>@you</span><span class='wire-role'>let's connect</span></a>
+          <a class='wire-item is-link' href='https://www.modeln.com' target='_blank' rel='noreferrer noopener' aria-label='Open Model N on GitHub'><span class='wire-dot'>·</span><span class='wire-handle'>@Model N</span><span class='wire-role'>current</span></a>
+          <a class='wire-item is-link' href='https://www.deloitte.com' target='_blank' rel='noreferrer noopener' aria-label='Open Deloitte on GitHub'><span class='wire-dot'>·</span><span class='wire-handle'>@Deloitte</span><span class='wire-role'>consulting</span></a>
+          <a class='wire-item is-link' href='#' aria-label='Open Tweak Talent on GitHub'><span class='wire-dot'>·</span><span class='wire-handle'>@Tweak Talent</span><span class='wire-role'>startup</span></a>
+          <a class='wire-item is-link' href='#' aria-label='Open JNTU on GitHub'><span class='wire-dot'>·</span><span class='wire-handle'>@JNTU</span><span class='wire-role'>education</span></a>
+          <a class='wire-item is-link' href='https://linkedin.com/in/gopinath-edugundla' target='_blank' rel='noreferrer noopener' aria-label='Open you on GitHub'><span class='wire-dot'>·</span><span class='wire-handle'>@you</span><span class='wire-role'>let's connect</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class='about' data-od-id='about'>
+  <div class='container'>
+    <div class='sec-rule'>
+    <span class='roman'>II.</span>
+    <span class='meta-grp'>
+      <span>About / Profile</span>
+      <span class='dot-mark'>•</span>
+      <span>Gopinath Edugundla / 2026</span>
+    </span>
+    <span>002 / 008</span>
+  </div>
+    <div class='about-grid'>
+      <div class='about-copy' data-reveal>
+        <span class='label'>About <span class='ix'>· Nº 02</span></span>
+        <h2 class='display'>I build <em>pipelines</em> that turn raw data into <em>decisions,</em> not just dashboards<span class='dot'>.</span></h2>
+        <p class='lead'>From pharmaceutical compliance reporting at Model N to drug manufacturing ETL at Deloitte, I specialize in end-to-end data engineering — designing scalable solutions that automate complex calculations, ensure regulatory accuracy, and deliver clear, data-driven insights to stakeholders.</p>
+        <a class='btn btn-ghost' href='https://linkedin.com/in/gopinath-edugundla' target='_blank' rel='noreferrer noopener'>
+          View LinkedIn profile
+          <span class='arrow'><svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg></span>
+        </a>
+        <div class='footer-row'>
+          <span class='mark'>G</span>
+          <span>Develop · Engineer · Optimize · Deploy</span>
+          <span class='stamp'>
+            <span>Data practice</span>
+            <span style='color: var(--ink);'>Est. MMXX</span>
+          </span>
+        </div>
+      </div>
+      <div class='about-art' data-reveal='right'>
+        <img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tYWJvdXQnPjxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggMCAwIDAgMCAwLjE2IDAgMCAwIDAgMC4xMiAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj4KICA8L2RlZnM+PHJlY3Qgd2lkdGg9JzEwMjQnIGhlaWdodD0nMTAyNCcgZmlsdGVyPSd1cmwoI24tYWJvdXQpJy8+PHJlY3QgeD0nMzAwJyB5PScxODAnIHdpZHRoPSc0MjQnIGhlaWdodD0nNTYwJyBmaWxsPScjZjVmMGUzJyBzdHJva2U9JyNkNWNmYzAnLz48cmVjdCB4PSczMjAnIHk9JzIwMCcgd2lkdGg9JzM4NCcgaGVpZ2h0PSczMDAnIGZpbGw9JyNlOGRmY2MnLz48ZWxsaXBzZSBjeD0nNTEyJyBjeT0nMzIwJyByeD0nODAnIHJ5PScxMDAnIGZpbGw9JyNhMzllOGYnIG9wYWNpdHk9JzAuMycvPjxyZWN0IHg9JzQ2MCcgeT0nNDIwJyB3aWR0aD0nMTA0JyBoZWlnaHQ9JzE0MCcgZmlsbD0nI2EzOWU4Zicgb3BhY2l0eT0nMC4yJy8+PGxpbmUgeDE9JzMwMCcgeTE9JzUyMCcgeDI9JzcyNCcgeTI9JzUyMCcgc3Ryb2tlPScjZWQ2ZjVjJyBzdHJva2Utd2lkdGg9JzEnLz48bGluZSB4MT0nNTEyJyB5MT0nMTgwJyB4Mj0nNTEyJyB5Mj0nNzQwJyBzdHJva2U9JyM4Yjg2NzYnIHN0cm9rZS13aWR0aD0nMC41JyBzdHJva2UtZGFzaGFycmF5PSczIDYnLz48dGV4dCB4PSczMzAnIHk9Jzc3MCcgZm9udC1mYW1pbHk9J0pldEJyYWlucyBNb25vLG1vbm9zcGFjZScgZm9udC1zaXplPScxMicgZmlsbD0nIzhiODY3Nic+RklHLiAwMiDigJQgQklPR1JBUEhZPC90ZXh0Pjx0ZXh0IHg9JzY5NCcgeT0nNzcwJyB0ZXh0LWFuY2hvcj0nZW5kJyBmb250LWZhbWlseT0nSmV0QnJhaW5zIE1vbm8sbW9ub3NwYWNlJyBmb250LXNpemU9JzEyJyBmaWxsPScjZWQ2ZjVjJz5QTEFURcK3SUk8L3RleHQ+PC9zdmc+' alt='' />
+        <div class='about-side-note'>
+          <b></b>
+          From ETL pipelines<br/>to RAG applications,<br/>I engineer the full<br/>stack of data<br/>intelligence.
+        </div>
+        <div class='about-caption'>
+          <b>Studies in data · architecture · machine intelligence.</b>
+          (Gopinath Edugundla, MMXXVI)
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class='capabilities' id='agents' data-od-id='capabilities'>
+  <div class='container'>
+    <div class='sec-rule'>
+    <span class='roman'>III.</span>
+    <span class='meta-grp'>
+      <span>Skills · Tech Stack · Platforms</span>
+      <span class='dot-mark'>•</span>
+      <span>4 domains / 30+ tools</span>
+    </span>
+    <span>003 / 008</span>
+  </div>
+    <div class='capabilities-grid'>
+      <div class='capabilities-art' data-reveal='left'>
+        <span class='corner tl'></span>
+        <span class='corner br'></span>
+        <img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tY2FwYWJpbGl0aWVzJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC42NScgbnVtT2N0YXZlcz0nMycgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0nMCAwIDAgMCAwLjE4IDAgMCAwIDAgMC4xNiAwIDAgMCAwIDAuMTIgMCAwIDAgMC4wNiAwJy8+PC9maWx0ZXI+CiAgPC9kZWZzPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbHRlcj0ndXJsKCNuLWNhcGFiaWxpdGllcyknLz48bGluZSB4MT0nMTAwJyB5MT0nMTAwJyB4Mj0nMTAwJyB5Mj0nOTI0JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC4zJy8+PGxpbmUgeDE9JzE4MCcgeTE9JzEwMCcgeDI9JzE4MCcgeTI9JzkyNCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuMycvPjxsaW5lIHgxPScyNjAnIHkxPScxMDAnIHgyPScyNjAnIHkyPSc5MjQnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjMnLz48bGluZSB4MT0nMzQwJyB5MT0nMTAwJyB4Mj0nMzQwJyB5Mj0nOTI0JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC4zJy8+PGxpbmUgeDE9JzQyMCcgeTE9JzEwMCcgeDI9JzQyMCcgeTI9JzkyNCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuMycvPjxsaW5lIHgxPSc1MDAnIHkxPScxMDAnIHgyPSc1MDAnIHkyPSc5MjQnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjMnLz48bGluZSB4MT0nNTgwJyB5MT0nMTAwJyB4Mj0nNTgwJyB5Mj0nOTI0JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC4zJy8+PGxpbmUgeDE9JzY2MCcgeTE9JzEwMCcgeDI9JzY2MCcgeTI9JzkyNCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuMycvPjxsaW5lIHgxPSc3NDAnIHkxPScxMDAnIHgyPSc3NDAnIHkyPSc5MjQnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjMnLz48bGluZSB4MT0nODIwJyB5MT0nMTAwJyB4Mj0nODIwJyB5Mj0nOTI0JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC4zJy8+PGxpbmUgeDE9JzkwMCcgeTE9JzEwMCcgeDI9JzkwMCcgeTI9JzkyNCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuMycvPjxsaW5lIHgxPScxMDAnIHkxPScxMDAnIHgyPSc5MjQnIHkyPScxMDAnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjMnLz48bGluZSB4MT0nMTAwJyB5MT0nMTgwJyB4Mj0nOTI0JyB5Mj0nMTgwJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC4zJy8+PGxpbmUgeDE9JzEwMCcgeTE9JzI2MCcgeDI9JzkyNCcgeTI9JzI2MCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuMycvPjxsaW5lIHgxPScxMDAnIHkxPSczNDAnIHgyPSc5MjQnIHkyPSczNDAnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjMnLz48bGluZSB4MT0nMTAwJyB5MT0nNDIwJyB4Mj0nOTI0JyB5Mj0nNDIwJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC4zJy8+PGxpbmUgeDE9JzEwMCcgeTE9JzUwMCcgeDI9JzkyNCcgeTI9JzUwMCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuMycvPjxsaW5lIHgxPScxMDAnIHkxPSc1ODAnIHgyPSc5MjQnIHkyPSc1ODAnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjMnLz48bGluZSB4MT0nMTAwJyB5MT0nNjYwJyB4Mj0nOTI0JyB5Mj0nNjYwJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC4zJy8+PGxpbmUgeDE9JzEwMCcgeTE9Jzc0MCcgeDI9JzkyNCcgeTI9Jzc0MCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuMycvPjxsaW5lIHgxPScxMDAnIHkxPSc4MjAnIHgyPSc5MjQnIHkyPSc4MjAnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjMnLz48bGluZSB4MT0nMTAwJyB5MT0nOTAwJyB4Mj0nOTI0JyB5Mj0nOTAwJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC4zJy8+PHJlY3QgeD0nMjYwJyB5PScxODAnIHdpZHRoPSc4MCcgaGVpZ2h0PSc4MCcgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4xNScvPjxyZWN0IHg9JzQyMCcgeT0nMzQwJyB3aWR0aD0nODAnIGhlaWdodD0nODAnIGZpbGw9JyMzYTM4MzAnIG9wYWNpdHk9JzAuMDYnLz48cmVjdCB4PScxODAnIHk9JzUwMCcgd2lkdGg9JzgwJyBoZWlnaHQ9JzgwJyBmaWxsPScjM2EzODMwJyBvcGFjaXR5PScwLjA2Jy8+PHJlY3QgeD0nNTAwJyB5PScyNjAnIHdpZHRoPSc4MCcgaGVpZ2h0PSc4MCcgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4xNScvPjxyZWN0IHg9JzM0MCcgeT0nNTgwJyB3aWR0aD0nODAnIGhlaWdodD0nODAnIGZpbGw9JyMzYTM4MzAnIG9wYWNpdHk9JzAuMDYnLz48cmVjdCB4PSc1ODAnIHk9JzQyMCcgd2lkdGg9JzgwJyBoZWlnaHQ9JzgwJyBmaWxsPScjM2EzODMwJyBvcGFjaXR5PScwLjA2Jy8+PHBhdGggZD0nTTI2MCAyNjAgTDQyMCA0MjAgTDU4MCAzNDAgTDc0MCA1MDAnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2VkNmY1Yycgc3Ryb2tlLXdpZHRoPScxLjUnLz48Y2lyY2xlIGN4PScyNjAnIGN5PScyNjAnIHI9JzQnIGZpbGw9JyNlZDZmNWMnLz48Y2lyY2xlIGN4PSc0MjAnIGN5PSc0MjAnIHI9JzQnIGZpbGw9JyNlZDZmNWMnLz48Y2lyY2xlIGN4PSc1ODAnIGN5PSczNDAnIHI9JzQnIGZpbGw9JyNlZDZmNWMnLz48Y2lyY2xlIGN4PSc3NDAnIGN5PSc1MDAnIHI9JzQnIGZpbGw9JyNlZDZmNWMnLz48dGV4dCB4PSc1NScgeT0nNjcnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubyxtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMTQnIGZpbGw9JyNlZDZmNWMnPlBMQVRFwrdJSUk8L3RleHQ+PC9zdmc+' alt='' />
+        <div class='ribbon'><b>GOPINATH EDUGUNDLA</b> &nbsp;·&nbsp; SKILLS MATRIX &nbsp;·&nbsp; GE/26</div>
+      </div>
+      <div class='capabilities-copy' data-reveal>
+        <span class='label'>Skills & Tech Stack <span class='ix'>· Nº 03</span></span>
+        <h2 class='display'>Data engineering, <em>cloud platforms,</em> and <em>GenAI</em> at production scale<span class='dot'>.</span></h2>
+        <p class='lead'>30+ tools and frameworks across four core domains — each used in production to build, optimize, and deploy data systems that handle sensitive pharmaceutical and financial data.</p>
+        <div class='cards'>
+            <div class='card' data-reveal>
+    <div class='num'>01<span class='tag'>Data Eng</span></div>
+    <svg class='icon' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'>
+      <path d='M4 18V6l8-4 8 4v12l-8 4-8-4z'/><path d='M4 6l8 4 8-4M12 10v12'/>
+    </svg>
+    <h3>Data<br/>Engineering</h3>
+    <p>Python · PySpark · SQL · Pandas · ETL · Airflow · DBT · Kafka · Data Warehousing · Data Validation</p>
+    <a class='arrow-mark' href='#labs' aria-label='Learn more about Data Eng'>
+      <svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg>
+    </a>
+  </div>
+            <div class='card' data-reveal>
+    <div class='num'>02<span class='tag'>Cloud</span></div>
+    <svg class='icon' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'>
+      <path d='M6 16a4 4 0 1 1 .4-7.2A6 6 0 0 1 18 10a4 4 0 0 1 0 8H6z'/>
+    </svg>
+    <h3>AWS &<br/>Cloud</h3>
+    <p>Glue · Athena · S3 · Kinesis · Redshift · EC2 · RDS · IAM · BedRock · Databricks · Snowflake</p>
+    <a class='arrow-mark' href='#labs' aria-label='Learn more about Cloud'>
+      <svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg>
+    </a>
+  </div>
+            <div class='card' data-reveal>
+    <div class='num'>03<span class='tag'>GenAI</span></div>
+    <svg class='icon' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'>
+      <circle cx='12' cy='12' r='3'/><path d='M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8'/>
+    </svg>
+    <h3>GenAI &<br/>LLMs</h3>
+    <p>Agentic AI · RAG · LangChain · FAISS · Ollama · Pydantic · AWS BedRock · LLM integration & retrieval pipelines</p>
+    <a class='arrow-mark' href='#labs' aria-label='Learn more about GenAI'>
+      <svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg>
+    </a>
+  </div>
+            <div class='card' data-reveal>
+    <div class='num'>04<span class='tag'>Dev</span></div>
+    <svg class='icon' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.5'>
+      <polyline points='16 18 22 12 16 6'/><polyline points='8 6 2 12 8 18'/>
+    </svg>
+    <h3>Development<br/>& Tools</h3>
+    <p>Django REST · PostgreSQL · Git · Streamlit · REST API · Go · Matplotlib · Seaborn · Excel reporting</p>
+    <a class='arrow-mark' href='#labs' aria-label='Learn more about Dev'>
+      <svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg>
+    </a>
+  </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class='labs' id='labs' data-od-id='labs'>
+  <div class='container'>
+    <div class='sec-rule'>
+    <span class='roman'>IV.</span>
+    <span class='meta-grp'>
+      <span>Key Projects / Deliverables</span>
+      <span class='dot-mark'>•</span>
+      <span>05 highlights</span>
+    </span>
+    <span>004 / 008</span>
+  </div>
+    <div class='labs-head'>
+      <div data-reveal>
+        <span class='label'>Key Projects <span class='ix'>· Nº 04</span></span>
+        <h2 class='display' style='margin-top:30px;'>A track record of <em>measurable impact</em> across pharma and finance<span class='dot'>.</span></h2>
+      </div>
+      <div class='pills' data-reveal='right'>
+          <button class='pill active'>All<span class='count'>05</span></button>
+          <button class='pill'>ETL<span class='count'>02</span></button>
+          <button class='pill'>GenAI<span class='count'>01</span></button>
+          <button class='pill'>Pricing<span class='count'>01</span></button>
+          <button class='pill'>Web<span class='count'>01</span></button>
+      </div>
+    </div>
+    <div class='labs-meta'>
+      <span class='ring'>05</span>
+      <div class='meta-text'>
+        <b>Selected deliverables</b>
+        production systems<br/>enterprise-scale<br/>compliance-driven
+      </div>
+    </div>
+    <div class='labs-grid'>
+        <div class='lab' data-reveal>
+    <div class='lab-img'><span class='badge'>ETL</span><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tbGFiLTEnPjxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggMCAwIDAgMCAwLjE2IDAgMCAwIDAgMC4xMiAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj4KICA8L2RlZnM+PHJlY3Qgd2lkdGg9JzEwMjQnIGhlaWdodD0nMTAyNCcgZmlsdGVyPSd1cmwoI24tbGFiLTEpJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPSc4MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZWQ2ZjVjJyBzdHJva2Utd2lkdGg9JzInIHN0cm9rZS1kYXNoYXJyYXk9JzQ2IDE3JyB0cmFuc2Zvcm09J3JvdGF0ZSgxMiA1MTIgNDYwKScvPjxjaXJjbGUgY3g9JzUxMicgY3k9JzQ2MCcgcj0nMTMwJyBmaWxsPSdub25lJyBzdHJva2U9JyM4Yjg2NzYnIHN0cm9rZS13aWR0aD0nMC43JyBzdHJva2UtZGFzaGFycmF5PSc1NSAxMycgdHJhbnNmb3JtPSdyb3RhdGUoMTIgNTEyIDQ2MCknLz48Y2lyY2xlIGN4PSc1MTInIGN5PSc0NjAnIHI9JzE4MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGI4Njc2JyBzdHJva2Utd2lkdGg9JzAuNycgc3Ryb2tlLWRhc2hhcnJheT0nMjEgMjUnIHRyYW5zZm9ybT0ncm90YXRlKDQ1IDUxMiA0NjApJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPScyMzAnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzhiODY3Nicgc3Ryb2tlLXdpZHRoPScwLjcnIHN0cm9rZS1kYXNoYXJyYXk9JzQ2IDIxJyB0cmFuc2Zvcm09J3JvdGF0ZSg4OCA1MTIgNDYwKScvPjxjaXJjbGUgY3g9JzUxMicgY3k9JzQ2MCcgcj0nMjgwJyBmaWxsPSdub25lJyBzdHJva2U9JyM4Yjg2NzYnIHN0cm9rZS13aWR0aD0nMC43JyBzdHJva2UtZGFzaGFycmF5PSc0MSAxOCcgdHJhbnNmb3JtPSdyb3RhdGUoMjcgNTEyIDQ2MCknLz48cmVjdCB4PSc0ODInIHk9JzQzMCcgd2lkdGg9JzYwJyBoZWlnaHQ9JzYwJyBmaWxsPScjZjVmMGUzJyBzdHJva2U9JyNlZDZmNWMnIHN0cm9rZS13aWR0aD0nMS41Jy8+PHRleHQgeD0nNTEyJyB5PSc0NjYnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubyxtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMjAnIGZpbGw9JyMzYTM4MzAnPjAxPC90ZXh0PjxjaXJjbGUgY3g9JzM1Ni40JyBjeT0nMjY3LjEnIHI9JzIuMCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zNicvPjxjaXJjbGUgY3g9JzMzMS4zJyBjeT0nNjcyLjcnIHI9JzMuOCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zOCcvPjxjaXJjbGUgY3g9JzU2MS40JyBjeT0nMzUwLjgnIHI9JzIuMycgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC40NScvPjxjaXJjbGUgY3g9JzM3Ny44JyBjeT0nMzgwLjgnIHI9JzIuMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC40MicvPjxjaXJjbGUgY3g9JzYyNS41JyBjeT0nMzE5LjgnIHI9JzIuOScgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC42OScvPjxjaXJjbGUgY3g9JzQyNy4xJyBjeT0nMjcwLjAnIHI9JzMuOCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC43MCcvPjxjaXJjbGUgY3g9JzY2NC4zJyBjeT0nNjkxLjMnIHI9JzIuOScgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4zMScvPjxjaXJjbGUgY3g9JzYyNi42JyBjeT0nMzIwLjQnIHI9JzEuMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC42NicvPjxjaXJjbGUgY3g9JzIzNi4wJyBjeT0nMzU4LjEnIHI9JzMuOScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4yNScvPjxjaXJjbGUgY3g9JzQwNC4yJyBjeT0nNTEwLjUnIHI9JzIuOScgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC42NicvPjxjaXJjbGUgY3g9JzY1MC40JyBjeT0nNTE5LjknIHI9JzIuNycgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC41NScvPjxjaXJjbGUgY3g9JzI4OS45JyBjeT0nNjM3LjAnIHI9JzIuNCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC42OScvPjxjaXJjbGUgY3g9Jzc0Ny45JyBjeT0nNTUwLjUnIHI9JzEuMScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC42OCcvPjxjaXJjbGUgY3g9JzQzNC41JyBjeT0nMzQ0LjMnIHI9JzEuNycgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC40OCcvPjxjaXJjbGUgY3g9JzMxMy43JyBjeT0nMjM1LjgnIHI9JzIuNicgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4zOScvPjxjaXJjbGUgY3g9JzQyNC4xJyBjeT0nMjUwLjMnIHI9JzMuNycgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC41OCcvPjxjaXJjbGUgY3g9JzQwMC42JyBjeT0nMzY0LjInIHI9JzIuMScgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4zNicvPjxjaXJjbGUgY3g9JzczMC43JyBjeT0nNjYwLjknIHI9JzEuNCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC41NycvPjxjaXJjbGUgY3g9JzM0Mi40JyBjeT0nNDU5LjgnIHI9JzIuOCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC42OScvPjxjaXJjbGUgY3g9JzQyOC45JyBjeT0nNjA0LjMnIHI9JzIuOCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC43MCcvPjxjaXJjbGUgY3g9JzY5Ni4yJyBjeT0nNjA3LjEnIHI9JzEuOScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC40NycvPjxjaXJjbGUgY3g9JzY0Mi4zJyBjeT0nNDUyLjUnIHI9JzEuMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zNicvPjxjaXJjbGUgY3g9JzQzNi44JyBjeT0nNjMwLjQnIHI9JzMuNScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zNCcvPjxjaXJjbGUgY3g9JzI2OC42JyBjeT0nNDA2LjInIHI9JzIuMCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4yNCcvPjxjaXJjbGUgY3g9JzY4MS4xJyBjeT0nNDU5LjQnIHI9JzIuMScgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC41NScvPjxjaXJjbGUgY3g9JzQxMS45JyBjeT0nNDIzLjEnIHI9JzMuOCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zMycvPjxjaXJjbGUgY3g9JzMzNy4yJyBjeT0nMjYzLjEnIHI9JzIuNicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC41NScvPjxjaXJjbGUgY3g9JzI1Ny4zJyBjeT0nNTIzLjgnIHI9JzQuMCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zMScvPjxjaXJjbGUgY3g9JzI0Ni4zJyBjeT0nNDk0LjEnIHI9JzMuNCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC42NScvPjxjaXJjbGUgY3g9JzYzNy44JyBjeT0nMjcxLjMnIHI9JzMuOCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC40NycvPjx0ZXh0IHg9JzU1JyB5PSc2NycgZm9udC1mYW1pbHk9J0pldEJyYWlucyBNb25vLG1vbm9zcGFjZScgZm9udC1zaXplPScxNCcgZmlsbD0nI2VkNmY1Yyc+UExBVEXCt0lWPC90ZXh0Pjx0ZXh0IHg9JzU1JyB5PSc5NzAnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubyxtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMTEnIGZpbGw9JyM4Yjg2NzYnPkVUTCBQSVBFTElORVM8L3RleHQ+PC9zdmc+' alt='' /></div>
+    <div class='num-row'><span>Nº 01</span><span>2024</span></div>
+    <h4>Government Pricing Pipelines</h4>
+    <p>End-to-end data pipelines for US Health Government Pricing — fixing customer-specific calculation bugs, ensuring regulatory compliance.</p>
+    <a class='arrow-mark' href='#about' aria-label='Open Government Pricing Pipelines'><svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg></a>
+  </div>
+        <div class='lab' data-reveal>
+    <div class='lab-img'><span class='badge'>GenAI</span><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tbGFiLTInPjxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggMCAwIDAgMCAwLjE2IDAgMCAwIDAgMC4xMiAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj4KICA8L2RlZnM+PHJlY3Qgd2lkdGg9JzEwMjQnIGhlaWdodD0nMTAyNCcgZmlsdGVyPSd1cmwoI24tbGFiLTIpJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPSc4MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGI4Njc2JyBzdHJva2Utd2lkdGg9JzAuNycgc3Ryb2tlLWRhc2hhcnJheT0nMjcgMjcnIHRyYW5zZm9ybT0ncm90YXRlKDg2IDUxMiA0NjApJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPScxMzAnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2VkNmY1Yycgc3Ryb2tlLXdpZHRoPScyJyBzdHJva2UtZGFzaGFycmF5PSc1NyAyMScgdHJhbnNmb3JtPSdyb3RhdGUoNTggNTEyIDQ2MCknLz48Y2lyY2xlIGN4PSc1MTInIGN5PSc0NjAnIHI9JzE4MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGI4Njc2JyBzdHJva2Utd2lkdGg9JzAuNycgc3Ryb2tlLWRhc2hhcnJheT0nNTAgMjcnIHRyYW5zZm9ybT0ncm90YXRlKDM2IDUxMiA0NjApJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPScyMzAnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzhiODY3Nicgc3Ryb2tlLXdpZHRoPScwLjcnIHN0cm9rZS1kYXNoYXJyYXk9JzIzIDE0JyB0cmFuc2Zvcm09J3JvdGF0ZSg3IDUxMiA0NjApJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPScyODAnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzhiODY3Nicgc3Ryb2tlLXdpZHRoPScwLjcnIHN0cm9rZS1kYXNoYXJyYXk9JzQ2IDE0JyB0cmFuc2Zvcm09J3JvdGF0ZSg4OCA1MTIgNDYwKScvPjxyZWN0IHg9JzQ4MicgeT0nNDMwJyB3aWR0aD0nNjAnIGhlaWdodD0nNjAnIGZpbGw9JyNmNWYwZTMnIHN0cm9rZT0nI2VkNmY1Yycgc3Ryb2tlLXdpZHRoPScxLjUnLz48dGV4dCB4PSc1MTInIHk9JzQ2NicgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J0pldEJyYWlucyBNb25vLG1vbm9zcGFjZScgZm9udC1zaXplPScyMCcgZmlsbD0nIzNhMzgzMCc+MDI8L3RleHQ+PGNpcmNsZSBjeD0nNTAyLjQnIGN5PSc2NDEuMicgcj0nMi43JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjM0Jy8+PGNpcmNsZSBjeD0nMzc2LjYnIGN5PSc0NjIuOScgcj0nNC4wJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjY0Jy8+PGNpcmNsZSBjeD0nNTg4LjknIGN5PSczMjUuNCcgcj0nMS40JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjUyJy8+PGNpcmNsZSBjeD0nNjYyLjInIGN5PSczODAuMycgcj0nMi4zJyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjU5Jy8+PGNpcmNsZSBjeD0nMjU4LjAnIGN5PSc1MTAuMScgcj0nMi42JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjQwJy8+PGNpcmNsZSBjeD0nNjMxLjgnIGN5PSczOTMuOCcgcj0nMS4yJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjI0Jy8+PGNpcmNsZSBjeD0nNjExLjcnIGN5PSc0OTkuMScgcj0nMi4wJyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjM3Jy8+PGNpcmNsZSBjeD0nMzY2LjInIGN5PSczMzAuMycgcj0nMi42JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjI2Jy8+PGNpcmNsZSBjeD0nNzQ0LjAnIGN5PSczMTUuMycgcj0nMy4xJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjMxJy8+PGNpcmNsZSBjeD0nNjQyLjknIGN5PScyODMuMycgcj0nMi42JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjUyJy8+PGNpcmNsZSBjeD0nNzQ5LjAnIGN5PSczNzQuNCcgcj0nMS4xJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjM2Jy8+PGNpcmNsZSBjeD0nODA1LjQnIGN5PSc0NzYuMCcgcj0nMi4xJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjU1Jy8+PGNpcmNsZSBjeD0nNDU5LjAnIGN5PScyMjcuOScgcj0nMy41JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjI5Jy8+PGNpcmNsZSBjeD0nNDA4LjQnIGN5PSc0MDguNycgcj0nMy43JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjMwJy8+PGNpcmNsZSBjeD0nNTExLjMnIGN5PScyNjYuNicgcj0nMi4xJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjM0Jy8+PGNpcmNsZSBjeD0nNTk2LjUnIGN5PScyMDcuNicgcj0nMi44JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjQ0Jy8+PGNpcmNsZSBjeD0nMjgzLjInIGN5PSc1NjEuOCcgcj0nMi44JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjY3Jy8+PGNpcmNsZSBjeD0nMjg2LjInIGN5PSc2MTQuOScgcj0nMy44JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjMzJy8+PGNpcmNsZSBjeD0nNzk0LjMnIGN5PSc0ODEuMScgcj0nMS43JyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjY2Jy8+PGNpcmNsZSBjeD0nMzA5LjAnIGN5PSc0MTIuNCcgcj0nMi43JyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjUyJy8+PGNpcmNsZSBjeD0nNzY5LjYnIGN5PSc2MDkuNScgcj0nMi45JyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjUzJy8+PGNpcmNsZSBjeD0nMzc1LjknIGN5PSc1NjguOScgcj0nMy41JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjI0Jy8+PGNpcmNsZSBjeD0nNDkxLjInIGN5PSc1OTYuNicgcj0nMS4zJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjY2Jy8+PGNpcmNsZSBjeD0nNjM5LjEnIGN5PSc0NjIuNCcgcj0nMS42JyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjI2Jy8+PGNpcmNsZSBjeD0nNjQ3LjUnIGN5PSc0ODQuMCcgcj0nMS4yJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjM0Jy8+PGNpcmNsZSBjeD0nMzc1LjUnIGN5PSc0MTguNCcgcj0nMS4wJyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjI2Jy8+PGNpcmNsZSBjeD0nNTM5LjAnIGN5PScyNDIuOScgcj0nMi4wJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjI3Jy8+PGNpcmNsZSBjeD0nNjcxLjMnIGN5PSczOTMuNycgcj0nMy4yJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjMwJy8+PGNpcmNsZSBjeD0nNDEwLjQnIGN5PScyNTMuOScgcj0nMS41JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjM5Jy8+PGNpcmNsZSBjeD0nNTk0LjEnIGN5PSc1NTIuOScgcj0nMS40JyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjQ1Jy8+PHRleHQgeD0nNTUnIHk9JzY3JyBmb250LWZhbWlseT0nSmV0QnJhaW5zIE1vbm8sbW9ub3NwYWNlJyBmb250LXNpemU9JzE0JyBmaWxsPScjZWQ2ZjVjJz5QTEFURcK3VjwvdGV4dD48dGV4dCB4PSc1NScgeT0nOTcwJyBmb250LWZhbWlseT0nSmV0QnJhaW5zIE1vbm8sbW9ub3NwYWNlJyBmb250LXNpemU9JzExJyBmaWxsPScjOGI4Njc2Jz5HRU5BSSBTWVNURU1TPC90ZXh0Pjwvc3ZnPg==' alt='' /></div>
+    <div class='num-row'><span>Nº 02</span><span>2024</span></div>
+    <h4>RAG Document Retrieval</h4>
+    <p>Retrieval-Augmented Generation application integrating LLMs with document retrieval — context-aware, citation-backed, verifiable responses.</p>
+    <a class='arrow-mark' href='#about' aria-label='Open RAG Document Retrieval'><svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg></a>
+  </div>
+        <div class='lab' data-reveal>
+    <div class='lab-img'><span class='badge'>Pricing</span><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tbGFiLTMnPjxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggMCAwIDAgMCAwLjE2IDAgMCAwIDAgMC4xMiAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj4KICA8L2RlZnM+PHJlY3Qgd2lkdGg9JzEwMjQnIGhlaWdodD0nMTAyNCcgZmlsdGVyPSd1cmwoI24tbGFiLTMpJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPSc4MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGI4Njc2JyBzdHJva2Utd2lkdGg9JzAuNycgc3Ryb2tlLWRhc2hhcnJheT0nNDggMTcnIHRyYW5zZm9ybT0ncm90YXRlKDcwIDUxMiA0NjApJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPScxMzAnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzhiODY3Nicgc3Ryb2tlLXdpZHRoPScwLjcnIHN0cm9rZS1kYXNoYXJyYXk9JzQyIDEyJyB0cmFuc2Zvcm09J3JvdGF0ZSg1MCA1MTIgNDYwKScvPjxjaXJjbGUgY3g9JzUxMicgY3k9JzQ2MCcgcj0nMTgwJyBmaWxsPSdub25lJyBzdHJva2U9JyNlZDZmNWMnIHN0cm9rZS13aWR0aD0nMicgc3Ryb2tlLWRhc2hhcnJheT0nMjggMjInIHRyYW5zZm9ybT0ncm90YXRlKDggNTEyIDQ2MCknLz48Y2lyY2xlIGN4PSc1MTInIGN5PSc0NjAnIHI9JzIzMCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGI4Njc2JyBzdHJva2Utd2lkdGg9JzAuNycgc3Ryb2tlLWRhc2hhcnJheT0nNDggMTUnIHRyYW5zZm9ybT0ncm90YXRlKDEgNTEyIDQ2MCknLz48Y2lyY2xlIGN4PSc1MTInIGN5PSc0NjAnIHI9JzI4MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGI4Njc2JyBzdHJva2Utd2lkdGg9JzAuNycgc3Ryb2tlLWRhc2hhcnJheT0nMzUgMjMnIHRyYW5zZm9ybT0ncm90YXRlKDYzIDUxMiA0NjApJy8+PHJlY3QgeD0nNDgyJyB5PSc0MzAnIHdpZHRoPSc2MCcgaGVpZ2h0PSc2MCcgZmlsbD0nI2Y1ZjBlMycgc3Ryb2tlPScjZWQ2ZjVjJyBzdHJva2Utd2lkdGg9JzEuNScvPjx0ZXh0IHg9JzUxMicgeT0nNDY2JyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LWZhbWlseT0nSmV0QnJhaW5zIE1vbm8sbW9ub3NwYWNlJyBmb250LXNpemU9JzIwJyBmaWxsPScjM2EzODMwJz4wMzwvdGV4dD48Y2lyY2xlIGN4PSc0MTkuNycgY3k9JzMyMi41JyByPScyLjUnIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuMzAnLz48Y2lyY2xlIGN4PSc1MTIuOCcgY3k9JzM0NS44JyByPSczLjQnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNzAnLz48Y2lyY2xlIGN4PSc0MDMuOScgY3k9JzUwMy4yJyByPScxLjQnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNTUnLz48Y2lyY2xlIGN4PSc2MDIuNCcgY3k9JzE5Ny43JyByPScyLjAnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMjMnLz48Y2lyY2xlIGN4PSczOTkuNycgY3k9JzU1Ni4xJyByPSczLjMnIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuNjknLz48Y2lyY2xlIGN4PSczMjIuNCcgY3k9JzU3Mi4yJyByPScyLjgnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMzEnLz48Y2lyY2xlIGN4PSc2NzQuOCcgY3k9JzM2NC4xJyByPScxLjAnIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuMzMnLz48Y2lyY2xlIGN4PSc1NTMuOScgY3k9JzM0NS4xJyByPScxLjYnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMjcnLz48Y2lyY2xlIGN4PSc0MjcuNycgY3k9JzM1OS4wJyByPScyLjUnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNTUnLz48Y2lyY2xlIGN4PSczMzQuMicgY3k9JzI3MS4xJyByPScyLjUnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNDUnLz48Y2lyY2xlIGN4PSczMDIuOScgY3k9JzUxNS4yJyByPScyLjUnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNDInLz48Y2lyY2xlIGN4PSc1MjYuOCcgY3k9JzYyOS4zJyByPScxLjgnIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuMzYnLz48Y2lyY2xlIGN4PSc0MjQuOCcgY3k9JzI1My43JyByPScxLjMnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMjknLz48Y2lyY2xlIGN4PSczMzcuNicgY3k9JzI2Mi4yJyByPScyLjMnIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuNjInLz48Y2lyY2xlIGN4PSczOTAuMicgY3k9JzE5Ny4wJyByPSczLjgnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMzAnLz48Y2lyY2xlIGN4PSc0MzYuMycgY3k9JzM3MC41JyByPScxLjInIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNTEnLz48Y2lyY2xlIGN4PSc0NzYuOScgY3k9JzczMy41JyByPScxLjknIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMjYnLz48Y2lyY2xlIGN4PSc0NTguNCcgY3k9JzE4My44JyByPScxLjEnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMjUnLz48Y2lyY2xlIGN4PSc0MjMuNicgY3k9JzI5Ni4zJyByPSczLjgnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNDQnLz48Y2lyY2xlIGN4PSc2NjEuMycgY3k9JzQ2Ni4yJyByPSczLjknIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuNjAnLz48Y2lyY2xlIGN4PSczMTcuOScgY3k9JzU4NC4yJyByPScxLjMnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMjQnLz48Y2lyY2xlIGN4PSc2NjEuNScgY3k9JzY3My4wJyByPScxLjUnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNDYnLz48Y2lyY2xlIGN4PSc1NzMuOScgY3k9JzM2OC4xJyByPScxLjcnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNDMnLz48Y2lyY2xlIGN4PSc2MTIuOScgY3k9JzQ2Mi43JyByPScxLjknIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNTQnLz48Y2lyY2xlIGN4PSc2MTAuNScgY3k9JzQwNC4xJyByPSczLjYnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMjUnLz48Y2lyY2xlIGN4PSczNTYuMycgY3k9JzQ2OS40JyByPScyLjYnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMzgnLz48Y2lyY2xlIGN4PSc1NzAuNicgY3k9JzE3MS4xJyByPScyLjInIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNDAnLz48Y2lyY2xlIGN4PSc0NzcuNycgY3k9JzIzNS40JyByPSczLjMnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuNTQnLz48Y2lyY2xlIGN4PSc2MTMuOScgY3k9JzcxOC4yJyByPSczLjknIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuNTInLz48Y2lyY2xlIGN4PSc0NjIuOScgY3k9JzIxNC40JyByPScyLjUnIGZpbGw9JyNlZDZmNWMnIG9wYWNpdHk9JzAuMjQnLz48dGV4dCB4PSc1NScgeT0nNjcnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubyxtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMTQnIGZpbGw9JyNlZDZmNWMnPlBMQVRFwrdWSTwvdGV4dD48dGV4dCB4PSc1NScgeT0nOTcwJyBmb250LWZhbWlseT0nSmV0QnJhaW5zIE1vbm8sbW9ub3NwYWNlJyBmb250LXNpemU9JzExJyBmaWxsPScjOGI4Njc2Jz5QUklDSU5HIEVOR0lORTwvdGV4dD48L3N2Zz4=' alt='' /></div>
+    <div class='num-row'><span>Nº 03</span><span>2024</span></div>
+    <h4>Pricing Automation Engine</h4>
+    <p>Scalable solutions automating complex financial and pharmaceutical pricing calculations. Reduced manual effort by 70%, ensured compliance accuracy.</p>
+    <a class='arrow-mark' href='#about' aria-label='Open Pricing Automation Engine'><svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg></a>
+  </div>
+        <div class='lab' data-reveal>
+    <div class='lab-img'><span class='badge'>ETL</span><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tbGFiLTQnPjxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggMCAwIDAgMCAwLjE2IDAgMCAwIDAgMC4xMiAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj4KICA8L2RlZnM+PHJlY3Qgd2lkdGg9JzEwMjQnIGhlaWdodD0nMTAyNCcgZmlsdGVyPSd1cmwoI24tbGFiLTQpJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPSc4MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGI4Njc2JyBzdHJva2Utd2lkdGg9JzAuNycgc3Ryb2tlLWRhc2hhcnJheT0nMjggMjgnIHRyYW5zZm9ybT0ncm90YXRlKDY0IDUxMiA0NjApJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPScxMzAnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzhiODY3Nicgc3Ryb2tlLXdpZHRoPScwLjcnIHN0cm9rZS1kYXNoYXJyYXk9JzI3IDIwJyB0cmFuc2Zvcm09J3JvdGF0ZSg1NSA1MTIgNDYwKScvPjxjaXJjbGUgY3g9JzUxMicgY3k9JzQ2MCcgcj0nMTgwJyBmaWxsPSdub25lJyBzdHJva2U9JyM4Yjg2NzYnIHN0cm9rZS13aWR0aD0nMC43JyBzdHJva2UtZGFzaGFycmF5PSczOSAxMScgdHJhbnNmb3JtPSdyb3RhdGUoNDcgNTEyIDQ2MCknLz48Y2lyY2xlIGN4PSc1MTInIGN5PSc0NjAnIHI9JzIzMCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjZWQ2ZjVjJyBzdHJva2Utd2lkdGg9JzInIHN0cm9rZS1kYXNoYXJyYXk9JzU1IDI3JyB0cmFuc2Zvcm09J3JvdGF0ZSgyNiA1MTIgNDYwKScvPjxjaXJjbGUgY3g9JzUxMicgY3k9JzQ2MCcgcj0nMjgwJyBmaWxsPSdub25lJyBzdHJva2U9JyM4Yjg2NzYnIHN0cm9rZS13aWR0aD0nMC43JyBzdHJva2UtZGFzaGFycmF5PSc0MSAxMScgdHJhbnNmb3JtPSdyb3RhdGUoOSA1MTIgNDYwKScvPjxyZWN0IHg9JzQ4MicgeT0nNDMwJyB3aWR0aD0nNjAnIGhlaWdodD0nNjAnIGZpbGw9JyNmNWYwZTMnIHN0cm9rZT0nI2VkNmY1Yycgc3Ryb2tlLXdpZHRoPScxLjUnLz48dGV4dCB4PSc1MTInIHk9JzQ2NicgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J0pldEJyYWlucyBNb25vLG1vbm9zcGFjZScgZm9udC1zaXplPScyMCcgZmlsbD0nIzNhMzgzMCc+MDQ8L3RleHQ+PGNpcmNsZSBjeD0nNTM2LjcnIGN5PSc1NTcuMCcgcj0nMS4xJyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjcwJy8+PGNpcmNsZSBjeD0nNDIyLjUnIGN5PScyMjYuMicgcj0nNC4wJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjQ2Jy8+PGNpcmNsZSBjeD0nNzgxLjQnIGN5PSc0NzMuNCcgcj0nMS45JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjI0Jy8+PGNpcmNsZSBjeD0nNDE2LjUnIGN5PSczMzYuMycgcj0nMy4xJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjYxJy8+PGNpcmNsZSBjeD0nNzIyLjMnIGN5PSc0ODguOCcgcj0nMi41JyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjMxJy8+PGNpcmNsZSBjeD0nMzk0LjgnIGN5PSc0MTQuOCcgcj0nMi4zJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjQyJy8+PGNpcmNsZSBjeD0nMjEzLjMnIGN5PSc0NzUuMicgcj0nMi40JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjUzJy8+PGNpcmNsZSBjeD0nNjQ1LjAnIGN5PSc0ODYuNicgcj0nMi43JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjYxJy8+PGNpcmNsZSBjeD0nNzI0LjAnIGN5PSczOTguMycgcj0nMi40JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjM1Jy8+PGNpcmNsZSBjeD0nNDcyLjMnIGN5PSc1NTQuMScgcj0nMS4zJyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjQwJy8+PGNpcmNsZSBjeD0nNzQzLjYnIGN5PSc2MTUuNicgcj0nMi42JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjIxJy8+PGNpcmNsZSBjeD0nNjAzLjknIGN5PSczMDYuMCcgcj0nMS43JyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjUxJy8+PGNpcmNsZSBjeD0nNjM4LjMnIGN5PSc2NjMuOScgcj0nMS41JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjQzJy8+PGNpcmNsZSBjeD0nNjAxLjgnIGN5PSczMTAuNycgcj0nMy40JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjcwJy8+PGNpcmNsZSBjeD0nMjc4LjQnIGN5PSc1NTIuOScgcj0nMi42JyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjMzJy8+PGNpcmNsZSBjeD0nNDA4LjInIGN5PSc2MjIuNCcgcj0nMS42JyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjIzJy8+PGNpcmNsZSBjeD0nNDI5LjYnIGN5PSc2ODEuNCcgcj0nMi42JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjQxJy8+PGNpcmNsZSBjeD0nNDIxLjMnIGN5PSc2NzcuNycgcj0nMS43JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjY1Jy8+PGNpcmNsZSBjeD0nMzczLjAnIGN5PSc2MTYuMCcgcj0nMy4zJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjY5Jy8+PGNpcmNsZSBjeD0nNjIwLjInIGN5PScyNzUuNicgcj0nMi42JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjYwJy8+PGNpcmNsZSBjeD0nODA0LjknIGN5PSc0NDEuNicgcj0nMS4zJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjMyJy8+PGNpcmNsZSBjeD0nNjcxLjInIGN5PSczMzUuNycgcj0nMy4xJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjY0Jy8+PGNpcmNsZSBjeD0nNjE3LjEnIGN5PSczNzAuNicgcj0nMy40JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjUzJy8+PGNpcmNsZSBjeD0nNDEwLjknIGN5PSczODMuOCcgcj0nMi42JyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjIwJy8+PGNpcmNsZSBjeD0nNDM1LjgnIGN5PScyMzQuMScgcj0nMi4wJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjQ5Jy8+PGNpcmNsZSBjeD0nNDM5LjgnIGN5PSczMjMuMycgcj0nMy41JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjYwJy8+PGNpcmNsZSBjeD0nNTk5LjgnIGN5PScxOTIuMScgcj0nMS42JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjM1Jy8+PGNpcmNsZSBjeD0nMjg3LjcnIGN5PSc1MzAuOScgcj0nMy45JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjM5Jy8+PGNpcmNsZSBjeD0nNTc0LjAnIGN5PSc2MDEuMScgcj0nMS40JyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjMzJy8+PGNpcmNsZSBjeD0nNTkxLjknIGN5PSc3MDkuNicgcj0nMS43JyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjM5Jy8+PHRleHQgeD0nNTUnIHk9JzY3JyBmb250LWZhbWlseT0nSmV0QnJhaW5zIE1vbm8sbW9ub3NwYWNlJyBmb250LXNpemU9JzE0JyBmaWxsPScjZWQ2ZjVjJz5QTEFURcK3VklJPC90ZXh0Pjx0ZXh0IHg9JzU1JyB5PSc5NzAnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubyxtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMTEnIGZpbGw9JyM4Yjg2NzYnPkRBVEEgTUlHUkFUSU9OPC90ZXh0Pjwvc3ZnPg==' alt='' /></div>
+    <div class='num-row'><span>Nº 04</span><span>2023</span></div>
+    <h4>Pharma Data Pipeline (Deloitte)</h4>
+    <p>Managed drug manufacturing datasets within AWS — from development and testing to production deployment. Tuned Spark/SQL for faster regulatory submissions.</p>
+    <a class='arrow-mark' href='#about' aria-label='Open Pharma Data Pipeline (Deloitte)'><svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg></a>
+  </div>
+        <div class='lab' data-reveal>
+    <div class='lab-img'><span class='badge'>Dev</span><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tbGFiLTUnPjxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggMCAwIDAgMCAwLjE2IDAgMCAwIDAgMC4xMiAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj4KICA8L2RlZnM+PHJlY3Qgd2lkdGg9JzEwMjQnIGhlaWdodD0nMTAyNCcgZmlsdGVyPSd1cmwoI24tbGFiLTUpJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPSc4MCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGI4Njc2JyBzdHJva2Utd2lkdGg9JzAuNycgc3Ryb2tlLWRhc2hhcnJheT0nNDkgMTgnIHRyYW5zZm9ybT0ncm90YXRlKDc5IDUxMiA0NjApJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPScxMzAnIGZpbGw9J25vbmUnIHN0cm9rZT0nIzhiODY3Nicgc3Ryb2tlLXdpZHRoPScwLjcnIHN0cm9rZS1kYXNoYXJyYXk9JzU3IDEwJyB0cmFuc2Zvcm09J3JvdGF0ZSgzMiA1MTIgNDYwKScvPjxjaXJjbGUgY3g9JzUxMicgY3k9JzQ2MCcgcj0nMTgwJyBmaWxsPSdub25lJyBzdHJva2U9JyM4Yjg2NzYnIHN0cm9rZS13aWR0aD0nMC43JyBzdHJva2UtZGFzaGFycmF5PSc1OCAyMScgdHJhbnNmb3JtPSdyb3RhdGUoODMgNTEyIDQ2MCknLz48Y2lyY2xlIGN4PSc1MTInIGN5PSc0NjAnIHI9JzIzMCcgZmlsbD0nbm9uZScgc3Ryb2tlPScjOGI4Njc2JyBzdHJva2Utd2lkdGg9JzAuNycgc3Ryb2tlLWRhc2hhcnJheT0nNDAgMTYnIHRyYW5zZm9ybT0ncm90YXRlKDc3IDUxMiA0NjApJy8+PGNpcmNsZSBjeD0nNTEyJyBjeT0nNDYwJyByPScyODAnIGZpbGw9J25vbmUnIHN0cm9rZT0nI2VkNmY1Yycgc3Ryb2tlLXdpZHRoPScyJyBzdHJva2UtZGFzaGFycmF5PSczMCAyNicgdHJhbnNmb3JtPSdyb3RhdGUoMTMgNTEyIDQ2MCknLz48cmVjdCB4PSc0ODInIHk9JzQzMCcgd2lkdGg9JzYwJyBoZWlnaHQ9JzYwJyBmaWxsPScjZjVmMGUzJyBzdHJva2U9JyNlZDZmNWMnIHN0cm9rZS13aWR0aD0nMS41Jy8+PHRleHQgeD0nNTEyJyB5PSc0NjYnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubyxtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMjAnIGZpbGw9JyMzYTM4MzAnPjA1PC90ZXh0PjxjaXJjbGUgY3g9Jzc5MC4yJyBjeT0nMzYzLjUnIHI9JzMuOCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC41OCcvPjxjaXJjbGUgY3g9JzY4Ny4wJyBjeT0nNDk1LjMnIHI9JzEuNScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4yNicvPjxjaXJjbGUgY3g9JzYxMC4zJyBjeT0nMjI1LjEnIHI9JzIuOCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4yMycvPjxjaXJjbGUgY3g9JzQyMi4wJyBjeT0nNTM1LjcnIHI9JzMuNCcgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4zNCcvPjxjaXJjbGUgY3g9JzQ2Mi42JyBjeT0nNzUyLjEnIHI9JzMuNScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zNycvPjxjaXJjbGUgY3g9JzY4My44JyBjeT0nNjg5LjInIHI9JzMuNycgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC40MicvPjxjaXJjbGUgY3g9Jzc3MS4yJyBjeT0nNTg3LjUnIHI9JzMuMycgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC42OScvPjxjaXJjbGUgY3g9JzM5Ny4zJyBjeT0nNDE4LjEnIHI9JzEuNCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC41MycvPjxjaXJjbGUgY3g9JzU2OC41JyBjeT0nNTUyLjgnIHI9JzEuNCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zOScvPjxjaXJjbGUgY3g9JzI3OC45JyBjeT0nNDAyLjInIHI9JzEuMycgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC42NycvPjxjaXJjbGUgY3g9JzU0OS4wJyBjeT0nMzU1LjQnIHI9JzIuMCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC41OCcvPjxjaXJjbGUgY3g9JzI2NC4xJyBjeT0nNTk2LjInIHI9JzMuNicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zMCcvPjxjaXJjbGUgY3g9JzgwNi43JyBjeT0nNDIzLjQnIHI9JzMuNycgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4yNCcvPjxjaXJjbGUgY3g9JzQ0Ny45JyBjeT0nMzU3LjAnIHI9JzEuMScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zMycvPjxjaXJjbGUgY3g9JzcxOC4yJyBjeT0nNjMyLjQnIHI9JzIuNCcgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4yMicvPjxjaXJjbGUgY3g9JzQzOC44JyBjeT0nMjU2LjknIHI9JzMuMycgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4zNicvPjxjaXJjbGUgY3g9JzM0Ni42JyBjeT0nMzIwLjcnIHI9JzMuMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC40MicvPjxjaXJjbGUgY3g9JzY1NS41JyBjeT0nNjA2LjYnIHI9JzIuMScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zNycvPjxjaXJjbGUgY3g9JzI3MS40JyBjeT0nNDUwLjMnIHI9JzMuMCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC42NicvPjxjaXJjbGUgY3g9JzYzNy4zJyBjeT0nNDEzLjcnIHI9JzMuNycgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4yOScvPjxjaXJjbGUgY3g9JzI4NC4zJyBjeT0nNTMxLjEnIHI9JzIuMycgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC40NicvPjxjaXJjbGUgY3g9JzY2NC43JyBjeT0nNTU4LjQnIHI9JzMuMCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC40OCcvPjxjaXJjbGUgY3g9JzI3MS42JyBjeT0nNTMxLjUnIHI9JzMuMycgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4zOScvPjxjaXJjbGUgY3g9JzYyOS45JyBjeT0nNTkxLjMnIHI9JzMuNScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC40NScvPjxjaXJjbGUgY3g9JzM3Mi44JyBjeT0nNDk2LjEnIHI9JzMuNycgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC42OCcvPjxjaXJjbGUgY3g9JzQ1Ny4yJyBjeT0nNTY0LjUnIHI9JzMuMCcgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC40OCcvPjxjaXJjbGUgY3g9JzY1NC43JyBjeT0nMjgwLjknIHI9JzEuNicgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC40MCcvPjxjaXJjbGUgY3g9JzI3OS43JyBjeT0nNTc0LjMnIHI9JzIuMicgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4zMCcvPjxjaXJjbGUgY3g9JzI3Mi43JyBjeT0nNTA3LjQnIHI9JzEuNycgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC42MCcvPjxjaXJjbGUgY3g9JzQwMS40JyBjeT0nNTIzLjInIHI9JzEuNycgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC41NicvPjx0ZXh0IHg9JzU1JyB5PSc2NycgZm9udC1mYW1pbHk9J0pldEJyYWlucyBNb25vLG1vbm9zcGFjZScgZm9udC1zaXplPScxNCcgZmlsbD0nI2VkNmY1Yyc+UExBVEXCt1ZJSUk8L3RleHQ+PHRleHQgeD0nNTUnIHk9Jzk3MCcgZm9udC1mYW1pbHk9J0pldEJyYWlucyBNb25vLG1vbm9zcGFjZScgZm9udC1zaXplPScxMScgZmlsbD0nIzhiODY3Nic+REVWIEFVVE9NQVRJT048L3RleHQ+PC9zdmc+' alt='' /></div>
+    <div class='num-row'><span>Nº 05</span><span>2021</span></div>
+    <h4>Django Web Applications</h4>
+    <p>Full-stack web applications using Python, Django, PostgreSQL, and REST Framework. OOP-driven architecture with Git version control.</p>
+    <a class='arrow-mark' href='#about' aria-label='Open Django Web Applications'><svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg></a>
+  </div>
+    </div>
+    <div class='labs-foot'>
+      <div class='progress'>
+        <span class='on'></span><span class='on'></span><span class='on'></span><span class='on'></span><span class='on'></span><span></span>
+      </div>
+      <span class='meta'>05 / 06 YEARS IN PRODUCTION &nbsp;·&nbsp; <a class='library-link' href='https://linkedin.com/in/gopinath-edugundla' target='_blank' rel='noreferrer noopener' style='color:var(--coral);'>VIEW FULL PROFILE →</a></span>
+    </div>
+  </div>
+</section>
+
+<section class='method' data-od-id='method'>
+  <div class='container'>
+    <div class='sec-rule'>
+    <span class='roman'>V.</span>
+    <span class='meta-grp'>
+      <span>Career Path / Journey</span>
+      <span class='dot-mark'>•</span>
+      <span>04 stages, 6 years</span>
+    </span>
+    <span>005 / 008</span>
+  </div>
+    <div class='method-head'>
+      <div data-reveal>
+        <span class='label'>Career Path <span class='ix'>· Nº 05</span></span>
+        <h2 class='display' style='margin-top:30px;'>From <em>foundations</em> to <em>production</em> intelligence<span class='dot'>.</span></h2>
+      </div>
+      <div class='right' data-reveal='right'>
+        <span class='plus'>+</span>
+        <p>Every stage builds on the last — stronger engineering, deeper domain expertise, more complex systems.</p>
+      </div>
+    </div>
+    <div class='method-grid'>
+        <div class='method-step' data-reveal>
+    <div class='num'>01</div>
+    <h4>Foundation <span class='arrow-r'>→</span></h4>
+    <p>B.Tech from JNTU Hyderabad (8.23 GPA). Built a deep understanding of algorithms, data structures, and computer science fundamentals.</p>
+    <div class='img'><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tbWV0aG9kLTEnPjxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggMCAwIDAgMCAwLjE2IDAgMCAwIDAgMC4xMiAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj4KICA8L2RlZnM+PHJlY3Qgd2lkdGg9JzEwMjQnIGhlaWdodD0nMTAyNCcgZmlsdGVyPSd1cmwoI24tbWV0aG9kLTEpJy8+PHJlY3QgeD0nMTQwJyB5PScyMDAnIHdpZHRoPSc3NDQnIGhlaWdodD0nNjIwJyBmaWxsPScjZjVmMGUzJyBzdHJva2U9JyNkNWNmYzAnLz48bGluZSB4MT0nMTcwJyB5MT0nMjQwJyB4Mj0nODU0JyB5Mj0nMjQwJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzI4OCcgeDI9Jzg1NCcgeTI9JzI4OCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSczMzYnIHgyPSc4NTQnIHkyPSczMzYnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nMzg0JyB4Mj0nODU0JyB5Mj0nMzg0JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzQzMicgeDI9Jzg1NCcgeTI9JzQzMicgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc0ODAnIHgyPSc4NTQnIHkyPSc0ODAnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nNTI4JyB4Mj0nODU0JyB5Mj0nNTI4JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzU3NicgeDI9Jzg1NCcgeTI9JzU3Nicgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc2MjQnIHgyPSc4NTQnIHkyPSc2MjQnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nNjcyJyB4Mj0nODU0JyB5Mj0nNjcyJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzcyMCcgeDI9Jzg1NCcgeTI9JzcyMCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc3NjgnIHgyPSc4NTQnIHkyPSc3NjgnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48cmVjdCB4PScxNzAnIHk9JzI0MCcgd2lkdGg9JzY4NCcgaGVpZ2h0PSc0OCcgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4wOCcvPjxsaW5lIHgxPScxNzAnIHkxPScyNDAnIHgyPSc4NTQnIHkyPScyNDAnIHN0cm9rZT0nI2VkNmY1Yycgc3Ryb2tlLXdpZHRoPScxLjUnLz48dGV4dCB4PSc1MTInIHk9JzUxMicgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J1BsYXlmYWlyIERpc3BsYXksR2VvcmdpYSxzZXJpZicgZm9udC1zdHlsZT0naXRhbGljJyBmb250LXNpemU9JzE4MCcgZmlsbD0nIzNhMzgzMCcgb3BhY2l0eT0nMC4wNic+MTwvdGV4dD48dGV4dCB4PSc1NScgeT0nNjcnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubyxtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMTQnIGZpbGw9JyNlZDZmNWMnPlBMQVRFwrdJWDwvdGV4dD48L3N2Zz4=' alt='' /></div>
+  </div>
+        <div class='method-step' data-reveal>
+    <div class='num'>02</div>
+    <h4>Development <span class='arrow-r'>→</span></h4>
+    <p>Python Developer at Tweak Talent (2020–2022). Django, PostgreSQL, REST APIs — full-stack web applications with object-oriented design.</p>
+    <div class='img'><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tbWV0aG9kLTInPjxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggMCAwIDAgMCAwLjE2IDAgMCAwIDAgMC4xMiAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj4KICA8L2RlZnM+PHJlY3Qgd2lkdGg9JzEwMjQnIGhlaWdodD0nMTAyNCcgZmlsdGVyPSd1cmwoI24tbWV0aG9kLTIpJy8+PHJlY3QgeD0nMTQwJyB5PScyMDAnIHdpZHRoPSc3NDQnIGhlaWdodD0nNjIwJyBmaWxsPScjZjVmMGUzJyBzdHJva2U9JyNkNWNmYzAnLz48bGluZSB4MT0nMTcwJyB5MT0nMjQwJyB4Mj0nODU0JyB5Mj0nMjQwJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzI4OCcgeDI9Jzg1NCcgeTI9JzI4OCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSczMzYnIHgyPSc4NTQnIHkyPSczMzYnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nMzg0JyB4Mj0nODU0JyB5Mj0nMzg0JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzQzMicgeDI9Jzg1NCcgeTI9JzQzMicgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc0ODAnIHgyPSc4NTQnIHkyPSc0ODAnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nNTI4JyB4Mj0nODU0JyB5Mj0nNTI4JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzU3NicgeDI9Jzg1NCcgeTI9JzU3Nicgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc2MjQnIHgyPSc4NTQnIHkyPSc2MjQnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nNjcyJyB4Mj0nODU0JyB5Mj0nNjcyJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzcyMCcgeDI9Jzg1NCcgeTI9JzcyMCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc3NjgnIHgyPSc4NTQnIHkyPSc3NjgnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48cmVjdCB4PScxNzAnIHk9JzM4NCcgd2lkdGg9JzY4NCcgaGVpZ2h0PSc0OCcgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4wOCcvPjxsaW5lIHgxPScxNzAnIHkxPSczODQnIHgyPSc4NTQnIHkyPSczODQnIHN0cm9rZT0nI2VkNmY1Yycgc3Ryb2tlLXdpZHRoPScxLjUnLz48dGV4dCB4PSc1MTInIHk9JzUxMicgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J1BsYXlmYWlyIERpc3BsYXksR2VvcmdpYSxzZXJpZicgZm9udC1zdHlsZT0naXRhbGljJyBmb250LXNpemU9JzE4MCcgZmlsbD0nIzNhMzgzMCcgb3BhY2l0eT0nMC4wNic+MjwvdGV4dD48dGV4dCB4PSc1NScgeT0nNjcnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubyxtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMTQnIGZpbGw9JyNlZDZmNWMnPlBMQVRFwrdYPC90ZXh0Pjwvc3ZnPg==' alt='' /></div>
+  </div>
+        <div class='method-step' data-reveal>
+    <div class='num'>03</div>
+    <h4>Engineering <span class='arrow-r'>→</span></h4>
+    <p>Data Engineer at Deloitte (2022–2024). PySpark, AWS, ETL optimization — drug manufacturing pipelines with 70% reduction in manual effort.</p>
+    <div class='img'><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tbWV0aG9kLTMnPjxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggMCAwIDAgMCAwLjE2IDAgMCAwIDAgMC4xMiAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj4KICA8L2RlZnM+PHJlY3Qgd2lkdGg9JzEwMjQnIGhlaWdodD0nMTAyNCcgZmlsdGVyPSd1cmwoI24tbWV0aG9kLTMpJy8+PHJlY3QgeD0nMTQwJyB5PScyMDAnIHdpZHRoPSc3NDQnIGhlaWdodD0nNjIwJyBmaWxsPScjZjVmMGUzJyBzdHJva2U9JyNkNWNmYzAnLz48bGluZSB4MT0nMTcwJyB5MT0nMjQwJyB4Mj0nODU0JyB5Mj0nMjQwJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzI4OCcgeDI9Jzg1NCcgeTI9JzI4OCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSczMzYnIHgyPSc4NTQnIHkyPSczMzYnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nMzg0JyB4Mj0nODU0JyB5Mj0nMzg0JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzQzMicgeDI9Jzg1NCcgeTI9JzQzMicgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc0ODAnIHgyPSc4NTQnIHkyPSc0ODAnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nNTI4JyB4Mj0nODU0JyB5Mj0nNTI4JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzU3NicgeDI9Jzg1NCcgeTI9JzU3Nicgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc2MjQnIHgyPSc4NTQnIHkyPSc2MjQnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nNjcyJyB4Mj0nODU0JyB5Mj0nNjcyJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzcyMCcgeDI9Jzg1NCcgeTI9JzcyMCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc3NjgnIHgyPSc4NTQnIHkyPSc3NjgnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48cmVjdCB4PScxNzAnIHk9JzUyOCcgd2lkdGg9JzY4NCcgaGVpZ2h0PSc0OCcgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4wOCcvPjxsaW5lIHgxPScxNzAnIHkxPSc1MjgnIHgyPSc4NTQnIHkyPSc1MjgnIHN0cm9rZT0nI2VkNmY1Yycgc3Ryb2tlLXdpZHRoPScxLjUnLz48dGV4dCB4PSc1MTInIHk9JzUxMicgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J1BsYXlmYWlyIERpc3BsYXksR2VvcmdpYSxzZXJpZicgZm9udC1zdHlsZT0naXRhbGljJyBmb250LXNpemU9JzE4MCcgZmlsbD0nIzNhMzgzMCcgb3BhY2l0eT0nMC4wNic+MzwvdGV4dD48dGV4dCB4PSc1NScgeT0nNjcnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubyxtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMTQnIGZpbGw9JyNlZDZmNWMnPlBMQVRFwrdYSTwvdGV4dD48L3N2Zz4=' alt='' /></div>
+  </div>
+        <div class='method-step' data-reveal>
+    <div class='num'>04</div>
+    <h4>Leadership</h4>
+    <p>Senior Consultant at Model N (2024–present). Government pricing, GenAI/RAG systems, stakeholder collaboration — driving data intelligence at scale.</p>
+    <div class='img'><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tbWV0aG9kLTQnPjxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggMCAwIDAgMCAwLjE2IDAgMCAwIDAgMC4xMiAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj4KICA8L2RlZnM+PHJlY3Qgd2lkdGg9JzEwMjQnIGhlaWdodD0nMTAyNCcgZmlsdGVyPSd1cmwoI24tbWV0aG9kLTQpJy8+PHJlY3QgeD0nMTQwJyB5PScyMDAnIHdpZHRoPSc3NDQnIGhlaWdodD0nNjIwJyBmaWxsPScjZjVmMGUzJyBzdHJva2U9JyNkNWNmYzAnLz48bGluZSB4MT0nMTcwJyB5MT0nMjQwJyB4Mj0nODU0JyB5Mj0nMjQwJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzI4OCcgeDI9Jzg1NCcgeTI9JzI4OCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSczMzYnIHgyPSc4NTQnIHkyPSczMzYnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nMzg0JyB4Mj0nODU0JyB5Mj0nMzg0JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzQzMicgeDI9Jzg1NCcgeTI9JzQzMicgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc0ODAnIHgyPSc4NTQnIHkyPSc0ODAnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nNTI4JyB4Mj0nODU0JyB5Mj0nNTI4JyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzU3NicgeDI9Jzg1NCcgeTI9JzU3Nicgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc2MjQnIHgyPSc4NTQnIHkyPSc2MjQnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48bGluZSB4MT0nMTcwJyB5MT0nNjcyJyB4Mj0nODU0JyB5Mj0nNjcyJyBzdHJva2U9JyNkNWNmYzAnIHN0cm9rZS13aWR0aD0nMC40Jy8+PGxpbmUgeDE9JzE3MCcgeTE9JzcyMCcgeDI9Jzg1NCcgeTI9JzcyMCcgc3Ryb2tlPScjZDVjZmMwJyBzdHJva2Utd2lkdGg9JzAuNCcvPjxsaW5lIHgxPScxNzAnIHkxPSc3NjgnIHgyPSc4NTQnIHkyPSc3NjgnIHN0cm9rZT0nI2Q1Y2ZjMCcgc3Ryb2tlLXdpZHRoPScwLjQnLz48cmVjdCB4PScxNzAnIHk9JzY3Micgd2lkdGg9JzY4NCcgaGVpZ2h0PSc0OCcgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4wOCcvPjxsaW5lIHgxPScxNzAnIHkxPSc2NzInIHgyPSc4NTQnIHkyPSc2NzInIHN0cm9rZT0nI2VkNmY1Yycgc3Ryb2tlLXdpZHRoPScxLjUnLz48dGV4dCB4PSc1MTInIHk9JzUxMicgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J1BsYXlmYWlyIERpc3BsYXksR2VvcmdpYSxzZXJpZicgZm9udC1zdHlsZT0naXRhbGljJyBmb250LXNpemU9JzE4MCcgZmlsbD0nIzNhMzgzMCcgb3BhY2l0eT0nMC4wNic+NDwvdGV4dD48dGV4dCB4PSc1NScgeT0nNjcnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubyxtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMTQnIGZpbGw9JyNlZDZmNWMnPlBMQVRFwrdYSUk8L3RleHQ+PC9zdmc+' alt='' /></div>
+  </div>
+    </div>
+    <div class='method-foot'>
+      <div class='left'>
+        <span class='ring'></span>
+        <span>Foundation informs everything. Production makes it real.</span>
+      </div>
+      <div class='right'><a class='method-repo-link' href='https://linkedin.com/in/gopinath-edugundla' target='_blank' rel='noreferrer noopener'><b>linkedin.com/in/gopinath-edugundla</b></a> &nbsp;·&nbsp; Open to opportunities</div>
+    </div>
+  </div>
+</section>
+
+<section class='tight' data-od-id='work'>
+  <div class='work'>
+    <div class='work-rule'>
+      <span class='roman'>VI.</span>
+      <span style='display:inline-flex;gap:24px;'>
+        <span>Featured Roles · 2020–2026</span>
+        <span style='color:var(--coral);'>•</span>
+        <span>Selected experience</span>
+      </span>
+      <span>006 / 008</span>
+    </div>
+    <div class='work-grid'>
+      <div class='work-copy' data-reveal>
+        <span class='label'>Featured roles</span>
+        <h2>Roles that turned complex data into <em>measurable</em> business <em>outcomes</em><span class='dot'>.</span></h2>
+        <a class='work-link' href='https://linkedin.com/in/gopinath-edugundla' target='_blank' rel='noreferrer noopener'>View full experience</a>
+      </div>
+      <a class='work-card' data-reveal href='#agents'>
+    <div class='label-row'>
+      <span class='small-label'>Current role</span>
+      <span class='index'>01 / 03</span>
+    </div>
+    <h3>Model N</h3>
+    <p>Senior Consultant — Government Pricing pipelines, RAG/LLM applications, automated pricing calculations. Reduced manual effort 70%. Hyderabad, 2024–present.</p>
+    <div class='img'><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24td29yay0xJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC42NScgbnVtT2N0YXZlcz0nMycgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0nMCAwIDAgMCAwLjE4IDAgMCAwIDAgMC4xNiAwIDAgMCAwIDAuMTIgMCAwIDAgMC4wNiAwJy8+PC9maWx0ZXI+CiAgPC9kZWZzPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbHRlcj0ndXJsKCNuLXdvcmstMSknLz48ZyB0cmFuc2Zvcm09J3JvdGF0ZSgtMyA1MTIgNTEyKSc+PHJlY3QgeD0nMTgwJyB5PScxODAnIHdpZHRoPSc2NjQnIGhlaWdodD0nNTAwJyBmaWxsPScjZjVmMGUzJyBzdHJva2U9JyMzYTM4MzAnIHN0cm9rZS13aWR0aD0nMScvPjxjaXJjbGUgY3g9JzIxMCcgY3k9JzIxMCcgcj0nNScgZmlsbD0nI2VkNmY1YycvPjxjaXJjbGUgY3g9JzIzMCcgY3k9JzIxMCcgcj0nNScgZmlsbD0nI2EzOWU4ZicvPjxjaXJjbGUgY3g9JzI1MCcgY3k9JzIxMCcgcj0nNScgZmlsbD0nI2Q1Y2ZjMCcvPjxsaW5lIHgxPScxODAnIHkxPScyMjYnIHgyPSc4NDQnIHkyPScyMjYnIHN0cm9rZT0nI2Q1Y2ZjMCcvPjxyZWN0IHg9JzIzMCcgeT0nMjQ2JyB3aWR0aD0nMjg3JyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjxyZWN0IHg9JzI1MCcgeT0nMjc0JyB3aWR0aD0nMzUzJyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjxyZWN0IHg9JzIzMCcgeT0nMzAyJyB3aWR0aD0nNDQ3JyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjxyZWN0IHg9JzIxMCcgeT0nMzMwJyB3aWR0aD0nMjQ5JyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjxyZWN0IHg9JzIxMCcgeT0nMzU4JyB3aWR0aD0nMjY0JyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4yNScvPjxyZWN0IHg9JzIzMCcgeT0nMzg2JyB3aWR0aD0nNDIxJyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjxyZWN0IHg9JzI1MCcgeT0nNDE0JyB3aWR0aD0nMjg0JyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjxyZWN0IHg9JzIxMCcgeT0nNDQyJyB3aWR0aD0nNDY1JyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjxyZWN0IHg9JzI1MCcgeT0nNDcwJyB3aWR0aD0nMzc2JyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjxyZWN0IHg9JzIxMCcgeT0nNDk4JyB3aWR0aD0nNDQzJyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nI2VkNmY1Yycgb3BhY2l0eT0nMC4yNScvPjxyZWN0IHg9JzIzMCcgeT0nNTI2JyB3aWR0aD0nMzI1JyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjxyZWN0IHg9JzIxMCcgeT0nNTU0JyB3aWR0aD0nMzg0JyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjxyZWN0IHg9JzIzMCcgeT0nNTgyJyB3aWR0aD0nMzE2JyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjxyZWN0IHg9JzIxMCcgeT0nNjEwJyB3aWR0aD0nNDE4JyBoZWlnaHQ9JzEwJyByeD0nMicgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xMicvPjwvZz48dGV4dCB4PSc1MTInIHk9Jzc4MCcgdGV4dC1hbmNob3I9J21pZGRsZScgZm9udC1mYW1pbHk9J0pldEJyYWlucyBNb25vLG1vbm9zcGFjZScgZm9udC1zaXplPScxMycgZmlsbD0nIzhiODY3Nic+UFJPSkVDVCBBIOKAlCBTRUxFQ1RFRCBXT1JLPC90ZXh0Pjx0ZXh0IHg9JzU1JyB5PSc2NycgZm9udC1mYW1pbHk9J0pldEJyYWlucyBNb25vLG1vbm9zcGFjZScgZm9udC1zaXplPScxNCcgZmlsbD0nI2VkNmY1Yyc+UExBVEXCt1hJSUk8L3RleHQ+PC9zdmc+' alt='' /></div>
+    <div class='meta-row'>
+      <span class='year'>2024 · SENIOR</span>
+      <span>CURRENT</span>
+    </div>
+  </a>
+      <a class='work-card alt' data-reveal href='#agents'>
+    <div class='label-row'>
+      <span class='small-label'>Previous role</span>
+      <span class='index'>02 / 03</span>
+    </div>
+    <h3>Deloitte</h3>
+    <p>Data Engineer — Drug manufacturing ETL, Spark optimization, AWS ecosystem. Full project lifecycle ownership from dev to production. Hyderabad, 2022–2024.</p>
+    <div class='img'><img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24td29yay0yJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC42NScgbnVtT2N0YXZlcz0nMycgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0nMCAwIDAgMCAwLjE4IDAgMCAwIDAgMC4xNiAwIDAgMCAwIDAuMTIgMCAwIDAgMC4wNiAwJy8+PC9maWx0ZXI+CiAgPC9kZWZzPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbHRlcj0ndXJsKCNuLXdvcmstMiknLz48ZyB0cmFuc2Zvcm09J3JvdGF0ZSgzIDUxMiA1MTIpJz48cmVjdCB4PScxODAnIHk9JzE4MCcgd2lkdGg9JzY2NCcgaGVpZ2h0PSc1MDAnIGZpbGw9JyNmNWYwZTMnIHN0cm9rZT0nIzNhMzgzMCcgc3Ryb2tlLXdpZHRoPScxJy8+PGNpcmNsZSBjeD0nMjEwJyBjeT0nMjEwJyByPSc1JyBmaWxsPScjZWQ2ZjVjJy8+PGNpcmNsZSBjeD0nMjMwJyBjeT0nMjEwJyByPSc1JyBmaWxsPScjYTM5ZThmJy8+PGNpcmNsZSBjeD0nMjUwJyBjeT0nMjEwJyByPSc1JyBmaWxsPScjZDVjZmMwJy8+PGxpbmUgeDE9JzE4MCcgeTE9JzIyNicgeDI9Jzg0NCcgeTI9JzIyNicgc3Ryb2tlPScjZDVjZmMwJy8+PHJlY3QgeD0nMjUwJyB5PScyNDYnIHdpZHRoPSc0OTUnIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PHJlY3QgeD0nMjUwJyB5PScyNzQnIHdpZHRoPSc0MzInIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PHJlY3QgeD0nMjUwJyB5PSczMDInIHdpZHRoPScyMDcnIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PHJlY3QgeD0nMjUwJyB5PSczMzAnIHdpZHRoPScxODInIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PHJlY3QgeD0nMjEwJyB5PSczNTgnIHdpZHRoPSc0NzcnIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjI1Jy8+PHJlY3QgeD0nMjMwJyB5PSczODYnIHdpZHRoPSc0NDMnIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PHJlY3QgeD0nMjUwJyB5PSc0MTQnIHdpZHRoPSc0MTMnIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PHJlY3QgeD0nMjMwJyB5PSc0NDInIHdpZHRoPSczMDQnIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PHJlY3QgeD0nMjMwJyB5PSc0NzAnIHdpZHRoPScyMDInIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PHJlY3QgeD0nMjEwJyB5PSc0OTgnIHdpZHRoPScyNjAnIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjI1Jy8+PHJlY3QgeD0nMjEwJyB5PSc1MjYnIHdpZHRoPSc0NjknIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PHJlY3QgeD0nMjMwJyB5PSc1NTQnIHdpZHRoPSc0NzcnIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PHJlY3QgeD0nMjMwJyB5PSc1ODInIHdpZHRoPSc0OTQnIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PHJlY3QgeD0nMjUwJyB5PSc2MTAnIHdpZHRoPScxOTQnIGhlaWdodD0nMTAnIHJ4PScyJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEyJy8+PC9nPjx0ZXh0IHg9JzUxMicgeT0nNzgwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBmb250LWZhbWlseT0nSmV0QnJhaW5zIE1vbm8sbW9ub3NwYWNlJyBmb250LXNpemU9JzEzJyBmaWxsPScjOGI4Njc2Jz5QUk9KRUNUIEIg4oCUIFNFTEVDVEVEIFdPUks8L3RleHQ+PHRleHQgeD0nNTUnIHk9JzY3JyBmb250LWZhbWlseT0nSmV0QnJhaW5zIE1vbm8sbW9ub3NwYWNlJyBmb250LXNpemU9JzE0JyBmaWxsPScjZWQ2ZjVjJz5QTEFURcK3WElWPC90ZXh0Pjwvc3ZnPg==' alt='' /></div>
+    <div class='meta-row'>
+      <span class='year'>2022 · DATA ENG</span>
+      <span>CONSULTING</span>
+    </div>
+  </a>
+    </div>
+    <div class='work-arrows'>
+      <button class='nav-btn'><svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><path d='M14 6l-6 6 6 6'/></svg></button>
+      <button class='nav-btn active'><svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='1.6'><path d='M10 6l6 6-6 6'/></svg></button>
+    </div>
+  </div>
+</section>
+
+<section class='testimonial' data-od-id='testimonial'>
+  <div class='container'>
+    <div class='sec-rule'>
+    <span class='roman'>VII.</span>
+    <span class='meta-grp'>
+      <span>Technology Partners / Ecosystem</span>
+      <span class='dot-mark'>•</span>
+      <span>Platforms & frameworks</span>
+    </span>
+    <span>007 / 008</span>
+  </div>
+    <div class='testimonial-grid'>
+      <div class='testimonial-copy' data-reveal>
+        <span class='label'>Technology ecosystem <span class='ix'>· Nº 06</span></span>
+        <h2 style='margin-top:30px;'>&ldquo;Production systems demand <em>precision</em> at every layer — from <em>ingestion</em> to <em>insight.</em>&rdquo;</h2>
+        <div class='author'>
+          <span class='avatar'>G</span>
+          <p>Gopinath Edugundla<br/><span>Senior AI Data Engineer · Pythonista</span></p>
+        </div>
+        <div class='divider'></div>
+        <p class='partners-text'>Building on battle-tested platforms and frameworks at enterprise scale.</p>
+        <div class='partners'>
+        <a class='partner' data-reveal href='https://python.org' target='_blank' rel='noreferrer noopener'>
+    <div class='glyph'>
+      <svg viewBox='0 0 80 30' fill='none' stroke='currentColor' stroke-width='2'>
+        <path d='M20 6L12 30L4 6M8 18h8'/>
+      </svg>
+    </div>
+    <span>Python</span>
+    <small>Core</small>
+  </a>
+        <a class='partner' data-reveal href='https://spark.apache.org' target='_blank' rel='noreferrer noopener'>
+    <div class='glyph'>
+      <svg viewBox='0 0 80 30' fill='none' stroke='currentColor' stroke-width='2'>
+        <path d='M8 24L20 6L24 22L36 4'/>
+      </svg>
+    </div>
+    <span>PySpark</span>
+    <small>ETL</small>
+  </a>
+        <a class='partner' data-reveal href='https://aws.amazon.com' target='_blank' rel='noreferrer noopener'>
+    <div class='glyph'>
+      <svg viewBox='0 0 80 30' fill='none' stroke='currentColor' stroke-width='2'>
+        <rect x='6' y='6' width='10' height='10'/><rect x='20' y='6' width='10' height='10'/><rect x='6' y='20' width='10' height='10'/><rect x='20' y='20' width='10' height='10'/>
+      </svg>
+    </div>
+    <span>AWS</span>
+    <small>Cloud</small>
+  </a>
+        <a class='partner' data-reveal href='https://langchain.com' target='_blank' rel='noreferrer noopener'>
+    <div class='glyph'>
+      <svg viewBox='0 0 80 30' fill='none' stroke='currentColor' stroke-width='2'>
+        <circle cx='15' cy='15' r='9'/><path d='M15 6v18M6 15h18'/>
+      </svg>
+    </div>
+    <span>LangChain</span>
+    <small>GenAI</small>
+  </a>
+        <a class='partner' data-reveal href='https://postgresql.org' target='_blank' rel='noreferrer noopener'>
+    <div class='glyph'>
+      <svg viewBox='0 0 80 30' fill='none' stroke='currentColor' stroke-width='2'>
+        <path d='M5 8h14v8H5z'/><path d='M9 12h6M12 9v6'/>
+      </svg>
+    </div>
+    <span>PostgreSQL</span>
+    <small>Database</small>
+  </a>
+        <a class='partner' data-reveal href='https://airflow.apache.org' target='_blank' rel='noreferrer noopener'>
+    <div class='glyph'>
+      <svg viewBox='0 0 80 30' fill='none' stroke='currentColor' stroke-width='2'>
+        <path d='M5 8l9 7-9 7M20 24h18'/>
+      </svg>
+    </div>
+    <span>Airflow</span>
+    <small>Orchestration</small>
+  </a>
+        </div>
+        <a class='read-more' href='https://linkedin.com/in/gopinath-edugundla' target='_blank' rel='noreferrer noopener'>See all 30+ skills</a>
+      </div>
+      <div class='testimonial-art' data-reveal='right'>
+        <img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tdGVzdGltb25pYWwnPjxmZVR1cmJ1bGVuY2UgdHlwZT0nZnJhY3RhbE5vaXNlJyBiYXNlRnJlcXVlbmN5PScwLjY1JyBudW1PY3RhdmVzPSczJyBzdGl0Y2hUaWxlcz0nc3RpdGNoJy8+PGZlQ29sb3JNYXRyaXggdmFsdWVzPScwIDAgMCAwIDAuMTggMCAwIDAgMCAwLjE2IDAgMCAwIDAgMC4xMiAwIDAgMCAwLjA2IDAnLz48L2ZpbHRlcj4KICA8L2RlZnM+PHJlY3Qgd2lkdGg9JzEwMjQnIGhlaWdodD0nMTAyNCcgZmlsdGVyPSd1cmwoI24tdGVzdGltb25pYWwpJy8+PHRleHQgeD0nMjAwJyB5PSczNTAnIGZvbnQtZmFtaWx5PSdQbGF5ZmFpciBEaXNwbGF5LEdlb3JnaWEsc2VyaWYnIGZvbnQtc2l6ZT0nMjQwJyBmaWxsPScjZWQ2ZjVjJyBvcGFjaXR5PScwLjE1Jz7igJ88L3RleHQ+PHJlY3QgeD0nMjgwJyB5PSczODAnIHdpZHRoPSc0NjQnIGhlaWdodD0nMjAwJyBmaWxsPScjZjVmMGUzJyBzdHJva2U9JyNkNWNmYzAnLz48cmVjdCB4PSczMTAnIHk9JzQxMCcgd2lkdGg9JzM5OScgaGVpZ2h0PSc4JyByeD0nMScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xNScvPjxyZWN0IHg9JzMxMCcgeT0nNDQwJyB3aWR0aD0nMzYzJyBoZWlnaHQ9JzgnIHJ4PScxJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjE1Jy8+PHJlY3QgeD0nMzEwJyB5PSc0NzAnIHdpZHRoPSczMTQnIGhlaWdodD0nOCcgcng9JzEnIGZpbGw9JyM4Yjg2NzYnIG9wYWNpdHk9JzAuMTUnLz48cmVjdCB4PSczMTAnIHk9JzUwMCcgd2lkdGg9JzM2MScgaGVpZ2h0PSc4JyByeD0nMScgZmlsbD0nIzhiODY3Nicgb3BhY2l0eT0nMC4xNScvPjxyZWN0IHg9JzMxMCcgeT0nNTMwJyB3aWR0aD0nMTM5JyBoZWlnaHQ9JzgnIHJ4PScxJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjE1Jy8+PGxpbmUgeDE9JzI4MCcgeTE9JzYyMCcgeDI9Jzc0NCcgeTI9JzYyMCcgc3Ryb2tlPScjZWQ2ZjVjJyBzdHJva2Utd2lkdGg9JzEnLz48cmVjdCB4PSczMTAnIHk9JzY0MCcgd2lkdGg9JzEyMCcgaGVpZ2h0PScxMicgcng9JzEnIGZpbGw9JyMzYTM4MzAnIG9wYWNpdHk9JzAuMTInLz48cmVjdCB4PSczMTAnIHk9JzY2MCcgd2lkdGg9JzgwJyBoZWlnaHQ9JzgnIHJ4PScxJyBmaWxsPScjOGI4Njc2JyBvcGFjaXR5PScwLjEnLz48dGV4dCB4PSc1NScgeT0nNjcnIGZvbnQtZmFtaWx5PSdKZXRCcmFpbnMgTW9ubyxtb25vc3BhY2UnIGZvbnQtc2l6ZT0nMTQnIGZpbGw9JyNlZDZmNWMnPlBMQVRFwrdYVjwvdGV4dD48L3N2Zz4=' alt='' />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class='cta' id='contact' data-od-id='cta'>
+  <div class='container'>
+    <div class='sec-rule'>
+    <span class='roman'>VIII.</span>
+    <span class='meta-grp'>
+      <span>Contact / Connect</span>
+      <span class='dot-mark'>•</span>
+      <span>Let's build together</span>
+    </span>
+    <span>008 / 008</span>
+  </div>
+    <div class='cta-grid'>
+      <div data-reveal>
+        <span class='label'>Let's connect <span class='ix'>· Nº 07</span></span>
+        <h2 class='display'>Let's build something <em>data-driven</em> and <em>production-ready</em> together<span class='dot'>.</span></h2>
+        <p class='lead'>I'm open to new opportunities in data engineering, AI/ML, and GenAI. Whether it's scaling pipelines, building RAG systems, or architecting cloud-native solutions — let's talk.</p>
+        <div class='cta-actions'>
+          <a class='btn btn-primary' href='https://linkedin.com/in/gopinath-edugundla' target='_blank' rel='noreferrer noopener'>
+            Connect on LinkedIn
+            <span class='arrow'><svg viewBox='0 0 24 24'><path d='M5 19L19 5M19 5H8M19 5v11'/></svg></span>
+          </a>
+          <a class='email-pill' href='edugundla.gopinath@gmail.com'>
+            Open an issue
+            <span class='arrow-circle'>→</span>
+          </a>
+        </div>
+        <div class='cta-foot'>
+          <span class='stamp'>● Live</span>
+          <span>v2026.1 / Open to opportunities</span>
+          <span style='margin-left:auto;'>17.3850° N · 78.4867° E</span>
+        </div>
+      </div>
+      <div class='cta-art' data-reveal='right'>
+        <img src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDI0IDEwMjQnIHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbGw9JyNlZmU3ZDInLz48ZGVmcz4KICAgIDxmaWx0ZXIgaWQ9J24tY3RhJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC42NScgbnVtT2N0YXZlcz0nMycgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0nMCAwIDAgMCAwLjE4IDAgMCAwIDAgMC4xNiAwIDAgMCAwIDAuMTIgMCAwIDAgMC4wNiAwJy8+PC9maWx0ZXI+CiAgPC9kZWZzPjxyZWN0IHdpZHRoPScxMDI0JyBoZWlnaHQ9JzEwMjQnIGZpbHRlcj0ndXJsKCNuLWN0YSknLz48cmVjdCB4PScyMDAnIHk9JzMwMCcgd2lkdGg9JzYyNCcgaGVpZ2h0PSc0MDAnIGZpbGw9JyNmNWYwZTMnIHN0cm9rZT0nIzNhMzgzMCcgc3Ryb2tlLXdpZHRoPScxLjUnLz48bGluZSB4MT0nMjAwJyB5MT0nMzQwJyB4Mj0nODI0JyB5Mj0nMzQwJyBzdHJva2U9JyNlZDZmNWMnIHN0cm9rZS13aWR0aD0nMicvPjxsaW5lIHgxPScyMDAnIHkxPSc2NjAnIHgyPSc4MjQnIHkyPSc2NjAnIHN0cm9rZT0nI2VkNmY1Yycgc3Ryb2tlLXdpZHRoPScyJy8+PHRleHQgeD0nNTEyJyB5PSc1MjAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGZvbnQtZmFtaWx5PSdQbGF5ZmFpciBEaXNwbGF5LEdlb3JnaWEsc2VyaWYnIGZvbnQtc3R5bGU9J2l0YWxpYycgZm9udC1zaXplPSc2NCcgZmlsbD0nIzNhMzgzMCcgb3BhY2l0eT0nMC42Jz5Db25uZWN0PC90ZXh0PjxjaXJjbGUgY3g9JzUxMicgY3k9JzU2MCcgcj0nNCcgZmlsbD0nI2VkNmY1YycvPjxwYXRoIGQ9J00yMjAgMzIwIEwyMjAgMzAwIEwyNDAgMzAwJyBzdHJva2U9JyMzYTM4MzAnIGZpbGw9J25vbmUnIHN0cm9rZS13aWR0aD0nMS41Jy8+PHBhdGggZD0nTTgwNCAzMjAgTDgwNCAzMDAgTDc4NCAzMDAnIHN0cm9rZT0nIzNhMzgzMCcgZmlsbD0nbm9uZScgc3Ryb2tlLXdpZHRoPScxLjUnLz48cGF0aCBkPSdNMjIwIDY4MCBMMjIwIDcwMCBMMjQwIDcwMCcgc3Ryb2tlPScjM2EzODMwJyBmaWxsPSdub25lJyBzdHJva2Utd2lkdGg9JzEuNScvPjxwYXRoIGQ9J004MDQgNjgwIEw4MDQgNzAwIEw3ODQgNzAwJyBzdHJva2U9JyMzYTM4MzAnIGZpbGw9J25vbmUnIHN0cm9rZS13aWR0aD0nMS41Jy8+PHRleHQgeD0nNTUnIHk9JzY3JyBmb250LWZhbWlseT0nSmV0QnJhaW5zIE1vbm8sbW9ub3NwYWNlJyBmb250LXNpemU9JzE0JyBmaWxsPScjZWQ2ZjVjJz5QTEFURcK3WFZJPC90ZXh0Pjwvc3ZnPg==' alt='' />
+        <div class='index'>Nº 08</div>
+        <div class='ribbon'>GOPINATH EDUGUNDLA &nbsp;·&nbsp; FIN.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer data-od-id='footer'>
+  <div class='container'>
+    <div class='foot-grid'>
+      <div class='foot-brand'>
+        <a href='#top' class='brand'>
+          <span class='brand-mark'>G</span>
+          <span>Gopinath Edugundla</span>
+        </a>
+        <p style='margin-top:18px;'>Senior AI Data Engineer with 6 years of production experience across Python, PySpark, SQL, AWS, and GenAI. Specializing in pharmaceutical lifecycle management and financial revenue analytics.</p>
+      </div>
+      <div class='foot-col'>
+    <h5>Profile</h5>
+    <ul>
+        <li><a href='#about'>Experience</a></li>
+        <li><a href='#agents'>Skills</a></li>
+        <li><a href='#labs'>Projects</a></li>
+        <li><a href='#method'>Career Path</a></li>
+    </ul>
+  </div>
+      <div class='foot-col'>
+    <h5>Tech Stack</h5>
+    <ul>
+        <li><a href='#agents'>Python / PySpark</a></li>
+        <li><a href='#agents'>AWS Ecosystem</a></li>
+        <li><a href='#agents'>GenAI / RAG</a></li>
+        <li><a href='#agents'>Data Engineering</a></li>
+    </ul>
+  </div>
+      <div class='foot-col'>
+    <h5>Connect</h5>
+    <ul>
+        <li><a href='https://linkedin.com/in/gopinath-edugundla' target='_blank' rel='noreferrer noopener'>LinkedIn</a></li>
+        <li><a href='mailto:edugundla.gopinath@gmail.com' target='_blank' rel='noreferrer noopener'>Email</a></li>
+        <li><a href='tel:+917675914740'>Phone</a></li>
+    </ul>
+  </div>
+      <div class='foot-col'>
+    <h5>Education</h5>
+    <ul>
+        <li><a href='#'>B.Tech — JNTU</a></li>
+        <li><a href='#'>8.23 GPA</a></li>
+        <li><a href='#'>Hyderabad</a></li>
+    </ul>
+  </div>
+    </div>
+    <div class='foot-bottom'>
+      <span><span class='pulse'></span>● <b style='color:var(--ink);'>Gopinath Edugundla</b> · Open to opportunities · 2026 / Vol. 01 / Issue Nº 01</span>
+      <span class='right'>
+        <span>Hyderabad / India</span>
+        <span>17.3850° N · 78.4867° E</span>
+        <span style='color:var(--coral);'>♥ MMXXVI</span>
+      </span>
+    </div>
+    <div class='foot-mega'>
+      <div class='word' data-reveal='rise-lg'>Gopinath <em>Edugundla</em>.</div>
+    </div>
+  </div>
+</footer>
+</div>
+
+<script>
+  /*
+   * Scroll-reveal observer — mirrors apps/landing-page/app/_components/reveal-root.tsx.
+   * Watches every [data-reveal] element and flips data-revealed='true'
+   * when it first enters the viewport, triggering the CSS transition.
+   */
+  (function () {
+    var elements = document.querySelectorAll('[data-reveal]:not([data-revealed])');
+    if (!elements.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      for (var i = 0; i < elements.length; i++) elements[i].dataset.revealed = 'true';
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      for (var i = 0; i < entries.length; i++) {
+        if (!entries[i].isIntersecting) continue;
+        entries[i].target.dataset.revealed = 'true';
+        observer.unobserve(entries[i].target);
+      }
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    for (var j = 0; j < elements.length; j++) observer.observe(elements[j]);
+  })();
+
+  /*
+   * Headroom-style sticky header — mirrors apps/landing-page/app/_components/header.tsx.
+   * Hides the nav on downward scroll, re-pins it on upward scroll, and
+   * always keeps it visible near the top of the page.
+   */
+  (function () {
+    var nav = document.querySelector('header.nav');
+    if (!nav) return;
+    var SHOW_TOP = 100;
+    var DELTA = 6;
+    var lastY = window.scrollY || 0;
+    function onScroll() {
+      var y = window.scrollY || 0;
+      var d = y - lastY;
+      if (y <= SHOW_TOP) {
+        nav.classList.remove('is-hidden');
+      } else if (d > DELTA) {
+        nav.classList.add('is-hidden');
+      } else if (d < -DELTA) {
+        nav.classList.remove('is-hidden');
+      }
+      lastY = y;
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+
+  /* Auto-fit mega kicker text to container width */
+  (function () {
+    var el = document.querySelector('.foot-mega .word');
+    if (!el) return;
+    function fit() {
+      el.style.fontSize = '10px';
+      var cw = el.parentElement.clientWidth;
+      var tw = el.scrollWidth;
+      if (tw > 0) {
+        el.style.fontSize = Math.min(Math.floor(10 * (cw / tw)), 200) + 'px';
+      }
+    }
+    fit();
+    window.addEventListener('resize', fit);
+  })();
+</script>
+
+</body>
+</html>
