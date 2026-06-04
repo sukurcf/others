@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Madhavi Puppala - Product Owner resume website" />
+  <title>Madhavi Puppala | Product Owner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #06111f;
+      --bg-2: #0b1d33;
+      --panel: rgba(10, 22, 39, 0.7);
+      --panel-2: rgba(15, 30, 52, 0.92);
+      --line: rgba(147, 197, 253, 0.14);
+      --text: #e8f2ff;
+      --muted: #a7b8ce;
+      --accent: #6ee7ff;
+      --accent-2: #7c9cff;
+      --accent-3: #5ef2ba;
+      --warm: #ffca77;
+      --shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
+      --radius-xl: 30px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(110, 231, 255, 0.18), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(124, 156, 255, 0.22), transparent 24%),
+        radial-gradient(circle at 70% 85%, rgba(94, 242, 186, 0.12), transparent 22%),
+        linear-gradient(180deg, var(--bg), #071420 40%, #040b14 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(circle at center, black 30%, transparent 82%);
+      opacity: 0.35;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(22px);
+      background: rgba(4, 11, 20, 0.58);
+      border-bottom: 1px solid rgba(147, 197, 253, 0.1);
+    }
+
+    .topbar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      padding: 14px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(110,231,255,0.95), rgba(124,156,255,0.95));
+      box-shadow: 0 14px 30px rgba(110,231,255,0.18);
+      display: grid;
+      place-items: center;
+      color: #04111f;
+      font-weight: 800;
+    }
+
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .nav a {
+      padding: 10px 14px;
+      border: 1px solid rgba(147, 197, 253, 0.16);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .nav a:hover {
+      color: var(--text);
+      border-color: rgba(110,231,255,0.38);
+      background: rgba(110,231,255,0.08);
+    }
+
+    .hero {
+      padding: 34px 0 20px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.95fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(14, 28, 47, 0.92), rgba(8, 17, 30, 0.86));
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .panel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(135deg, rgba(110,231,255,0.08), transparent 34%, rgba(124,156,255,0.06));
+      pointer-events: none;
+    }
+
+    .hero-main {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      min-height: 100%;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(110,231,255,0.22);
+      background: rgba(110,231,255,0.08);
+      color: #c7f4ff;
+      font-size: 0.84rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: clamp(2.8rem, 5vw, 5.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #eff8ff, #91efff 30%, #8fa6ff 64%, #5ef2ba);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy {
+      max-width: 66ch;
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.72;
+      margin: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(110,231,255,0.95), rgba(124,156,255,0.98));
+      color: #04111f;
+      box-shadow: 0 14px 30px rgba(110,231,255,0.16);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border-color: rgba(147,197,253,0.18);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 16px;
+      padding: 22px;
+    }
+
+    .profile-card {
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(147, 197, 253, 0.14);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -80px -100px auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(110,231,255,0.24), transparent 68%);
+      filter: blur(8px);
+    }
+
+    .avatar {
+      width: 92px;
+      height: 92px;
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(110,231,255,0.2), rgba(124,156,255,0.2)),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+      border: 1px solid rgba(110,231,255,0.18);
+      display: grid;
+      place-items: center;
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #eaf8ff;
+      margin-bottom: 16px;
+      box-shadow: inset 0 0 20px rgba(110,231,255,0.14);
+    }
+
+    .name {
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: 1.5rem;
+      margin: 0 0 6px;
+    }
+
+    .role {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(4, 11, 20, 0.32);
+      border: 1px solid rgba(147,197,253,0.12);
+      color: var(--text);
+      font-size: 0.94rem;
+    }
+
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 0 6px rgba(110,231,255,0.12);
+      flex: 0 0 auto;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(147,197,253,0.12);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: 1.5rem;
+      margin-bottom: 4px;
+      color: #f4fbff;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.4;
+    }
+
+    .section {
+      padding: 18px 0 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-family: "Space Grotesk", Inter, sans-serif;
+      font-size: clamp(1.45rem, 2vw, 2.1rem);
+      letter-spacing: -0.03em;
+    }
+
+    .section p.lead {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 72ch;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      padding: 22px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02));
+      border: 1px solid rgba(147,197,253,0.12);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.15);
+    }
+
+    .summary-card {
+      grid-column: 1 / -1;
+    }
+
+    .list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: #d7e4f6;
+      line-height: 1.65;
+    }
+
+    .list li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-top: 8px;
+      background: linear-gradient(135deg, var(--accent-3), var(--accent));
+      box-shadow: 0 0 0 6px rgba(94,242,186,0.08);
+      flex: 0 0 auto;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(147,197,253,0.15);
+      background: rgba(4,11,20,0.24);
+      color: #dce9f8;
+      font-size: 0.92rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 16px;
+    }
+
+    .job {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .job::before {
+      content: "";
+      position: absolute;
+      top: 24px;
+      left: 22px;
+      bottom: 24px;
+      width: 1px;
+      background: linear-gradient(180deg, rgba(110,231,255,0.44), rgba(124,156,255,0.08));
+    }
+
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      padding-left: 24px;
+    }
+
+    .job-title {
+      margin: 0 0 6px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #f1f7ff;
+    }
+
+    .job-subtitle {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .job-date {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(110,231,255,0.08);
+      border: 1px solid rgba(110,231,255,0.18);
+      color: #d7f8ff;
+      font-size: 0.88rem;
+      white-space: nowrap;
+    }
+
+    .job-body {
+      padding-left: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .subhead {
+      color: #e8f2ff;
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 0.01em;
+    }
+
+    .mini {
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    .footer {
+      padding: 30px 0 42px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.92rem;
+    }
+
+    .footer strong {
+      color: #edf7ff;
+    }
+
+    .fade-up {
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .delay-1 { animation-delay: 0.08s; }
+    .delay-2 { animation-delay: 0.16s; }
+    .delay-3 { animation-delay: 0.24s; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head,
+      .topbar-inner,
+      .job-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav { justify-content: flex-start; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(calc(100% - 20px), var(--max)); }
+
+      .hero-main,
+      .hero-side,
+      .card,
+      .profile-card {
+        padding: 18px;
+      }
+
+      h1 { font-size: clamp(2.4rem, 16vw, 3.9rem); }
+
+      .btn { width: 100%; justify-content: center; }
+
+      .hero-actions { flex-direction: column; }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        color: #111;
+      }
+
+      .topbar,
+      .hero-actions,
+      .footer {
+        display: none !important;
+      }
+
+      .panel,
+      .card {
+        box-shadow: none;
+      }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Madhavi Puppala",
+    "jobTitle": "Product Owner",
+    "email": "madhaviqa00@gmail.com",
+    "telephone": "+1-425-985-0830",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Prosper",
+      "addressRegion": "TX",
+      "postalCode": "75078",
+      "addressCountry": "US"
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">M</div>
+        <div>
+          <div style="font-weight:800; color:#f4fbff;">Madhavi Puppala</div>
+          <div style="color:var(--muted); font-size:0.88rem;">Product Owner | Digital Product Strategy</div>
+        </div>
+      </div>
+      <nav class="nav" aria-label="Section navigation">
+        <a href="#summary">Summary</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-grid">
+        <article class="panel hero-main fade-up">
+          <span class="eyebrow">Futuristic resume experience</span>
+          <h1>
+            Product strategy
+            <span class="gradient-text">shaped into digital outcomes.</span>
+          </h1>
+          <p class="hero-copy">
+            Results-driven Product Owner with 14+ years of experience leading product discovery, roadmap execution, and cross-functional delivery across banking, SaaS, traffic, background checks, ITSM, and ML-based products. This page turns the resume into a clean, high-impact profile suited for GitHub Pages.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="mailto:madhaviqa00@gmail.com">Email Madhavi</a>
+            <a class="btn btn-secondary" href="tel:+14259850830">Call +1 425-985-0830</a>
+            <button class="btn btn-secondary" type="button" onclick="window.print()">Print / Save PDF</button>
+          </div>
+        </article>
+
+        <aside class="panel hero-side fade-up delay-1">
+          <div class="profile-card">
+            <div class="avatar">MP</div>
+            <h2 class="name">Madhavi Puppala</h2>
+            <p class="role">IT Product Owner, Product Manager, and Sr. Product Analyst</p>
+            <div class="contact-grid">
+              <div class="contact-item"><span class="dot"></span> madhaviqa00@gmail.com</div>
+              <div class="contact-item"><span class="dot"></span> Prosper, TX 75078</div>
+              <div class="contact-item"><span class="dot"></span> +1 425-985-0830</div>
+            </div>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <strong>14+ years</strong>
+              <span>Leading digital products and operational transformation</span>
+            </div>
+            <div class="stat">
+              <strong>4 domains</strong>
+              <span>Banking, SaaS, traffic, and ITSM / infrastructure</span>
+            </div>
+            <div class="stat">
+              <strong>Agile-first</strong>
+              <span>Scrum, backlog management, and roadmap governance</span>
+            </div>
+            <div class="stat">
+              <strong>Data-led</strong>
+              <span>Requirements, analytics, and user experience improvements</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="summary">
+      <div class="section-head">
+        <div>
+          <h2>Professional Summary</h2>
+          <p class="lead">A concise snapshot of the strongest themes from the resume: product ownership, roadmap leadership, cross-functional delivery, and practical execution across regulated and customer-facing platforms.</p>
+        </div>
+      </div>
+      <div class="grid-2">
+        <article class="card summary-card fade-up delay-1">
+          <ul class="list">
+            <li>Results-driven and customer-focused IT Product Owner with 14+ years of experience leading product development and management.</li>
+            <li>Built and launched Digital and SaaS products across banking, traffic management, background checks, and IT organizations.</li>
+            <li>Hands-on in PRDs, FRDs, use cases, user stories, wireframes, prototypes, mockups, and roadmap planning.</li>
+            <li>Strong experience with Scrum and Agile delivery, stakeholder alignment, and product prioritization.</li>
+            <li>Deep exposure to ServiceNow, CMDB governance, AWS-based environments, UI/UX improvements, and operational automation.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-head">
+        <div>
+          <h2>Skills And Tooling</h2>
+          <p class="lead">A skill map drawn directly from the document, presented as fast-scanning capability clusters.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <article class="card fade-up delay-1">
+          <p class="subhead">Documentation</p>
+          <div class="chips">
+            <span class="chip">MS Office</span>
+            <span class="chip">MS Access</span>
+            <span class="chip">MS Project</span>
+            <span class="chip">Visio</span>
+          </div>
+        </article>
+        <article class="card fade-up delay-2">
+          <p class="subhead">Project Management</p>
+          <div class="chips">
+            <span class="chip">Jira</span>
+            <span class="chip">Confluence</span>
+            <span class="chip">Asana</span>
+            <span class="chip">Aha</span>
+          </div>
+        </article>
+        <article class="card fade-up delay-3">
+          <p class="subhead">Modeling And Design</p>
+          <div class="chips">
+            <span class="chip">Microsoft Visio</span>
+            <span class="chip">Lucidchart</span>
+            <span class="chip">Balsamiq</span>
+            <span class="chip">SmartDraw</span>
+            <span class="chip">Framer</span>
+          </div>
+        </article>
+        <article class="card fade-up delay-1">
+          <p class="subhead">Technical</p>
+          <div class="chips">
+            <span class="chip">SQL</span>
+            <span class="chip">Tableau</span>
+            <span class="chip">Alteryx</span>
+            <span class="chip">C</span>
+            <span class="chip">Java</span>
+          </div>
+        </article>
+        <article class="card fade-up delay-2">
+          <p class="subhead">Product Focus</p>
+          <div class="chips">
+            <span class="chip">Roadmaps</span>
+            <span class="chip">PRD / FRD</span>
+            <span class="chip">User Stories</span>
+            <span class="chip">Wireframes</span>
+            <span class="chip">UAT</span>
+          </div>
+        </article>
+        <article class="card fade-up delay-3">
+          <p class="subhead">Domain Strength</p>
+          <div class="chips">
+            <span class="chip">Banking</span>
+            <span class="chip">SaaS</span>
+            <span class="chip">ITSM</span>
+            <span class="chip">AWS</span>
+            <span class="chip">ML Products</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-head">
+        <div>
+          <h2>Professional Experience</h2>
+          <p class="lead">The original roles are preserved and condensed into a more scannable, portfolio-style presentation.</p>
+        </div>
+      </div>
+
+      <div class="timeline">
+        <article class="card job fade-up delay-1">
+          <div class="job-header">
+            <div>
+              <h3 class="job-title">Blue Shield of California</h3>
+              <p class="job-subtitle">Product Owner | ML-based marketing insights product</p>
+            </div>
+            <div class="job-date">Aug 2023 – Present</div>
+          </div>
+          <div class="job-body">
+            <p class="mini">Led the development and launch of an ML-based marketing insights product for SMBs, combining product discovery, roadmap ownership, and stakeholder alignment with data science, engineering, design, and marketing teams.</p>
+            <ul class="list">
+              <li>Prioritized ITSM modules and operational automation initiatives while maintaining alignment with business goals and ITIL best practices.</li>
+              <li>Defined CMDB governance, service lifecycle frameworks, and operational tooling improvements for consistency and visibility.</li>
+              <li>Shaped cloud and ML strategy with AWS services including S3, SageMaker, EC2, and Lambda.</li>
+              <li>Owned product vision, backlog, customer feedback loops, and release planning from concept through launch.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card job fade-up delay-2">
+          <div class="job-header">
+            <div>
+              <h3 class="job-title">PNC Bank</h3>
+              <p class="job-subtitle">Product Owner | Mobile Banking, Loan Application Portal, Banking Website</p>
+            </div>
+            <div class="job-date">Sep 2016 – Jun 2023</div>
+          </div>
+          <div class="job-body">
+            <p class="mini">Drove digital transformation across banking channels, helping digitize manual processes through mobile banking, web, and lending products.</p>
+            <ul class="list">
+              <li>Led end-to-end development and launch of the mobile banking app, website, and loan application portal.</li>
+              <li>Managed ServiceNow and ITSM backlog items, including Incident, Problem, and Change workflows.</li>
+              <li>Owned data quality, operational KPI monitoring, and RAG dashboards to improve platform trust.</li>
+              <li>Partnered with UX/UI, compliance, security, operations, and engineering to deliver secure, usable experiences.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card job fade-up delay-3">
+          <div class="job-header">
+            <div>
+              <h3 class="job-title">News18 India</h3>
+              <p class="job-subtitle">Technology & Analytics Consultant | Product Owner | Background Check Product</p>
+            </div>
+            <div class="job-date">Sep 2014 – Dec 2015</div>
+          </div>
+          <div class="job-body">
+            <p class="mini">Developed an industry-first tiered subscription model for a SaaS background check product, balancing monetization, usability, and compliance.</p>
+            <ul class="list">
+              <li>Defined pricing strategy, subscription tiers, and billing model to support recurring revenue.</li>
+              <li>Worked with engineering, design, data, finance, and legal teams to deliver a secure and seamless subscription experience.</li>
+              <li>Used analytics and customer feedback to refine conversion, churn, and retention outcomes.</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card job fade-up delay-1">
+          <div class="job-header">
+            <div>
+              <h3 class="job-title">Barclays Bank Global, London, England</h3>
+              <p class="job-subtitle">Sr. Product Analyst | Traffic-alert mobile app</p>
+            </div>
+            <div class="job-date">Feb 2011 – Aug 2014</div>
+          </div>
+          <div class="job-body">
+            <p class="mini">Supported the development of a real-time traffic-alert mobile app using crowd-sourced data for users in remote and underserved locations.</p>
+            <ul class="list">
+              <li>Owned backlog prioritization, user feedback loops, and roadmap execution.</li>
+              <li>Collaborated with data scientists, designers, engineers, and external partners on APIs, algorithms, and integrations.</li>
+              <li>Validated solutions through UAT, production checks, and ongoing usage analysis to improve adoption and reliability.</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="education">
+      <div class="section-head">
+        <div>
+          <h2>Education And Certification</h2>
+          <p class="lead">The formal credentials from the resume, formatted as a polished closing section.</p>
+        </div>
+      </div>
+      <div class="grid-2">
+        <article class="card fade-up delay-1">
+          <p class="subhead">Academics</p>
+          <ul class="list">
+            <li>Master of Internet System Engineering, Jan 2010 – 2011</li>
+            <li>Jawaharlal Nehru Technological University, May 2005 – 2009</li>
+          </ul>
+        </article>
+        <article class="card fade-up delay-2">
+          <p class="subhead">Certification</p>
+          <ul class="list">
+            <li>Certified Scrum Master (CSM)</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card fade-up delay-3" style="text-align:center;">
+        <h2 style="margin-top:0;">Professional Resume, Reimagined</h2>
+        <p class="lead" style="margin: 10px auto 0;">This page is designed to host cleanly on GitHub Pages, with a futuristic visual style that still reads like a credible professional profile.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Built from the uploaded resume for <strong>Madhavi Puppala</strong>.
+    </footer>
+  </main>
+</body>
+</html>
