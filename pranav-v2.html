@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Jangam Pranav Chakravarthy - Atlassian Consultant resume website" />
+  <title>Jangam Pranav Chakravarthy | Atlassian Consultant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=DM+Serif+Display&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --bg-warm: #f3efe9;
+      --surface: #ffffff;
+      --surface-hover: #fdfcfa;
+      --border: #e8e2d9;
+      --border-light: #f0ebe4;
+      --text: #1a1612;
+      --text-secondary: #6b5e52;
+      --text-muted: #9a8d80;
+      --accent: #c45d2c;
+      --accent-light: #e8814f;
+      --accent-bg: rgba(196, 93, 44, 0.06);
+      --accent-border: rgba(196, 93, 44, 0.18);
+      --teal: #2a7a6d;
+      --teal-bg: rgba(42, 122, 109, 0.06);
+      --teal-border: rgba(42, 122, 109, 0.18);
+      --navy: #2c3e6b;
+      --navy-bg: rgba(44, 62, 107, 0.06);
+      --shadow-sm: 0 1px 3px rgba(26, 22, 18, 0.04);
+      --shadow-md: 0 4px 20px rgba(26, 22, 18, 0.06);
+      --shadow-lg: 0 12px 40px rgba(26, 22, 18, 0.08);
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Layout ─── */
+    .layout {
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      min-height: 100vh;
+    }
+
+    /* ─── Sidebar ─── */
+    .sidebar {
+      background: var(--text);
+      color: #f0ebe4;
+      padding: 44px 32px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .sidebar::-webkit-scrollbar { width: 4px; }
+    .sidebar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 4px; }
+
+    .avatar-ring {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(135deg, var(--accent-light), var(--teal));
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #2a2420, #1a1612);
+      display: grid;
+      place-items: center;
+      font-family: "DM Serif Display", serif;
+      font-size: 2.4rem;
+      color: #f0ebe4;
+      letter-spacing: 0.02em;
+    }
+
+    .sidebar-name {
+      font-family: "DM Serif Display", serif;
+      font-size: 1.6rem;
+      line-height: 1.25;
+      color: #fff;
+    }
+
+    .sidebar-title {
+      color: var(--accent-light);
+      font-size: 0.92rem;
+      font-weight: 500;
+      margin-top: 6px;
+    }
+
+    .sidebar-section {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .sidebar-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(240, 235, 228, 0.4);
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      font-size: 0.88rem;
+      color: #d4cdc4;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .contact-link:hover {
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+    }
+
+    .contact-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 0.8rem;
+    }
+
+    .contact-icon.email { background: rgba(196, 93, 44, 0.2); color: var(--accent-light); }
+    .contact-icon.phone { background: rgba(42, 122, 109, 0.2); color: #5ec4b4; }
+
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-top: auto;
+    }
+
+    .sidebar-nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: rgba(240, 235, 228, 0.55);
+      transition: all 0.2s;
+    }
+
+    .sidebar-nav a:hover {
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+    }
+
+    .nav-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.5;
+    }
+
+    .sidebar-footer {
+      font-size: 0.78rem;
+      color: rgba(240, 235, 228, 0.25);
+      text-align: center;
+    }
+
+    /* ─── Main ─── */
+    .main {
+      padding: 48px 52px 64px;
+      max-width: 860px;
+    }
+
+    /* ─── Hero banner ─── */
+    .hero-banner {
+      background: linear-gradient(135deg, #fdf6ee, #f6efe6 50%, #eef3f1);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 36px;
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -60px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,93,44,0.08), transparent 70%);
+    }
+
+    .hero-banner::after {
+      content: "";
+      position: absolute;
+      bottom: -60px;
+      left: 30%;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(42,122,109,0.06), transparent 70%);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero-eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .hero-heading {
+      font-family: "DM Serif Display", serif;
+      font-size: clamp(2rem, 3.2vw, 2.8rem);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .hero-heading em {
+      font-style: normal;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      color: var(--text-secondary);
+      font-size: 1.02rem;
+      line-height: 1.75;
+      max-width: 60ch;
+      position: relative;
+    }
+
+    /* ─── Stats ribbon ─── */
+    .stats-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 18px;
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .stat-value {
+      font-family: "DM Serif Display", serif;
+      font-size: 1.5rem;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .stat-card:nth-child(1) .stat-value { color: var(--accent); }
+    .stat-card:nth-child(2) .stat-value { color: var(--teal); }
+    .stat-card:nth-child(3) .stat-value { color: var(--navy); }
+    .stat-card:nth-child(4) .stat-value { color: var(--accent); }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ─── Sections ─── */
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .section-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .section-icon.summary { background: var(--accent-bg); border: 1px solid var(--accent-border); color: var(--accent); }
+    .section-icon.skills { background: var(--teal-bg); border: 1px solid var(--teal-border); color: var(--teal); }
+    .section-icon.experience { background: var(--navy-bg); border: 1px solid rgba(44,62,107,0.18); color: var(--navy); }
+    .section-icon.education { background: var(--accent-bg); border: 1px solid var(--accent-border); color: var(--accent); }
+
+    .section-title {
+      font-family: "DM Serif Display", serif;
+      font-size: 1.45rem;
+      color: var(--text);
+    }
+
+    .section-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── Summary ─── */
+    .summary-list {
+      list-style: none;
+      display: grid;
+      gap: 14px;
+    }
+
+    .summary-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.96rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .summary-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-top: 9px;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    }
+
+    /* ─── Skills ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .skill-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .skill-group:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .skill-group-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .skill-group:nth-child(1) .skill-group-title { color: var(--accent); }
+    .skill-group:nth-child(2) .skill-group-title { color: var(--teal); }
+    .skill-group:nth-child(3) .skill-group-title { color: var(--navy); }
+    .skill-group:nth-child(4) .skill-group-title { color: var(--accent); }
+    .skill-group:nth-child(5) .skill-group-title { color: var(--teal); }
+    .skill-group:nth-child(6) .skill-group-title { color: var(--navy); }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 500;
+      background: var(--bg-warm);
+      border: 1px solid var(--border-light);
+      color: var(--text-secondary);
+    }
+
+    /* ─── Timeline ─── */
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 0;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 30px;
+      bottom: 30px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent), var(--teal), var(--border));
+      border-radius: 2px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 20px;
+      padding-bottom: 28px;
+    }
+
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    .timeline-dot-wrap {
+      display: flex;
+      justify-content: center;
+      padding-top: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .timeline-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 3px solid var(--surface);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+
+    .timeline-item:nth-child(1) .timeline-dot { background: var(--accent); }
+    .timeline-item:nth-child(2) .timeline-dot { background: var(--teal); box-shadow: 0 0 0 2px var(--teal); }
+    .timeline-item:nth-child(3) .timeline-dot { background: var(--navy); box-shadow: 0 0 0 2px var(--navy); }
+
+    .timeline-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .timeline-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .timeline-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .timeline-company {
+      font-family: "DM Serif Display", serif;
+      font-size: 1.15rem;
+      color: var(--text);
+    }
+
+    .timeline-role {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .timeline-date {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .timeline-item:nth-child(1) .timeline-date {
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      color: var(--accent);
+    }
+
+    .timeline-item:nth-child(2) .timeline-date {
+      background: var(--teal-bg);
+      border: 1px solid var(--teal-border);
+      color: var(--teal);
+    }
+
+    .timeline-item:nth-child(3) .timeline-date {
+      background: var(--navy-bg);
+      border: 1px solid rgba(44,62,107,0.18);
+      color: var(--navy);
+    }
+
+    .timeline-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .timeline-project {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      padding: 8px 14px;
+      background: var(--bg-warm);
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .timeline-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .timeline-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .timeline-list li::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      margin-top: 8px;
+      flex-shrink: 0;
+      background: var(--border);
+    }
+
+    .timeline-item:nth-child(1) .timeline-list li::before { background: var(--accent); opacity: 0.5; }
+    .timeline-item:nth-child(2) .timeline-list li::before { background: var(--teal); opacity: 0.5; }
+    .timeline-item:nth-child(3) .timeline-list li::before { background: var(--navy); opacity: 0.5; }
+
+    .timeline-awards {
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border-light);
+    }
+
+    .timeline-awards-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    /* ─── Education ─── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .edu-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .edu-card-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .edu-card:nth-child(1) .edu-card-title { color: var(--accent); }
+    .edu-card:nth-child(2) .edu-card-title { color: var(--teal); }
+
+    .edu-list {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+    }
+
+    .edu-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    .edu-list li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .edu-card:nth-child(1) .edu-list li::before { background: var(--accent); opacity: 0.4; }
+    .edu-card:nth-child(2) .edu-list li::before { background: var(--teal); opacity: 0.4; }
+
+    /* ─── Animations ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: reveal 0.7s ease forwards;
+    }
+
+    .d1 { animation-delay: 0.05s; }
+    .d2 { animation-delay: 0.1s; }
+    .d3 { animation-delay: 0.15s; }
+    .d4 { animation-delay: 0.2s; }
+    .d5 { animation-delay: 0.25s; }
+
+    @keyframes reveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1024px) {
+      .layout { grid-template-columns: 1fr; }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        padding: 32px 28px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .sidebar-nav { display: none; }
+
+      .main { padding: 32px 24px 48px; }
+
+      .stats-ribbon { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 640px) {
+      .sidebar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .main { padding: 24px 16px 40px; }
+
+      .skills-grid,
+      .edu-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-ribbon { grid-template-columns: 1fr; }
+
+      .timeline-top { flex-direction: column; }
+
+      .hero-banner { padding: 28px 22px; }
+    }
+
+    @media print {
+      .layout { grid-template-columns: 1fr; }
+
+      .sidebar {
+        position: relative;
+        height: auto;
+        background: #222;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+
+      .sidebar-nav { display: none; }
+
+      .main { padding: 24px; }
+
+      .timeline-card,
+      .skill-group,
+      .edu-card,
+      .stat-card { box-shadow: none; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Jangam Pranav Chakravarthy",
+    "jobTitle": "Atlassian Consultant",
+    "email": "jangampranav301170@gmail.com",
+    "telephone": "+91-9515854538"
+  }
+  </script>
+</head>
+<body>
+  <div class="layout">
+
+    <!-- ─── Sidebar ─── -->
+    <aside class="sidebar">
+      <div class="avatar-ring">
+        <div class="avatar-inner">JP</div>
+      </div>
+
+      <div>
+        <h1 class="sidebar-name">Jangam Pranav Chakravarthy</h1>
+        <p class="sidebar-title">Atlassian Consultant | Jira Administrator</p>
+      </div>
+
+      <div class="sidebar-section">
+        <div class="sidebar-label">Contact</div>
+        <a class="contact-link" href="mailto:jangampranav301170@gmail.com">
+          <span class="contact-icon email">&#9993;</span>
+          jangampranav301170@gmail.com
+        </a>
+        <a class="contact-link" href="tel:+918523075538">
+          <span class="contact-icon phone">&#9742;</span>
+          +91 8523075538
+        </a>
+        <a class="contact-link" href="tel:+919515854538">
+          <span class="contact-icon phone">&#9742;</span>
+          +91 9515854538
+        </a>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#summary"><span class="nav-dot"></span> Summary</a>
+        <a href="#skills"><span class="nav-dot"></span> Skills</a>
+        <a href="#experience"><span class="nav-dot"></span> Experience</a>
+        <a href="#education"><span class="nav-dot"></span> Education</a>
+      </nav>
+
+      <div class="sidebar-footer">
+        &copy; 2026 Jangam Pranav Chakravarthy
+      </div>
+    </aside>
+
+    <!-- ─── Main content ─── -->
+    <main class="main">
+
+      <!-- Hero banner -->
+      <section class="hero-banner reveal">
+        <span class="hero-eyebrow">Open to opportunities</span>
+        <h2 class="hero-heading">
+          Product strategy <em>shaped into digital outcomes.</em>
+        </h2>
+        <p class="hero-desc">
+          Results-driven professional with 7 years of IT experience and strong Atlassian consulting expertise, including Jira, Confluence, Bitbucket, Bamboo, Crowd, SSO, workflow customization, and agile delivery support.
+        </p>
+      </section>
+
+      <!-- Stats ribbon -->
+      <div class="stats-ribbon">
+        <div class="stat-card reveal d1">
+          <div class="stat-value">7 years</div>
+          <div class="stat-label">IT experience across delivery and administration</div>
+        </div>
+        <div class="stat-card reveal d2">
+          <div class="stat-value">Atlassian</div>
+          <div class="stat-label">Jira, Confluence, Bitbucket, Bamboo, Crowd, Service Desk</div>
+        </div>
+        <div class="stat-card reveal d3">
+          <div class="stat-value">Agile-first</div>
+          <div class="stat-label">Scrum, backlog management, and roadmap governance</div>
+        </div>
+        <div class="stat-card reveal d4">
+          <div class="stat-value">Data-led</div>
+          <div class="stat-label">JQL reporting, dashboards, plugin integration, SLA setup</div>
+        </div>
+      </div>
+
+      <!-- Summary -->
+      <section class="section reveal d2" id="summary">
+        <div class="section-header">
+          <div class="section-icon summary">&#9670;</div>
+          <div>
+            <h2 class="section-title">Professional summary</h2>
+            <p class="section-subtitle">Key highlights from career and consulting practice</p>
+          </div>
+        </div>
+        <ul class="summary-list">
+          <li>Atlassian Suite expert with hands-on experience in implementation, customization, administration, support, and development.</li>
+          <li>Strong command over Jira Software, Jira Core, Jira Service Desk, Confluence, Crowd, Bitbucket, and Bamboo.</li>
+          <li>Experienced in designing custom dashboards, JQL-based reports, workflow configuration, schemes, and security setups.</li>
+          <li>Worked across L1, L2, and L3 ticketing support with Scrum and Kanban-based sprint execution.</li>
+          <li>Delivered SSO implementations and user-level trainings for onboarding and tool adoption.</li>
+        </ul>
+      </section>
+
+      <!-- Skills -->
+      <section class="section reveal d3" id="skills">
+        <div class="section-header">
+          <div class="section-icon skills">&#9881;</div>
+          <div>
+            <h2 class="section-title">Skills and tooling</h2>
+            <p class="section-subtitle">Core capability map centered on Atlassian ecosystem delivery</p>
+          </div>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <div class="skill-group-title">Atlassian tools</div>
+            <div class="tags">
+              <span class="tag">Jira Software</span>
+              <span class="tag">Jira Core</span>
+              <span class="tag">Jira Service Desk</span>
+              <span class="tag">Confluence</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Collaboration and CI/CD</div>
+            <div class="tags">
+              <span class="tag">Bitbucket</span>
+              <span class="tag">Bamboo</span>
+              <span class="tag">Crowd</span>
+              <span class="tag">FishEye</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Agile and delivery</div>
+            <div class="tags">
+              <span class="tag">Scrum</span>
+              <span class="tag">Kanban</span>
+              <span class="tag">Sprint Planning</span>
+              <span class="tag">Backlog Grooming</span>
+              <span class="tag">Incident Management</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Configuration expertise</div>
+            <div class="tags">
+              <span class="tag">Workflows</span>
+              <span class="tag">Permission Schemes</span>
+              <span class="tag">Notification Schemes</span>
+              <span class="tag">Issue Security</span>
+              <span class="tag">SLA Configuration</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">Reporting and automation</div>
+            <div class="tags">
+              <span class="tag">JQL Reports</span>
+              <span class="tag">Dashboards</span>
+              <span class="tag">Mail Handlers</span>
+              <span class="tag">Auto Watchers</span>
+              <span class="tag">Plugin Integrations</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <div class="skill-group-title">General</div>
+            <div class="tags">
+              <span class="tag">Project Management</span>
+              <span class="tag">Technical Documentation</span>
+              <span class="tag">User Training</span>
+              <span class="tag">MS Office</span>
+              <span class="tag">Client Support</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section class="section reveal d4" id="experience">
+        <div class="section-header">
+          <div class="section-icon experience">&#9733;</div>
+          <div>
+            <h2 class="section-title">Professional experience</h2>
+            <p class="section-subtitle">Career history and project contributions</p>
+          </div>
+        </div>
+
+        <div class="timeline">
+
+          <!-- Infosys -->
+          <div class="timeline-item">
+            <div class="timeline-dot-wrap"><div class="timeline-dot"></div></div>
+            <div class="timeline-card">
+              <div class="timeline-top">
+                <div>
+                  <h3 class="timeline-company">Infosys, Hyderabad</h3>
+                  <p class="timeline-role">Atlassian Consultant</p>
+                </div>
+                <span class="timeline-date">Jun 2022 &ndash; Present</span>
+              </div>
+              <p class="timeline-desc">Providing consulting and advisory services to national and international clients across USA, Canada, Australia, New Zealand, France, Hong Kong, Singapore, UAE, and UK on Atlassian products.</p>
+              <ul class="timeline-list">
+                <li>Implemented and customized Jira, Confluence, Bitbucket, Bamboo, and Crowd solutions to match enterprise workflows.</li>
+                <li>Configured service desk portals, queues, SLAs, mail handlers, reminders, and customer portal integrations.</li>
+                <li>Designed dashboards and reports using filters and JQL, with exposure to Eazy BI and all-in-one reporting plugins.</li>
+                <li>Handled workflow design with conditions, validators, post functions, and security schemes for client-specific processes.</li>
+              </ul>
+              <div style="margin-top: 18px;">
+                <div class="timeline-project">Project: e-Business Solution</div>
+                <p class="timeline-desc" style="margin-top: 10px;">The system focused on timely goods delivery and efficient sales services through modules including order fulfillment, stock maintenance, pricing, and invoicing.</p>
+                <ul class="timeline-list">
+                  <li>Managed Jira projects, workflows, permissions, users, and integrations across Atlassian applications.</li>
+                  <li>Handled application upgrades, support tickets, incident management, backups, and scheduled maintenance activities.</li>
+                  <li>Supported agile events such as backlog grooming, sprint planning, and sprint demos with cross-functional teams.</li>
+                  <li>Built Bamboo pipelines, linked repositories, and coordinated with development teams for CI/CD processes.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tech Mahindra -->
+          <div class="timeline-item">
+            <div class="timeline-dot-wrap"><div class="timeline-dot"></div></div>
+            <div class="timeline-card">
+              <div class="timeline-top">
+                <div>
+                  <h3 class="timeline-company">Tech Mahindra, Hyderabad</h3>
+                  <p class="timeline-role">Atlassian Administrator</p>
+                </div>
+                <span class="timeline-date">Jun 2019 &ndash; May 2022</span>
+              </div>
+              <p class="timeline-desc">Supported a revenue management platform focused on pricing, contracts, settlements, and channel incentives to reduce revenue leakage and compliance risks.</p>
+              <ul class="timeline-list">
+                <li>Configured permission and notification schemes and managed template-based project setup standards.</li>
+                <li>Built and maintained complex workflows, screen schemes, and operational configurations for departmental users.</li>
+                <li>Developed Confluence spaces and pages integrated with Jira for collaborative delivery workflows.</li>
+                <li>Resolved Jira and Confluence issues in coordination with hosting and business teams.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Awards -->
+          <div class="timeline-item">
+            <div class="timeline-dot-wrap"><div class="timeline-dot"></div></div>
+            <div class="timeline-card">
+              <div class="timeline-top">
+                <div>
+                  <h3 class="timeline-company">Career achievements</h3>
+                  <p class="timeline-role">Recognition</p>
+                </div>
+                <span class="timeline-date">2016 &amp; 2018</span>
+              </div>
+              <ul class="timeline-list">
+                <li>Awarded Customer Excellence Award for the year 2016.</li>
+                <li>Awarded Business Enabler Award for the year 2018.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section class="section reveal d5" id="education">
+        <div class="section-header">
+          <div class="section-icon education">&#9734;</div>
+          <div>
+            <h2 class="section-title">Education and certification</h2>
+            <p class="section-subtitle">Formal credentials and professional focus</p>
+          </div>
+        </div>
+        <div class="edu-grid">
+          <div class="edu-card">
+            <div class="edu-card-title">Academics</div>
+            <ul class="edu-list">
+              <li>B.Tech (EEE), Saisha Institute of Technical Science (2012 &ndash; 2016)</li>
+              <li>Intermediate (MPC), Narayana Junior College (2010 &ndash; 2012)</li>
+              <li>SSC, Keshava Reddy Public School, Nandyal (2010)</li>
+            </ul>
+          </div>
+          <div class="edu-card">
+            <div class="edu-card-title">Professional focus</div>
+            <ul class="edu-list">
+              <li>Atlassian Suite implementation and administration</li>
+              <li>Agile delivery support with Scrum and Kanban</li>
+              <li>Stakeholder support, training, and tooling governance</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</body>
+</html>
