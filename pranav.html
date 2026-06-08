@@ -3,854 +3,678 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Jangam Pranav Chakravarthy - Atlassian Consultant resume website" />
-  <title>Jangam Pranav Chakravarthy | Atlassian Consultant</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <title>Jangam Pranav Chakravarthy — Product Owner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
   <style>
-    :root {
-      --bg: #06111f;
-      --bg-2: #0b1d33;
-      --panel: rgba(10, 22, 39, 0.7);
-      --panel-2: rgba(15, 30, 52, 0.92);
-      --line: rgba(147, 197, 253, 0.14);
-      --text: #e8f2ff;
-      --muted: #a7b8ce;
-      --accent: #6ee7ff;
-      --accent-2: #7c9cff;
-      --accent-3: #5ef2ba;
-      --warm: #ffca77;
-      --shadow: 0 20px 70px rgba(0, 0, 0, 0.35);
-      --radius-xl: 30px;
-      --radius-lg: 22px;
-      --radius-md: 16px;
-      --max: 1180px;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    * { box-sizing: border-box; }
+    :root {
+      --navy:    #0f2644;
+      --navy-mid: #1a3a5c;
+      --accent:  #2563eb;
+      --accent2: #0ea5e9;
+      --text:    #1e293b;
+      --muted:   #64748b;
+      --border:  #e2e8f0;
+      --bg:      #f8fafc;
+      --white:   #ffffff;
+      --tag-bg:  #eff6ff;
+      --tag-fg:  #1d4ed8;
+    }
 
     html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      min-height: 100vh;
+      font-family: 'Inter', system-ui, sans-serif;
       color: var(--text);
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(110, 231, 255, 0.18), transparent 28%),
-        radial-gradient(circle at 80% 10%, rgba(124, 156, 255, 0.22), transparent 24%),
-        radial-gradient(circle at 70% 85%, rgba(94, 242, 186, 0.12), transparent 22%),
-        linear-gradient(180deg, var(--bg), #071420 40%, #040b14 100%);
-      overflow-x: hidden;
+      background: var(--bg);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 56px 56px;
-      mask-image: radial-gradient(circle at center, black 30%, transparent 82%);
-      opacity: 0.35;
+    /* ── PRINT ── */
+    @media print {
+      body { background: white; font-size: 11px; }
+      .no-print { display: none !important; }
+      .page { box-shadow: none; margin: 0; max-width: 100%; border-radius: 0; }
+      .sidebar { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
     }
 
-    a { color: inherit; text-decoration: none; }
-
-    .wrap {
-      width: min(calc(100% - 32px), var(--max));
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      backdrop-filter: blur(22px);
-      background: rgba(4, 11, 20, 0.58);
-      border-bottom: 1px solid rgba(147, 197, 253, 0.1);
-    }
-
-    .topbar-inner {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 18px;
-      padding: 14px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: "Space Grotesk", Inter, sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.02em;
-    }
-
-    .brand-badge {
-      width: 40px;
-      height: 40px;
-      border-radius: 14px;
-      background: linear-gradient(135deg, rgba(110,231,255,0.95), rgba(124,156,255,0.95));
-      box-shadow: 0 14px 30px rgba(110,231,255,0.18);
-      display: grid;
-      place-items: center;
-      color: #04111f;
-      font-weight: 800;
-    }
-
-    .nav {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: flex-end;
-    }
-
-    .nav a {
-      padding: 10px 14px;
-      border: 1px solid rgba(147, 197, 253, 0.16);
-      border-radius: 999px;
-      color: var(--muted);
-      font-size: 0.9rem;
-      background: rgba(255,255,255,0.02);
-    }
-
-    .nav a:hover {
-      color: var(--text);
-      border-color: rgba(110,231,255,0.38);
-      background: rgba(110,231,255,0.08);
-    }
-
-    .hero {
-      padding: 34px 0 20px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.35fr 0.95fr;
-      gap: 22px;
-      align-items: stretch;
-    }
-
-    .panel {
-      background: linear-gradient(180deg, rgba(14, 28, 47, 0.92), rgba(8, 17, 30, 0.86));
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .panel::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: inherit;
-      background: linear-gradient(135deg, rgba(110,231,255,0.08), transparent 34%, rgba(124,156,255,0.06));
-      pointer-events: none;
-    }
-
-    .hero-main {
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-      min-height: 100%;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      width: fit-content;
-      padding: 8px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(110,231,255,0.22);
-      background: rgba(110,231,255,0.08);
-      color: #c7f4ff;
-      font-size: 0.84rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0;
-      font-family: "Space Grotesk", Inter, sans-serif;
-      font-size: clamp(2.8rem, 5vw, 5.6rem);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #eff8ff, #91efff 30%, #8fa6ff 64%, #5ef2ba);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-copy {
-      max-width: 66ch;
-      color: var(--muted);
-      font-size: 1.04rem;
-      line-height: 1.72;
-      margin: 0;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 13px 18px;
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 960px;
+      margin: 2.5rem auto;
+      background: var(--white);
+      box-shadow: 0 4px 32px rgba(15,38,68,.10), 0 1px 4px rgba(15,38,68,.06);
       border-radius: 16px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-
-    .btn-primary {
-      background: linear-gradient(135deg, rgba(110,231,255,0.95), rgba(124,156,255,0.98));
-      color: #04111f;
-      box-shadow: 0 14px 30px rgba(110,231,255,0.16);
-    }
-
-    .btn-secondary {
-      color: var(--text);
-      border-color: rgba(147,197,253,0.18);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .hero-side {
-      display: grid;
-      gap: 16px;
-      padding: 22px;
-    }
-
-    .profile-card {
-      padding: 24px;
-      border-radius: 24px;
-      border: 1px solid rgba(147, 197, 253, 0.14);
-      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
-      position: relative;
       overflow: hidden;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      grid-template-rows: auto 1fr;
     }
 
-    .profile-card::before {
-      content: "";
-      position: absolute;
-      inset: auto -80px -100px auto;
-      width: 240px;
-      height: 240px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(110,231,255,0.24), transparent 68%);
-      filter: blur(8px);
+    /* ── HEADER ── */
+    .header {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1e4d8c 100%);
+      padding: 2.5rem 2.5rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
     }
 
     .avatar {
-      width: 92px;
-      height: 92px;
-      border-radius: 28px;
-      background:
-        linear-gradient(135deg, rgba(110,231,255,0.2), rgba(124,156,255,0.2)),
-        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
-      border: 1px solid rgba(110,231,255,0.18);
-      display: grid;
-      place-items: center;
-      font-family: "Space Grotesk", Inter, sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
-      color: #eaf8ff;
-      margin-bottom: 16px;
-      box-shadow: inset 0 0 20px rgba(110,231,255,0.14);
-    }
-
-    .name {
-      font-family: "Space Grotesk", Inter, sans-serif;
-      font-size: 1.5rem;
-      margin: 0 0 6px;
-    }
-
-    .role {
-      margin: 0 0 18px;
-      color: var(--muted);
-      font-size: 0.96rem;
-    }
-
-    .contact-grid {
-      display: grid;
-      gap: 10px;
-    }
-
-    .contact-item {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,.35);
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%);
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
-      border-radius: 16px;
-      background: rgba(4, 11, 20, 0.32);
-      border: 1px solid rgba(147,197,253,0.12);
-      color: var(--text);
-      font-size: 0.94rem;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+      letter-spacing: -1px;
     }
 
-    .dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 0 0 6px rgba(110,231,255,0.12);
-      flex: 0 0 auto;
+    .header-text { flex: 1; }
+
+    .header-text h1 {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
     }
 
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
+    .header-text .title {
+      font-size: .95rem;
+      color: rgba(255,255,255,.75);
+      font-weight: 500;
+      margin-top: .25rem;
+      letter-spacing: .5px;
+      text-transform: uppercase;
     }
 
-    .stat {
-      padding: 16px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(147,197,253,0.12);
-    }
-
-    .stat strong {
-      display: block;
-      font-family: "Space Grotesk", Inter, sans-serif;
-      font-size: 1.5rem;
-      margin-bottom: 4px;
-      color: #f4fbff;
-    }
-
-    .stat span {
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.4;
-    }
-
-    .section {
-      padding: 18px 0 0;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    .section h2 {
-      margin: 0;
-      font-family: "Space Grotesk", Inter, sans-serif;
-      font-size: clamp(1.45rem, 2vw, 2.1rem);
-      letter-spacing: -0.03em;
-    }
-
-    .section p.lead {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.7;
-      max-width: 72ch;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .card {
-      padding: 22px;
-      border-radius: var(--radius-lg);
-      background: linear-gradient(180deg, rgba(255,255,255,0.055), rgba(255,255,255,0.02));
-      border: 1px solid rgba(147,197,253,0.12);
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.15);
-    }
-
-    .summary-card {
-      grid-column: 1 / -1;
-    }
-
-    .list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 12px;
-    }
-
-    .list li {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      color: #d7e4f6;
-      line-height: 1.65;
-    }
-
-    .list li::before {
-      content: "";
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      margin-top: 8px;
-      background: linear-gradient(135deg, var(--accent-3), var(--accent));
-      box-shadow: 0 0 0 6px rgba(94,242,186,0.08);
-      flex: 0 0 auto;
-    }
-
-    .chips {
+    .header-contacts {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: .65rem;
+      margin-top: 1rem;
     }
 
-    .chip {
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid rgba(147,197,253,0.15);
-      background: rgba(4,11,20,0.24);
-      color: #dce9f8;
-      font-size: 0.92rem;
+    .contact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 99px;
+      padding: .3rem .75rem;
+      font-size: .8rem;
+      color: rgba(255,255,255,.9);
+      text-decoration: none;
+      transition: background .2s;
     }
+    .contact-pill:hover { background: rgba(255,255,255,.22); }
+    .contact-pill svg { flex-shrink: 0; }
 
-    .timeline {
-      display: grid;
-      gap: 16px;
-    }
-
-    .job {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .job::before {
-      content: "";
-      position: absolute;
-      top: 24px;
-      left: 22px;
-      bottom: 24px;
-      width: 1px;
-      background: linear-gradient(180deg, rgba(110,231,255,0.44), rgba(124,156,255,0.08));
-    }
-
-    .job-header {
+    /* ── SIDEBAR ── */
+    .sidebar {
+      background: #f1f5f9;
+      padding: 2rem 1.75rem;
+      border-right: 1px solid var(--border);
       display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      align-items: flex-start;
-      margin-bottom: 16px;
-      padding-left: 24px;
+      flex-direction: column;
+      gap: 2rem;
     }
 
-    .job-title {
-      margin: 0 0 6px;
-      font-size: 1.05rem;
+    /* ── MAIN ── */
+    .main {
+      padding: 2rem 2.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    /* ── SECTION TITLES ── */
+    .section-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .7rem;
       font-weight: 700;
-      color: #f1f7ff;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: .5rem;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+    .section-title svg { flex-shrink: 0; }
+
+    /* ── SKILL GROUPS ── */
+    .skill-group { margin-bottom: 1.25rem; }
+    .skill-group:last-child { margin-bottom: 0; }
+
+    .skill-label {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: .5rem;
     }
 
-    .job-subtitle {
-      margin: 0;
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .35rem;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+      border-radius: 6px;
+      padding: .25rem .6rem;
+      font-size: .75rem;
+      font-weight: 500;
+      border: 1px solid #bfdbfe;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-item {
+      position: relative;
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+      border-left: 2px solid var(--accent);
+    }
+    .edu-item:last-child { margin-bottom: 0; }
+
+    .edu-degree {
+      font-size: .82rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .edu-school {
+      font-size: .75rem;
       color: var(--muted);
+      margin-top: .15rem;
+    }
+
+    .edu-year {
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: var(--tag-bg);
+      border-radius: 4px;
+      padding: .1rem .4rem;
+      margin-top: .3rem;
+    }
+
+    /* ── EXPERIENCE ── */
+    .exp-item {
+      position: relative;
+      padding-left: 1.25rem;
+      border-left: 2px solid var(--border);
+      transition: border-color .2s;
+    }
+    .exp-item:not(:last-child) { margin-bottom: 1.75rem; }
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 6px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--accent);
+    }
+    .exp-item:hover { border-color: var(--accent); }
+
+    .exp-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .exp-role {
+      font-size: .95rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .exp-client {
+      font-size: .82rem;
+      color: var(--accent);
+      font-weight: 600;
+      margin-top: .15rem;
+    }
+
+    .exp-dates {
+      font-size: .75rem;
+      font-weight: 600;
+      color: var(--muted);
+      white-space: nowrap;
+      background: #f1f5f9;
+      border-radius: 6px;
+      padding: .2rem .6rem;
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .exp-project {
+      font-size: .78rem;
+      color: var(--muted);
+      margin-top: .3rem;
+      font-style: italic;
+    }
+
+    .exp-desc {
+      font-size: .8rem;
+      color: var(--text);
+      margin: .5rem 0;
+      line-height: 1.55;
+      background: var(--bg);
+      border-radius: 8px;
+      padding: .6rem .85rem;
+      border: 1px solid var(--border);
+    }
+
+    .exp-bullets {
+      margin-top: .65rem;
+      padding-left: .1rem;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+    }
+
+    .exp-bullets li {
+      font-size: .81rem;
+      color: #334155;
+      padding-left: 1.1rem;
+      position: relative;
       line-height: 1.5;
     }
-
-    .job-date {
-      flex: 0 0 auto;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(110,231,255,0.08);
-      border: 1px solid rgba(110,231,255,0.18);
-      color: #d7f8ff;
-      font-size: 0.88rem;
-      white-space: nowrap;
+    .exp-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: .75rem;
+      top: 1px;
     }
 
-    .job-body {
-      padding-left: 24px;
-      display: grid;
-      gap: 14px;
+    .exp-env {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .35rem;
+      margin-top: .75rem;
     }
-
-    .subhead {
-      color: #e8f2ff;
+    .exp-env-label {
+      font-size: .68rem;
       font-weight: 700;
-      margin: 0;
-      letter-spacing: 0.01em;
-    }
-
-    .mini {
       color: var(--muted);
-      margin: 0;
-      line-height: 1.65;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
+    /* ── SUMMARY ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .4rem;
+      list-style: none;
+    }
+
+    .summary-grid li {
+      font-size: .8rem;
+      color: #334155;
+      padding: .4rem .6rem;
+      background: var(--bg);
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      line-height: 1.4;
+      position: relative;
+      padding-left: 1.3rem;
+    }
+    .summary-grid li::before {
+      content: '✓';
+      position: absolute;
+      left: .45rem;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: .72rem;
+    }
+
+    /* ── FOOTER ── */
     .footer {
-      padding: 30px 0 42px;
-      color: var(--muted);
+      grid-column: 1 / -1;
       text-align: center;
-      font-size: 0.92rem;
+      padding: 1rem;
+      font-size: .72rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
     }
 
-    .footer strong {
-      color: #edf7ff;
+    /* ── PRINT BUTTON ── */
+    .print-btn {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+      margin: 1.5rem auto 0;
+      max-width: 960px;
+      justify-content: flex-end;
+      padding: 0 1rem;
     }
-
-    .fade-up {
-      animation: fadeUp 0.9s ease both;
+    .print-btn button {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: .5rem 1.1rem;
+      font-size: .82rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .2s, transform .1s;
     }
+    .print-btn button:hover { background: #1d4ed8; transform: translateY(-1px); }
+    .print-btn button:active { transform: translateY(0); }
 
-    .delay-1 { animation-delay: 0.08s; }
-    .delay-2 { animation-delay: 0.16s; }
-    .delay-3 { animation-delay: 0.24s; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 960px) {
-      .hero-grid,
-      .grid-2,
-      .grid-3 {
+    /* ── RESPONSIVE ── */
+    @media (max-width: 720px) {
+      .page {
         grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        margin: 0;
+        border-radius: 0;
       }
-
-      .section-head,
-      .topbar-inner,
-      .job-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .nav { justify-content: flex-start; }
-    }
-
-    @media (max-width: 640px) {
-      .wrap { width: min(calc(100% - 20px), var(--max)); }
-
-      .hero-main,
-      .hero-side,
-      .card,
-      .profile-card {
-        padding: 18px;
-      }
-
-      h1 { font-size: clamp(2.4rem, 16vw, 3.9rem); }
-
-      .btn { width: 100%; justify-content: center; }
-
-      .hero-actions { flex-direction: column; }
-    }
-
-    @media print {
-      body {
-        background: #fff;
-        color: #111;
-      }
-
-      .topbar,
-      .hero-actions,
-      .footer {
-        display: none !important;
-      }
-
-      .panel,
-      .card {
-        box-shadow: none;
-      }
+      .header { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+      .header-contacts { justify-content: center; }
+      .sidebar { border-right: none; border-bottom: 1px solid var(--border); }
+      .summary-grid { grid-template-columns: 1fr; }
     }
   </style>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Jangam Pranav Chakravarthy",
-    "jobTitle": "Atlassian Consultant",
-    "email": "jangampranav301170@gmail.com",
-    "telephone": "+91-9515854538"
-  }
-  </script>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <div class="brand">
-        <div class="brand-badge">J</div>
-        <div>
-          <div style="font-weight:800; color:#f4fbff;">Jangam Pranav Chakravarthy</div>
-          <div style="color:var(--muted); font-size:0.88rem;">Atlassian Consultant | Jira And Confluence Specialist</div>
-        </div>
+
+<!-- Print button -->
+<div class="print-btn no-print">
+  <button onclick="window.print()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Download / Print PDF
+  </button>
+</div>
+
+<div class="page">
+
+  <!-- ── HEADER ── -->
+  <header class="header">
+    <div class="avatar">JP</div>
+    <div class="header-text">
+      <h1>Jangam Pranav Chakravarthy</h1>
+      <div class="title">Senior Product Owner &nbsp;·&nbsp; 6+ Years Experience</div>
+      <div class="header-contacts">
+        <a href="mailto:Pranavjpc427@gmail.com" class="contact-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Pranavjpc427@gmail.com
+        </a>
+        <a href="tel:+919515854538" class="contact-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.35 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +91 9515 854 538
+        </a>
+        <span class="contact-pill">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          India
+        </span>
       </div>
-      <nav class="nav" aria-label="Section navigation">
-        <a href="#summary">Summary</a>
-        <a href="#skills">Skills</a>
-        <a href="#experience">Experience</a>
-        <a href="#education">Education</a>
-      </nav>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <div class="hero-grid">
-        <article class="panel hero-main fade-up">
-          <span class="eyebrow">Futuristic resume experience</span>
-          <h1>
-            Product strategy
-            <span class="gradient-text">shaped into digital outcomes.</span>
-          </h1>
-          <p class="hero-copy">
-            Results-driven professional with 7 years of IT experience and strong Atlassian consulting expertise, including Jira, Confluence, Bitbucket, Bamboo, Crowd, SSO, workflow customization, and agile delivery support.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="mailto:jangampranav301170@gmail.com">Email Pranav</a>
-            <a class="btn btn-secondary" href="tel:+918523075538">Call +91 8523075538</a>
-          </div>
-        </article>
+  <!-- ── SIDEBAR ── -->
+  <aside class="sidebar">
 
-        <aside class="panel hero-side fade-up delay-1">
-          <div class="profile-card">
-            <div class="avatar">JP</div>
-            <h2 class="name">Jangam Pranav Chakravarthy</h2>
-            <p class="role">Atlassian Consultant | Jira Administrator | Agile Delivery Specialist</p>
-            <div class="contact-grid">
-              <div class="contact-item"><span class="dot"></span> jangampranav301170@gmail.com</div>
-              <div class="contact-item"><span class="dot"></span> +91 8523075538, +91-9515854538</div>
-            </div>
-          </div>
-          <div class="stats">
-            <div class="stat">
-              <strong>7 years</strong>
-              <span>IT experience with strong delivery and administration capabilities</span>
-            </div>
-            <div class="stat">
-              <strong>Atlassian expert</strong>
-              <span>Jira, Confluence, Bitbucket, Bamboo, Crowd, Service Desk</span>
-            </div>
-            <div class="stat">
-              <strong>Agile-first</strong>
-              <span>Scrum, backlog management, and roadmap governance</span>
-            </div>
-            <div class="stat">
-              <strong>Data-led</strong>
-              <span>JQL reporting, dashboards, plugin integration, and SLA setup</span>
-            </div>
-          </div>
-        </aside>
+    <!-- Skills -->
+    <section>
+      <div class="section-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"/><path d="M7 7h.01"/></svg>
+        Skills
       </div>
-    </section>
 
-    <section class="section" id="summary">
-      <div class="section-head">
-        <div>
-          <h2>Professional Summary</h2>
-          <p class="lead">A concise snapshot from the attached resume, focused on Atlassian implementation, administration, agile support, and consulting outcomes.</p>
-        </div>
-      </div>
-      <div class="grid-2">
-        <article class="card summary-card fade-up delay-1">
-          <ul class="list">
-            <li>Atlassian Suite expert with hands-on experience in implementation, customization, administration, support, and development.</li>
-            <li>Strong command over Jira Software, Jira Core, Jira Service Desk, Confluence, Crowd, Bitbucket, and Bamboo.</li>
-            <li>Experienced in designing custom dashboards, JQL-based reports, workflow configuration, schemes, and security setups.</li>
-            <li>Worked across L1, L2, and L3 ticketing support with Scrum and Kanban-based sprint execution.</li>
-            <li>Delivered SSO implementations and user-level trainings for onboarding and tool adoption.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="skills">
-      <div class="section-head">
-        <div>
-          <h2>Skills And Tooling</h2>
-          <p class="lead">Core capability map from the resume, centered on Atlassian ecosystem delivery and administration.</p>
-        </div>
-      </div>
-      <div class="grid-3">
-        <article class="card fade-up delay-1">
-          <p class="subhead">Atlassian Tools</p>
-          <div class="chips">
-            <span class="chip">Jira Software</span>
-            <span class="chip">Jira Core</span>
-            <span class="chip">Jira Service Desk</span>
-            <span class="chip">Confluence</span>
-          </div>
-        </article>
-        <article class="card fade-up delay-2">
-          <p class="subhead">Collaboration And CI/CD</p>
-          <div class="chips">
-            <span class="chip">Bitbucket</span>
-            <span class="chip">Bamboo</span>
-            <span class="chip">Crowd</span>
-            <span class="chip">FishEye</span>
-          </div>
-        </article>
-        <article class="card fade-up delay-3">
-          <p class="subhead">Agile And Delivery</p>
-          <div class="chips">
-            <span class="chip">Scrum</span>
-            <span class="chip">Kanban</span>
-            <span class="chip">Sprint Planning</span>
-            <span class="chip">Backlog Grooming</span>
-            <span class="chip">Incident Management</span>
-          </div>
-        </article>
-        <article class="card fade-up delay-1">
-          <p class="subhead">Configuration Expertise</p>
-          <div class="chips">
-            <span class="chip">Workflows</span>
-            <span class="chip">Permission Schemes</span>
-            <span class="chip">Notification Schemes</span>
-            <span class="chip">Issue Security</span>
-            <span class="chip">SLA Configuration</span>
-          </div>
-        </article>
-        <article class="card fade-up delay-2">
-          <p class="subhead">Reporting And Automation</p>
-          <div class="chips">
-            <span class="chip">JQL Reports</span>
-            <span class="chip">Dashboards</span>
-            <span class="chip">Mail Handlers</span>
-            <span class="chip">Auto Watchers</span>
-            <span class="chip">Plugin Integrations</span>
-          </div>
-        </article>
-        <article class="card fade-up delay-3">
-          <p class="subhead">General</p>
-          <div class="chips">
-            <span class="chip">Project Management</span>
-            <span class="chip">Technical Documentation</span>
-            <span class="chip">User Training</span>
-            <span class="chip">MS Office</span>
-            <span class="chip">Client Support</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="experience">
-      <div class="section-head">
-        <div>
-          <h2>Professional Experience</h2>
-          <p class="lead">Professional experience and project history incorporated from the attached resume.</p>
+      <div class="skill-group">
+        <div class="skill-label">Product Management</div>
+        <div class="skill-tags">
+          <span class="tag">Roadmapping</span>
+          <span class="tag">PRD / FRD</span>
+          <span class="tag">User Stories</span>
+          <span class="tag">Backlog Mgmt</span>
+          <span class="tag">Go-to-Market</span>
+          <span class="tag">OKRs / KPIs</span>
         </div>
       </div>
 
-      <div class="timeline">
-        <article class="card job fade-up delay-1">
-          <div class="job-header">
-            <div>
-              <h3 class="job-title">Infosys, Hyderabad</h3>
-              <p class="job-subtitle">Atlassian Consultant</p>
-            </div>
-            <div class="job-date">Jun 2022 – Till Date</div>
-          </div>
-          <div class="job-body">
-            <p class="mini">Providing consulting and advisory services to national and international clients across USA, Canada, Australia, New Zealand, France, Hong Kong, Singapore, UAE, and UK on Atlassian products.</p>
-            <ul class="list">
-              <li>Implemented and customized Jira, Confluence, Bitbucket, Bamboo, and Crowd solutions to match enterprise workflows.</li>
-              <li>Configured service desk portals, queues, SLAs, mail handlers, reminders, and customer portal integrations.</li>
-              <li>Designed dashboards and reports using filters and JQL, with exposure to Eazy BI and all-in-one reporting plugins.</li>
-              <li>Handled workflow design with conditions, validators, post functions, and security schemes for client-specific processes.</li>
-            </ul>
-            <p class="subhead" style="margin-top:10px;">Project: e-Business Solution</p>
-            <p class="mini">The system focused on timely goods delivery and efficient sales services through modules including order fulfillment, stock maintenance, pricing, and invoicing.</p>
-            <ul class="list">
-              <li>Managed Jira projects, workflows, permissions, users, and integrations across Atlassian applications.</li>
-              <li>Handled application upgrades, support tickets, incident management, backups, and scheduled maintenance activities.</li>
-              <li>Supported agile events such as backlog grooming, sprint planning, and sprint demos with cross-functional teams.</li>
-              <li>Built Bamboo pipelines, linked repositories, and coordinated with development teams for CI/CD processes.</li>
-            </ul>
-          </div>
-        </article>
+      <div class="skill-group">
+        <div class="skill-label">Methodologies</div>
+        <div class="skill-tags">
+          <span class="tag">Agile / Scrum</span>
+          <span class="tag">Waterfall</span>
+          <span class="tag">ITIL / ITSM</span>
+          <span class="tag">SAFe</span>
+        </div>
+      </div>
 
-        <article class="card job fade-up delay-2">
-          <div class="job-header">
-            <div>
-              <h3 class="job-title">Tech Mahindra, Hyderabad</h3>
-              <p class="job-subtitle">Atlassian Administrator</p>
-            </div>
-            <div class="job-date">Jun 2019 – May 2022</div>
-          </div>
-          <div class="job-body">
-            <p class="mini">Supported a revenue management platform focused on pricing, contracts, settlements, and channel incentives to reduce revenue leakage and compliance risks.</p>
-            <ul class="list">
-              <li>Configured permission and notification schemes and managed template-based project setup standards.</li>
-              <li>Built and maintained complex workflows, screen schemes, and operational configurations for departmental users.</li>
-              <li>Developed Confluence spaces and pages integrated with Jira for collaborative delivery workflows.</li>
-              <li>Resolved Jira and Confluence issues in coordination with hosting and business teams.</li>
-            </ul>
-          </div>
-        </article>
+      <div class="skill-group">
+        <div class="skill-label">Tools &amp; Platforms</div>
+        <div class="skill-tags">
+          <span class="tag">Jira</span>
+          <span class="tag">Confluence</span>
+          <span class="tag">Aha!</span>
+          <span class="tag">ServiceNow</span>
+          <span class="tag">SharePoint</span>
+          <span class="tag">Asana</span>
+          <span class="tag">MS Visio</span>
+          <span class="tag">Tableau</span>
+        </div>
+      </div>
 
-        <article class="card job fade-up delay-1">
-          <div class="job-header">
-            <div>
-              <h3 class="job-title">Career Achievements</h3>
-              <p class="job-subtitle">Recognition</p>
-            </div>
-            <div class="job-date">2016 & 2018</div>
-          </div>
-          <div class="job-body">
-            <ul class="list">
-              <li>Awarded Customer Excellence Award for the year 2016.</li>
-              <li>Awarded Business Enabler Award for the year 2018.</li>
-            </ul>
-          </div>
-        </article>
+      <div class="skill-group">
+        <div class="skill-label">Design &amp; UX</div>
+        <div class="skill-tags">
+          <span class="tag">Balsamiq</span>
+          <span class="tag">Lucidchart</span>
+          <span class="tag">SmartDraw</span>
+          <span class="tag">Framer</span>
+          <span class="tag">Wireframing</span>
+          <span class="tag">Prototyping</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Cloud &amp; Tech</div>
+        <div class="skill-tags">
+          <span class="tag">AWS (S3, EC2)</span>
+          <span class="tag">SageMaker</span>
+          <span class="tag">Lambda</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">CMDB</span>
+          <span class="tag">ML / AI</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-label">Domain Expertise</div>
+        <div class="skill-tags">
+          <span class="tag">Banking / Fintech</span>
+          <span class="tag">SaaS / B2B</span>
+          <span class="tag">ML Products</span>
+          <span class="tag">ITSM</span>
+          <span class="tag">Data Quality</span>
+          <span class="tag">Infra Ops</span>
+        </div>
       </div>
     </section>
 
-    <section class="section" id="education">
-      <div class="section-head">
-        <div>
-          <h2>Education And Certification</h2>
-          <p class="lead">The formal credentials from the resume, formatted as a polished closing section.</p>
+    <!-- Education -->
+    <section>
+      <div class="section-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+        Education
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-degree">B.Tech — Electrical &amp; Electronics Engineering</div>
+        <div class="edu-school">Saisha Institute of Technical Science</div>
+        <span class="edu-year">2012 – 2016</span>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-degree">Intermediate — Mathematics, Physics &amp; Chemistry</div>
+        <div class="edu-school">Narayana Junior College</div>
+        <span class="edu-year">2010 – 2012</span>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-degree">SSC (Secondary School Certificate)</div>
+        <div class="edu-school">Keshava Reddy Public School, Nandyal</div>
+        <span class="edu-year">2010</span>
+      </div>
+    </section>
+
+  </aside>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="main">
+
+    <!-- Professional Summary -->
+    <section>
+      <div class="section-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+        Professional Summary
+      </div>
+      <ul class="summary-grid">
+        <li>6+ years leading product development for Digital, SaaS &amp; Banking products</li>
+        <li>Launched ML-based marketing insights, mobile banking apps &amp; loan portals</li>
+        <li>Expert in PRD, FRD, user stories, wireframes, mockups &amp; roadmaps</li>
+        <li>ITSM leadership — ServiceNow, CMDB strategy &amp; governance frameworks</li>
+        <li>Agile &amp; Scrum Product Owner across start-ups and large enterprises</li>
+        <li>AWS cloud architecture: S3, SageMaker, EC2, Lambda, inference pipelines</li>
+        <li>Proven track record in data-driven UX, KPIs &amp; customer success</li>
+        <li>Strong B2B &amp; B2C expertise with cross-functional team leadership</li>
+        <li>Change management, budgeting &amp; multi-year roadmap planning</li>
+        <li>Configured ServiceNow workflows, incident, problem &amp; change modules</li>
+      </ul>
+    </section>
+
+    <!-- Experience -->
+    <section>
+      <div class="section-title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        Professional Experience
+      </div>
+
+      <!-- Tech Mahindra -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Product Owner</div>
+            <div class="exp-client">Tech Mahindra</div>
+            <div class="exp-project">Project: ML-based Marketing Insights Product for SMBs</div>
+          </div>
+          <div class="exp-dates">Aug 2023 – Present</div>
+        </div>
+        <div class="exp-desc">
+          Building a Machine Learning-based product that predicts and generates marketing insights for SMBs, empowering small businesses with data-driven marketing strategies.
+        </div>
+        <ul class="exp-bullets">
+          <li>Led development and launch of an ML-based marketing insights product, enabling data-driven decision-making for SMB clients</li>
+          <li>Defined cloud architecture strategy leveraging AWS (S3, SageMaker, EC2, Lambda); established real-time and batch inference pipelines for ML deployment</li>
+          <li>Owned ServiceNow product vision, driving platform enhancements aligned with enterprise digital transformation goals</li>
+          <li>Gathered and prioritized requirements for ITSM modules, ensuring alignment with stakeholder expectations and ITIL best practices</li>
+          <li>Defined CMDB data model and governance policies to maintain data consistency and integrity across enterprise systems</li>
+          <li>Designed and delivered workflow automation solutions using event-driven architecture; built scalable automation frameworks integrating APIs and downstream systems</li>
+          <li>Conducted extensive market research and competitive analysis to identify customer pain points and shape the product roadmap</li>
+          <li>Collaborated with data science teams to define and refine ML models and algorithms, continually improving accuracy and performance</li>
+          <li>Oversaw infrastructure modernization including cloud adoption and virtualization; optimized capacity, power, and cooling efficiency</li>
+          <li>Monitored product usage metrics, customer feedback, and market trends to drive continuous improvement; played a key role in customer success resulting in high retention rates</li>
+        </ul>
+        <div class="exp-env">
+          <span class="exp-env-label">Stack:</span>
+          <span class="tag">Agile</span>
+          <span class="tag">Jira</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Tableau</span>
+          <span class="tag">MS Visio</span>
+          <span class="tag">R</span>
+          <span class="tag">ServiceNow</span>
         </div>
       </div>
-      <div class="grid-2">
-        <article class="card fade-up delay-1">
-          <p class="subhead">Academics</p>
-          <ul class="list">
-            <li>B.Tech (EEE), Saisha Institute of Technical Science (2012 – 2016)</li>
-            <li>Intermediate (MPC), Narayana Junior College (2010 – 2012)</li>
-            <li>SSC, Keshava Reddy Public School, Nandyal (2010)</li>
-          </ul>
-        </article>
-        <article class="card fade-up delay-2">
-          <p class="subhead">Professional Focus</p>
-          <ul class="list">
-            <li>Atlassian Suite implementation and administration</li>
-            <li>Agile delivery support with Scrum and Kanban</li>
-            <li>Stakeholder support, training, and tooling governance</li>
-          </ul>
-        </article>
+
+      <!-- Infosys -->
+      <div class="exp-item">
+        <div class="exp-header">
+          <div>
+            <div class="exp-role">Product Owner</div>
+            <div class="exp-client">Infosys</div>
+            <div class="exp-project">Project: Mobile Banking App, Loan Application Portal &amp; Banking Website</div>
+          </div>
+          <div class="exp-dates">Sep 2019 – Jun 2023</div>
+        </div>
+        <div class="exp-desc">
+          Digital Transformation initiative to fully digitize manual banking processes by building a loan application portal, mobile banking app, and a customer-facing banking website.
+        </div>
+        <ul class="exp-bullets">
+          <li>Led end-to-end development and successful launch of a mobile banking app, website, and loan application portal enabling customers to access services from any device</li>
+          <li>Managed ITSM backlog including ServiceNow Incident, Problem, and Change Management modules; led CMDB implementation and optimization initiatives</li>
+          <li>Automated manual banking workflows, improving operational efficiency and significantly reducing processing time</li>
+          <li>Defined event-driven workflows and system integrations to support real-time processing and alerts</li>
+          <li>Owned data quality as a product discipline — implemented RAG (Red/Amber/Green) dashboards, KPI scoring models, and monitoring frameworks</li>
+          <li>Conducted market research and competitive analysis to identify differentiation opportunities, driving innovative feature development</li>
+          <li>Collaborated with UX/UI designers to create intuitive interfaces, improving user engagement and adoption metrics</li>
+          <li>Implemented robust security measures and compliance standards, working closely with security and compliance teams to protect user data</li>
+          <li>Conducted user testing and gathered customer feedback to identify pain points and drive iterative product improvements</li>
+          <li>Collaborated with marketing and sales teams on go-to-market strategies (positioning, pricing, promotions), resulting in increased adoption and customer acquisition</li>
+          <li>Monitored KPIs: user engagement, conversion rates, and customer satisfaction metrics to identify optimization opportunities</li>
+        </ul>
+        <div class="exp-env">
+          <span class="exp-env-label">Stack:</span>
+          <span class="tag">Jira</span>
+          <span class="tag">Confluence</span>
+          <span class="tag">MS Visio</span>
+          <span class="tag">SharePoint</span>
+          <span class="tag">ServiceNow</span>
+          <span class="tag">ITSM</span>
+        </div>
       </div>
+
     </section>
 
   </main>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    Jangam Pranav Chakravarthy &nbsp;·&nbsp; Product Owner &nbsp;·&nbsp; <a href="mailto:Pranavjpc427@gmail.com" style="color:var(--accent);text-decoration:none;">Pranavjpc427@gmail.com</a>
+  </footer>
+
+</div>
+
 </body>
 </html>
