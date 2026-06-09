@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python OOP Cheat Sheet — Absolute Beginner's Visual Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-basics:    #3B82F6;
+      --color-syntax:    #8B5CF6;
+      --color-data:      #10B981;
+      --color-control:   #F59E0B;
+      --color-functions: #EC4899;
+      --color-advanced:  #EF4444;
+      --color-tools:     #06B6D4;
+      --color-tips:      #84CC16;
+      --color-examples:  #F97316;
+      --color-reference: #6366F1;
+
+      --bg-page:    #0F172A;
+      --bg-card:    #1E293B;
+      --bg-code:    #0F172A;
+      --bg-header:  #020617;
+      --text-primary:   #F8FAFC;
+      --text-secondary: #CBD5E1;
+      --text-muted:     #94A3B8;
+      --text-code:      #E2E8F0;
+
+      --syn-keyword:  #C084FC;
+      --syn-string:   #34D399;
+      --syn-number:   #FB923C;
+      --syn-comment:  #64748B;
+      --syn-function: #60A5FA;
+      --syn-type:     #F472B6;
+    }
+
+    [data-theme="light"] {
+      --bg-page:    #F1F5F9;
+      --bg-card:    #FFFFFF;
+      --bg-code:    #F1F5F9;
+      --bg-header:  #1E293B;
+      --text-primary:   #0F172A;
+      --text-secondary: #475569;
+      --text-muted:     #64748B;
+      --text-code:      #334155;
+    }
+
+    body {
+      font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+      background: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--bg-header);
+      padding: 32px 40px;
+      text-align: center;
+      position: relative;
+      border-bottom: 3px solid var(--color-basics);
+    }
+    header h1 {
+      font-size: 38px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #3B82F6, #8B5CF6, #EC4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+    header .subtitle {
+      font-size: 17px;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+    header .version {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .theme-toggle {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--text-primary);
+      padding: 6px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover { background: rgba(255,255,255,0.2); }
+
+    /* ── Grid ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 22px;
+      padding: 28px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--bg-card);
+      border-radius: 14px;
+      border-left: 5px solid;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      overflow: hidden;
+      break-inside: avoid;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    }
+    .card.wide { grid-column: span 2; }
+    @media (max-width: 740px) { .card.wide { grid-column: span 1; } }
+
+    .card-header {
+      padding: 16px 20px 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-header .card-icon {
+      font-size: 26px;
+      line-height: 1;
+      min-width: 32px;
+      text-align: center;
+    }
+    .card-header h3 {
+      font-size: 19px;
+      font-weight: 700;
+      margin: 0;
+    }
+    .card-body {
+      padding: 4px 20px 20px;
+    }
+
+    /* ── Illustration Container ── */
+    .illustration {
+      background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(139,92,246,0.06));
+      border-radius: 12px;
+      padding: 20px;
+      margin: 10px 0 16px;
+      text-align: center;
+      border: 1px solid rgba(148,163,184,0.12);
+    }
+    .illustration svg {
+      max-width: 100%;
+      height: auto;
+    }
+    .illustration-caption {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* ── Real World Box ── */
+    .real-world {
+      background: linear-gradient(135deg, rgba(16,185,129,0.08), rgba(132,204,22,0.06));
+      border: 1px solid rgba(16,185,129,0.25);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 12px 0;
+    }
+    .real-world-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--color-data);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .real-world p, .real-world ul {
+      font-size: 15px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+    .real-world ul { padding-left: 18px; }
+    .real-world li { margin-bottom: 3px; }
+
+    /* ── Code ── */
+    pre {
+      background: var(--bg-code);
+      border-radius: 10px;
+      padding: 14px 16px;
+      overflow-x: auto;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 10px 0;
+      border: 1px solid rgba(148,163,184,0.12);
+    }
+    code {
+      font-family: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+      color: var(--text-code);
+    }
+    p code, li code, td code, .inline-code {
+      background: rgba(99,102,241,0.15);
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 0.88em;
+    }
+    .code-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    /* syntax highlights */
+    .kw { color: var(--syn-keyword); }
+    .fn { color: var(--syn-function); }
+    .st { color: var(--syn-string); }
+    .cm { color: var(--syn-comment); }
+    .nb { color: var(--syn-number); }
+    .tp { color: var(--syn-type); }
+    .op { color: #94A3B8; }
+    .se { color: var(--text-primary); font-weight: 600; }
+
+    /* ── Analogy Arrow Diagram ── */
+    .analogy-flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 14px 0;
+      flex-wrap: wrap;
+    }
+    .analogy-item {
+      text-align: center;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: rgba(99,102,241,0.1);
+      border: 1px solid rgba(99,102,241,0.2);
+      min-width: 100px;
+    }
+    .analogy-item .icon { font-size: 30px; margin-bottom: 4px; }
+    .analogy-item .label { font-size: 12px; color: var(--text-secondary); font-weight: 600; }
+    .analogy-arrow {
+      font-size: 24px;
+      color: var(--color-basics);
+      font-weight: 800;
+    }
+
+    /* ── Comparison Table ── */
+    .ref-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+      margin: 10px 0;
+    }
+    .ref-table th {
+      background: rgba(99,102,241,0.12);
+      padding: 8px 12px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--text-secondary);
+      border-bottom: 2px solid rgba(148,163,184,0.15);
+    }
+    .ref-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(148,163,184,0.08);
+      color: var(--text-secondary);
+    }
+    .ref-table tr:hover td { background: rgba(99,102,241,0.05); }
+
+    /* ── Callout ── */
+    .callout {
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin: 10px 0;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    .callout-tip {
+      background: rgba(132,204,22,0.1);
+      border-left: 3px solid var(--color-tips);
+      color: var(--text-secondary);
+    }
+    .callout-warn {
+      background: rgba(239,68,68,0.1);
+      border-left: 3px solid var(--color-advanced);
+      color: var(--text-secondary);
+    }
+    .callout-info {
+      background: rgba(59,130,246,0.1);
+      border-left: 3px solid var(--color-basics);
+      color: var(--text-secondary);
+    }
+
+    /* ── Diagram: Vertical Steps ── */
+    .step-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 12px 0;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      position: relative;
+      padding-bottom: 16px;
+    }
+    .step-item:last-child { padding-bottom: 0; }
+    .step-num {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 14px;
+      color: #fff;
+      position: relative;
+      z-index: 1;
+    }
+    .step-item:not(:last-child) .step-num::after {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: calc(100% + 4px);
+      background: rgba(148,163,184,0.2);
+    }
+    .step-content h4 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+    .step-content p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    /* ── Pillar cards ── */
+    .pillars {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .pillar {
+      text-align: center;
+      padding: 16px 12px;
+      border-radius: 12px;
+      border: 1px solid rgba(148,163,184,0.12);
+    }
+    .pillar .p-icon { font-size: 32px; margin-bottom: 6px; }
+    .pillar h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .pillar p { font-size: 14px; color: var(--text-secondary); margin: 0; }
+
+    /* ── Example output ── */
+    .example-output {
+      background: rgba(16,185,129,0.08);
+      border-left: 3px solid var(--color-data);
+      padding: 8px 14px;
+      border-radius: 0 8px 8px 0;
+      margin: 6px 0;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 14px;
+      color: var(--color-data);
+    }
+
+    /* ── Visual separator between sections ── */
+    .section-sep {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin: 8px 0 4px;
+      border-top: 1px dashed rgba(148,163,184,0.15);
+      padding-top: 10px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 14px;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(148,163,184,0.1);
+    }
+    footer a {
+      color: var(--color-basics);
+      text-decoration: none;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    p { margin: 6px 0; color: var(--text-secondary); font-size: 15px; }
+    ul, ol { padding-left: 20px; color: var(--text-secondary); font-size: 15px; }
+    li { margin-bottom: 4px; }
+    strong { color: var(--text-primary); }
+
+    /* ── Print ── */
+    @media print {
+      body { background: white; color: #1a1a1a; }
+      .card { break-inside: avoid; border: 1px solid #ddd; box-shadow: none; }
+      .theme-toggle { display: none; }
+      header { background: #1E293B; }
+    }
+
+    @media (max-width: 600px) {
+      .grid { grid-template-columns: 1fr; padding: 12px; gap: 16px; }
+      header { padding: 20px; }
+      header h1 { font-size: 24px; }
+      .pillars { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🐍 Python OOP — Visual Guide</h1>
+  <p class="subtitle">Object-Oriented Programming for Absolute Beginners — With Real-World Analogies</p>
+  <p class="version">Python 3.x &bull; May 2026 &bull; No prior programming knowledge needed</p>
+  <button class="theme-toggle" onclick="toggleTheme()">🌓 Toggle Theme</button>
+</header>
+
+<main class="grid">
+
+  <!-- ==================== CARD 1: What is OOP? ==================== -->
+  <div class="card wide" style="border-left-color: var(--color-basics);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(59,130,246,0.12), transparent);">
+      <span class="card-icon">🌍</span>
+      <h3>What is Object-Oriented Programming?</h3>
+    </div>
+    <div class="card-body">
+      <p>OOP is a way of writing programs by <strong>modeling real-world things</strong>. Instead of just writing step-by-step instructions, you create <strong>"objects"</strong> that have <strong>properties</strong> (data) and can <strong>do things</strong> (actions).</p>
+
+      <div class="illustration">
+        <svg width="580" height="120" viewBox="0 0 580 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Real world -->
+          <rect x="10" y="15" width="130" height="90" rx="14" fill="rgba(59,130,246,0.12)" stroke="#3B82F6" stroke-width="2"/>
+          <text x="75" y="48" text-anchor="middle" fill="#3B82F6" font-size="28">🌎</text>
+          <text x="75" y="78" text-anchor="middle" fill="#CBD5E1" font-size="12" font-weight="600">Real World</text>
+          <text x="75" y="93" text-anchor="middle" fill="#94A3B8" font-size="10">things around you</text>
+          <!-- Arrow -->
+          <path d="M150 60 L195 60" stroke="#64748B" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowGrey)"/>
+          <!-- Observe -->
+          <rect x="200" y="15" width="130" height="90" rx="14" fill="rgba(139,92,246,0.12)" stroke="#8B5CF6" stroke-width="2"/>
+          <text x="265" y="48" text-anchor="middle" fill="#8B5CF6" font-size="28">🔍</text>
+          <text x="265" y="78" text-anchor="middle" fill="#CBD5E1" font-size="12" font-weight="600">Identify Patterns</text>
+          <text x="265" y="93" text-anchor="middle" fill="#94A3B8" font-size="10">properties + actions</text>
+          <!-- Arrow -->
+          <path d="M340 60 L385 60" stroke="#64748B" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrowGrey)"/>
+          <!-- Code -->
+          <rect x="390" y="15" width="170" height="90" rx="14" fill="rgba(236,72,153,0.12)" stroke="#EC4899" stroke-width="2"/>
+          <text x="475" y="48" text-anchor="middle" fill="#EC4899" font-size="28">💻</text>
+          <text x="475" y="78" text-anchor="middle" fill="#CBD5E1" font-size="12" font-weight="600">Write as Python Code</text>
+          <text x="475" y="93" text-anchor="middle" fill="#94A3B8" font-size="10">classes & objects</text>
+          <defs><marker id="arrowGrey" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#64748B"/></marker></defs>
+        </svg>
+        <div class="illustration-caption">OOP = Model the real world in code</div>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar" style="background: rgba(59,130,246,0.08);">
+          <div class="p-icon">📦</div>
+          <h4>Encapsulation</h4>
+          <p>Bundle data & actions together, hide the messy details</p>
+        </div>
+        <div class="pillar" style="background: rgba(139,92,246,0.08);">
+          <div class="p-icon">🧬</div>
+          <h4>Inheritance</h4>
+          <p>Children get traits from their parents</p>
+        </div>
+        <div class="pillar" style="background: rgba(236,72,153,0.08);">
+          <div class="p-icon">🎭</div>
+          <h4>Polymorphism</h4>
+          <p>Same action, different behavior for each type</p>
+        </div>
+        <div class="pillar" style="background: rgba(16,185,129,0.08);">
+          <div class="p-icon">🎨</div>
+          <h4>Abstraction</h4>
+          <p>Show only what matters, hide the complexity</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 2: Class & Object ==================== -->
+  <div class="card" style="border-left-color: var(--color-syntax);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(139,92,246,0.12), transparent);">
+      <span class="card-icon">🏗️</span>
+      <h3>Class & Object</h3>
+    </div>
+    <div class="card-body">
+      <p>A <strong>Class</strong> is a <strong>blueprint</strong> (template). An <strong>Object</strong> is a <strong>real thing</strong> built from that blueprint.</p>
+
+      <div class="illustration">
+        <svg width="340" height="170" viewBox="0 0 340 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Blueprint -->
+          <rect x="10" y="10" width="120" height="150" rx="12" fill="rgba(139,92,246,0.15)" stroke="#8B5CF6" stroke-width="2" stroke-dasharray="6,3"/>
+          <text x="70" y="42" text-anchor="middle" fill="#8B5CF6" font-size="11" font-weight="700">CLASS (Blueprint)</text>
+          <text x="70" y="68" text-anchor="middle" fill="#94A3B8" font-size="28">📋</text>
+          <text x="70" y="100" text-anchor="middle" fill="#CBD5E1" font-size="10">• color</text>
+          <text x="70" y="116" text-anchor="middle" fill="#CBD5E1" font-size="10">• brand</text>
+          <text x="70" y="132" text-anchor="middle" fill="#CBD5E1" font-size="10">• drive()</text>
+          <text x="70" y="148" text-anchor="middle" fill="#CBD5E1" font-size="10">• honk()</text>
+          <!-- Arrows -->
+          <path d="M135 55 L175 35" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr2)"/>
+          <path d="M135 85 L175 85" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr2)"/>
+          <path d="M135 115 L175 135" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr2)"/>
+          <!-- Object 1 -->
+          <rect x="180" y="8" width="140" height="42" rx="10" fill="rgba(59,130,246,0.15)" stroke="#3B82F6" stroke-width="2"/>
+          <text x="210" y="34" fill="#3B82F6" font-size="18">🚗</text>
+          <text x="234" y="28" fill="#CBD5E1" font-size="10" font-weight="600">my_car</text>
+          <text x="234" y="40" fill="#94A3B8" font-size="9">color="Red"</text>
+          <!-- Object 2 -->
+          <rect x="180" y="62" width="140" height="42" rx="10" fill="rgba(16,185,129,0.15)" stroke="#10B981" stroke-width="2"/>
+          <text x="210" y="88" fill="#10B981" font-size="18">🚙</text>
+          <text x="234" y="82" fill="#CBD5E1" font-size="10" font-weight="600">your_car</text>
+          <text x="234" y="94" fill="#94A3B8" font-size="9">color="Blue"</text>
+          <!-- Object 3 -->
+          <rect x="180" y="116" width="140" height="42" rx="10" fill="rgba(249,115,22,0.15)" stroke="#F97316" stroke-width="2"/>
+          <text x="210" y="142" fill="#F97316" font-size="18">🏎️</text>
+          <text x="234" y="136" fill="#CBD5E1" font-size="10" font-weight="600">boss_car</text>
+          <text x="234" y="148" fill="#94A3B8" font-size="9">color="Black"</text>
+          <defs><marker id="arr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#64748B"/></marker></defs>
+        </svg>
+        <div class="illustration-caption">One blueprint → many objects, each with its own data</div>
+      </div>
+
+      <div class="code-title">Python Code</div>
+<pre><code><span class="kw">class</span> <span class="tp">Car</span>:            <span class="cm"># This is the BLUEPRINT</span>
+    <span class="kw">pass</span>
+
+my_car   = <span class="tp">Car</span>()      <span class="cm"># Object 1 🚗</span>
+your_car = <span class="tp">Car</span>()      <span class="cm"># Object 2 🚙</span>
+boss_car = <span class="tp">Car</span>()      <span class="cm"># Object 3 🏎️</span></code></pre>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogies</div>
+        <ul>
+          <li><strong>Class = Cookie cutter</strong> — defines the shape</li>
+          <li><strong>Object = Cookie</strong> — each one is made from the same cutter but can have different toppings</li>
+        </ul>
+      </div>
+      <div class="real-world" style="margin-top: 8px;">
+        <div class="real-world-title">🏠 More Examples</div>
+        <ul>
+          <li><strong>Class = House blueprint</strong> → Object = your actual house, neighbor's house (same plan, different paint)</li>
+          <li><strong>Class = Pizza recipe</strong> → Object = the pepperoni pizza you ordered, the veggie one your friend ordered</li>
+          <li><strong>Class = Instagram profile template</strong> → Object = your profile, @tec_in_sec's profile</li>
+          <li><strong>Class = Spotify Song format</strong> → Object = "Shape of You", "Blinding Lights" (each with its own title, artist, duration)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 3: Attributes & Methods ==================== -->
+  <div class="card" style="border-left-color: var(--color-data);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(16,185,129,0.12), transparent);">
+      <span class="card-icon">⚙️</span>
+      <h3>Attributes & Methods</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Attributes</strong> = what the object <em>has</em> (properties/data)<br>
+         <strong>Methods</strong> = what the object can <em>do</em> (actions/functions)</p>
+
+      <div class="illustration">
+        <svg width="320" height="160" viewBox="0 0 320 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Dog -->
+          <circle cx="160" cy="55" r="42" fill="rgba(16,185,129,0.12)" stroke="#10B981" stroke-width="2"/>
+          <text x="160" y="50" text-anchor="middle" font-size="36">🐕</text>
+          <text x="160" y="72" text-anchor="middle" fill="#10B981" font-size="10" font-weight="700">Dog Object</text>
+          <!-- Attributes (left) -->
+          <rect x="8" y="16" width="80" height="22" rx="6" fill="rgba(59,130,246,0.15)" stroke="#3B82F6" stroke-width="1"/>
+          <text x="48" y="31" text-anchor="middle" fill="#60A5FA" font-size="10">name</text>
+          <line x1="88" y1="27" x2="118" y2="42" stroke="#3B82F6" stroke-width="1" stroke-dasharray="3,2"/>
+          <rect x="8" y="46" width="80" height="22" rx="6" fill="rgba(59,130,246,0.15)" stroke="#3B82F6" stroke-width="1"/>
+          <text x="48" y="61" text-anchor="middle" fill="#60A5FA" font-size="10">breed</text>
+          <line x1="88" y1="57" x2="118" y2="55" stroke="#3B82F6" stroke-width="1" stroke-dasharray="3,2"/>
+          <rect x="8" y="76" width="80" height="22" rx="6" fill="rgba(59,130,246,0.15)" stroke="#3B82F6" stroke-width="1"/>
+          <text x="48" y="91" text-anchor="middle" fill="#60A5FA" font-size="10">age</text>
+          <line x1="88" y1="87" x2="118" y2="68" stroke="#3B82F6" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="48" y="112" text-anchor="middle" fill="#3B82F6" font-size="10" font-weight="600">Attributes</text>
+          <text x="48" y="124" text-anchor="middle" fill="#94A3B8" font-size="9">(what it HAS)</text>
+          <!-- Methods (right) -->
+          <rect x="232" y="16" width="80" height="22" rx="6" fill="rgba(236,72,153,0.15)" stroke="#EC4899" stroke-width="1"/>
+          <text x="272" y="31" text-anchor="middle" fill="#F472B6" font-size="10">bark()</text>
+          <line x1="232" y1="27" x2="202" y2="42" stroke="#EC4899" stroke-width="1" stroke-dasharray="3,2"/>
+          <rect x="232" y="46" width="80" height="22" rx="6" fill="rgba(236,72,153,0.15)" stroke="#EC4899" stroke-width="1"/>
+          <text x="272" y="61" text-anchor="middle" fill="#F472B6" font-size="10">eat()</text>
+          <line x1="232" y1="57" x2="202" y2="55" stroke="#EC4899" stroke-width="1" stroke-dasharray="3,2"/>
+          <rect x="232" y="76" width="80" height="22" rx="6" fill="rgba(236,72,153,0.15)" stroke="#EC4899" stroke-width="1"/>
+          <text x="272" y="91" text-anchor="middle" fill="#F472B6" font-size="10">sleep()</text>
+          <line x1="232" y1="87" x2="202" y2="68" stroke="#EC4899" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="272" y="112" text-anchor="middle" fill="#EC4899" font-size="10" font-weight="600">Methods</text>
+          <text x="272" y="124" text-anchor="middle" fill="#94A3B8" font-size="9">(what it DOES)</text>
+        </svg>
+      </div>
+
+<pre><code><span class="kw">class</span> <span class="tp">Dog</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, name, breed):
+        <span class="se">self</span>.name  = name    <span class="cm"># Attribute</span>
+        <span class="se">self</span>.breed = breed   <span class="cm"># Attribute</span>
+
+    <span class="kw">def</span> <span class="fn">bark</span>(<span class="se">self</span>):         <span class="cm"># Method</span>
+        <span class="fn">print</span>(<span class="st">f"</span>{<span class="se">self</span>.name} <span class="st">says Woof!"</span>)
+
+buddy = <span class="tp">Dog</span>(<span class="st">"Buddy"</span>, <span class="st">"Golden Retriever"</span>)
+<span class="fn">print</span>(buddy.name)    <span class="cm"># Buddy</span>
+buddy.<span class="fn">bark</span>()         <span class="cm"># Buddy says Woof!</span></code></pre>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogy</div>
+        <p>A <strong>phone</strong> HAS a brand, color, battery (attributes). It can <strong>call()</strong>, <strong>text()</strong>, <strong>take_photo()</strong> (methods).</p>
+      </div>
+      <div class="real-world" style="margin-top: 8px;">
+        <div class="real-world-title">🍕 More Real-World Examples</div>
+        <table class="ref-table" style="margin: 6px 0 0;">
+          <tr><th>Object</th><th>Attributes (HAS)</th><th>Methods (DOES)</th></tr>
+          <tr><td>🍕 Pizza</td><td>size, toppings, price</td><td>bake(), slice(), deliver()</td></tr>
+          <tr><td>🚗 Car</td><td>color, brand, speed</td><td>start(), drive(), brake()</td></tr>
+          <tr><td>📱 YouTube Video</td><td>title, views, likes</td><td>play(), pause(), share()</td></tr>
+          <tr><td>🎮 Game Character</td><td>name, health, level</td><td>attack(), heal(), run()</td></tr>
+          <tr><td>🏦 Bank Account</td><td>owner, balance, account_no</td><td>deposit(), withdraw()</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 4: Constructor __init__ ==================== -->
+  <div class="card" style="border-left-color: var(--color-control);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(245,158,11,0.12), transparent);">
+      <span class="card-icon">🎬</span>
+      <h3>The Constructor: __init__</h3>
+    </div>
+    <div class="card-body">
+      <p>The <code>__init__</code> method runs <strong>automatically</strong> when you create a new object. It sets up the initial data.</p>
+
+      <div class="illustration">
+        <svg width="320" height="100" viewBox="0 0 320 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Factory -->
+          <rect x="10" y="20" width="90" height="60" rx="10" fill="rgba(245,158,11,0.12)" stroke="#F59E0B" stroke-width="2"/>
+          <text x="55" y="48" text-anchor="middle" font-size="24">🏭</text>
+          <text x="55" y="68" text-anchor="middle" fill="#F59E0B" font-size="9" font-weight="600">__init__( )</text>
+          <!-- Input -->
+          <text x="55" y="15" text-anchor="middle" fill="#94A3B8" font-size="9">you provide data</text>
+          <path d="M55 17 L55 20" stroke="#94A3B8" stroke-width="1" marker-end="url(#arr3)"/>
+          <!-- Arrow out -->
+          <path d="M105 50 L155 50" stroke="#F59E0B" stroke-width="2" marker-end="url(#arr3y)"/>
+          <text x="130" y="43" text-anchor="middle" fill="#94A3B8" font-size="8">creates</text>
+          <!-- Object -->
+          <rect x="160" y="20" width="145" height="60" rx="10" fill="rgba(16,185,129,0.12)" stroke="#10B981" stroke-width="2"/>
+          <text x="190" y="48" font-size="22">✨</text>
+          <text x="210" y="46" fill="#10B981" font-size="10" font-weight="700">New Object</text>
+          <text x="210" y="60" fill="#CBD5E1" font-size="9">with your data inside!</text>
+          <text x="210" y="72" fill="#94A3B8" font-size="8">name="Buddy", age=3</text>
+          <defs>
+            <marker id="arr3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#94A3B8"/></marker>
+            <marker id="arr3y" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#F59E0B"/></marker>
+          </defs>
+        </svg>
+        <div class="illustration-caption">__init__ is like a factory — feeds data into a brand-new object</div>
+      </div>
+
+<pre><code><span class="kw">class</span> <span class="tp">Student</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, name, age, grade):
+        <span class="se">self</span>.name  = name   <span class="cm"># Store name</span>
+        <span class="se">self</span>.age   = age    <span class="cm"># Store age</span>
+        <span class="se">self</span>.grade = grade  <span class="cm"># Store grade</span>
+
+<span class="cm"># Creating objects — __init__ runs automatically!</span>
+alice = <span class="tp">Student</span>(<span class="st">"Alice"</span>, <span class="nb">14</span>, <span class="st">"9th"</span>)
+bob   = <span class="tp">Student</span>(<span class="st">"Bob"</span>,   <span class="nb">15</span>, <span class="st">"10th"</span>)
+
+<span class="fn">print</span>(alice.name)   <span class="cm"># Alice</span>
+<span class="fn">print</span>(bob.grade)    <span class="cm"># 10th</span></code></pre>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogy</div>
+        <p>Like filling out a <strong>birth certificate</strong> — the moment a baby is born, you record their name, date, weight. The <code>__init__</code> method does the same when an object is "born."</p>
+      </div>
+      <div class="real-world" style="margin-top: 8px;">
+        <div class="real-world-title">📋 More Examples of __init__ in Action</div>
+        <ul>
+          <li><strong>Opening a new bank account</strong> → you fill out a form with name, address, initial deposit. That's <code>__init__</code>!</li>
+          <li><strong>Signing up for Netflix</strong> → you enter email, password, plan type. All stored when your account object is created.</li>
+          <li><strong>Ordering Uber</strong> → pickup location, destination, ride type are set the moment you book = <code>__init__</code></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 5: The self keyword ==================== -->
+  <div class="card" style="border-left-color: var(--color-functions);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(236,72,153,0.12), transparent);">
+      <span class="card-icon">🪪</span>
+      <h3>The "self" Keyword</h3>
+    </div>
+    <div class="card-body">
+      <p><code>self</code> refers to <strong>the specific object</strong> that is calling the method. It's how each object keeps track of <em>its own</em> data.</p>
+
+      <div class="illustration">
+        <svg width="320" height="120" viewBox="0 0 320 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cat 1 -->
+          <rect x="10" y="10" width="95" height="100" rx="12" fill="rgba(236,72,153,0.1)" stroke="#EC4899" stroke-width="1.5"/>
+          <text x="58" y="44" text-anchor="middle" font-size="26">🐱</text>
+          <text x="58" y="62" text-anchor="middle" fill="#EC4899" font-size="10" font-weight="600">whiskers</text>
+          <text x="58" y="78" text-anchor="middle" fill="#94A3B8" font-size="9">self.name = "Whiskers"</text>
+          <text x="58" y="92" text-anchor="middle" fill="#94A3B8" font-size="9">self = ME!</text>
+          <!-- Cat 2 -->
+          <rect x="115" y="10" width="95" height="100" rx="12" fill="rgba(59,130,246,0.1)" stroke="#3B82F6" stroke-width="1.5"/>
+          <text x="163" y="44" text-anchor="middle" font-size="26">🐈</text>
+          <text x="163" y="62" text-anchor="middle" fill="#3B82F6" font-size="10" font-weight="600">mittens</text>
+          <text x="163" y="78" text-anchor="middle" fill="#94A3B8" font-size="9">self.name = "Mittens"</text>
+          <text x="163" y="92" text-anchor="middle" fill="#94A3B8" font-size="9">self = ME!</text>
+          <!-- Explain -->
+          <rect x="220" y="20" width="95" height="80" rx="12" fill="rgba(132,204,22,0.08)" stroke="#84CC16" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="268" y="48" text-anchor="middle" fill="#84CC16" font-size="10" font-weight="600">self means</text>
+          <text x="268" y="62" text-anchor="middle" fill="#CBD5E1" font-size="10">"the object</text>
+          <text x="268" y="76" text-anchor="middle" fill="#CBD5E1" font-size="10">calling me"</text>
+          <text x="268" y="90" text-anchor="middle" fill="#84CC16" font-size="16">👈</text>
+        </svg>
+      </div>
+
+<pre><code><span class="kw">class</span> <span class="tp">Cat</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, name):
+        <span class="se">self</span>.name = name   <span class="cm"># "MY name is..."</span>
+
+    <span class="kw">def</span> <span class="fn">introduce</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">f"I am </span>{<span class="se">self</span>.name}<span class="st">"</span>)
+
+whiskers = <span class="tp">Cat</span>(<span class="st">"Whiskers"</span>)
+mittens  = <span class="tp">Cat</span>(<span class="st">"Mittens"</span>)
+whiskers.<span class="fn">introduce</span>()  <span class="cm"># I am Whiskers</span>
+mittens.<span class="fn">introduce</span>()   <span class="cm"># I am Mittens</span></code></pre>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogy</div>
+        <p><code>self</code> is like your <strong>name tag</strong> at a party. When you say "My name is..." you're talking about <em>yourself</em>, not someone else.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 6: Encapsulation ==================== -->
+  <div class="card" style="border-left-color: var(--color-examples);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(249,115,22,0.12), transparent);">
+      <span class="card-icon">📦</span>
+      <h3>Encapsulation</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Encapsulation</strong> = Bundling data and methods together, and <strong>hiding internal details</strong> so no one can mess things up.</p>
+
+      <div class="illustration">
+        <svg width="320" height="140" viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Capsule outer -->
+          <rect x="50" y="10" width="220" height="120" rx="20" fill="rgba(249,115,22,0.08)" stroke="#F97316" stroke-width="2"/>
+          <text x="160" y="30" text-anchor="middle" fill="#F97316" font-size="10" font-weight="700">BankAccount (capsule)</text>
+          <!-- Hidden inside -->
+          <rect x="70" y="40" width="180" height="40" rx="10" fill="rgba(239,68,68,0.1)" stroke="#EF4444" stroke-width="1" stroke-dasharray="4,2"/>
+          <text x="100" y="57" fill="#EF4444" font-size="12">🔒</text>
+          <text x="118" y="57" fill="#CBD5E1" font-size="10">__balance = 5000</text>
+          <text x="160" y="72" text-anchor="middle" fill="#94A3B8" font-size="8">PRIVATE — can't touch directly!</text>
+          <!-- Public methods -->
+          <rect x="70" y="88" width="85" height="28" rx="8" fill="rgba(16,185,129,0.12)" stroke="#10B981" stroke-width="1"/>
+          <text x="112" y="106" text-anchor="middle" fill="#10B981" font-size="10">deposit() ✅</text>
+          <rect x="165" y="88" width="85" height="28" rx="8" fill="rgba(16,185,129,0.12)" stroke="#10B981" stroke-width="1"/>
+          <text x="208" y="106" text-anchor="middle" fill="#10B981" font-size="10">withdraw() ✅</text>
+        </svg>
+        <div class="illustration-caption">Data is locked inside — only methods provide safe access</div>
+      </div>
+
+<pre><code><span class="kw">class</span> <span class="tp">BankAccount</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, owner, balance):
+        <span class="se">self</span>.owner     = owner
+        <span class="se">self</span>.__balance = balance   <span class="cm"># 🔒 Private!</span>
+
+    <span class="kw">def</span> <span class="fn">deposit</span>(<span class="se">self</span>, amount):
+        <span class="se">self</span>.__balance += amount
+        <span class="fn">print</span>(<span class="st">f"Deposited ${</span>amount<span class="st">}"</span>)
+
+    <span class="kw">def</span> <span class="fn">get_balance</span>(<span class="se">self</span>):
+        <span class="kw">return</span> <span class="se">self</span>.__balance
+
+acct = <span class="tp">BankAccount</span>(<span class="st">"Alice"</span>, <span class="nb">5000</span>)
+acct.<span class="fn">deposit</span>(<span class="nb">500</span>)
+<span class="fn">print</span>(acct.<span class="fn">get_balance</span>())  <span class="cm"># 5500</span>
+<span class="cm"># acct.__balance  ← ❌ Error! Can't access directly</span></code></pre>
+
+      <div class="callout callout-info">
+        <strong>💡 Python Convention:</strong> Use <code>__</code> (double underscore) prefix to make attributes private. Use <code>_</code> (single underscore) for "please don't touch" (protected).
+      </div>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogies</div>
+        <ul>
+          <li><strong>ATM machine</strong> — you can deposit and withdraw money (methods), but you can't directly reach into the vault to grab cash (private data)</li>
+          <li><strong>Medicine capsule</strong> — the medicine is sealed inside. You take the whole capsule; you don't open it and pick individual chemicals</li>
+          <li><strong>TV remote</strong> — you press buttons (public methods). The circuit board inside is hidden (private data). You don't need to solder wires to change the channel!</li>
+          <li><strong>Microwave</strong> — you set time and press Start. You don't control the magnetron, voltage, or radiation levels directly</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 7: Inheritance ==================== -->
+  <div class="card wide" style="border-left-color: var(--color-reference);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(99,102,241,0.12), transparent);">
+      <span class="card-icon">🧬</span>
+      <h3>Inheritance — "Child Gets Traits from Parent"</h3>
+    </div>
+    <div class="card-body">
+      <p>A new class (<strong>child</strong>) can <strong>inherit</strong> all the attributes and methods from an existing class (<strong>parent</strong>), and add its own unique features.</p>
+
+      <div class="illustration">
+        <svg width="500" height="180" viewBox="0 0 500 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Parent -->
+          <rect x="170" y="5" width="160" height="60" rx="14" fill="rgba(99,102,241,0.12)" stroke="#6366F1" stroke-width="2"/>
+          <text x="200" y="32" fill="#6366F1" font-size="22">🐾</text>
+          <text x="224" y="30" fill="#CBD5E1" font-size="12" font-weight="700">Animal</text>
+          <text x="224" y="46" fill="#94A3B8" font-size="10">name, eat(), sleep()</text>
+          <text x="250" y="56" text-anchor="middle" fill="#6366F1" font-size="8" font-weight="600">PARENT CLASS</text>
+          <!-- Lines down -->
+          <line x1="200" y1="65" x2="100" y2="105" stroke="#6366F1" stroke-width="1.5"/>
+          <line x1="250" y1="65" x2="250" y2="105" stroke="#6366F1" stroke-width="1.5"/>
+          <line x1="300" y1="65" x2="400" y2="105" stroke="#6366F1" stroke-width="1.5"/>
+          <!-- Child: Dog -->
+          <rect x="30" y="108" width="140" height="60" rx="14" fill="rgba(59,130,246,0.12)" stroke="#3B82F6" stroke-width="2"/>
+          <text x="55" y="136" fill="#3B82F6" font-size="22">🐕</text>
+          <text x="82" y="132" fill="#CBD5E1" font-size="11" font-weight="700">Dog</text>
+          <text x="82" y="148" fill="#94A3B8" font-size="9">+ bark(), fetch()</text>
+          <text x="100" y="160" text-anchor="middle" fill="#3B82F6" font-size="8">inherits name, eat, sleep</text>
+          <!-- Child: Cat -->
+          <rect x="180" y="108" width="140" height="60" rx="14" fill="rgba(236,72,153,0.12)" stroke="#EC4899" stroke-width="2"/>
+          <text x="205" y="136" fill="#EC4899" font-size="22">🐈</text>
+          <text x="232" y="132" fill="#CBD5E1" font-size="11" font-weight="700">Cat</text>
+          <text x="232" y="148" fill="#94A3B8" font-size="9">+ purr(), climb()</text>
+          <text x="250" y="160" text-anchor="middle" fill="#EC4899" font-size="8">inherits name, eat, sleep</text>
+          <!-- Child: Bird -->
+          <rect x="330" y="108" width="140" height="60" rx="14" fill="rgba(16,185,129,0.12)" stroke="#10B981" stroke-width="2"/>
+          <text x="355" y="136" fill="#10B981" font-size="22">🐦</text>
+          <text x="382" y="132" fill="#CBD5E1" font-size="11" font-weight="700">Bird</text>
+          <text x="382" y="148" fill="#94A3B8" font-size="9">+ fly(), sing()</text>
+          <text x="400" y="160" text-anchor="middle" fill="#10B981" font-size="8">inherits name, eat, sleep</text>
+        </svg>
+        <div class="illustration-caption">Children inherit everything from the parent, plus add their own special abilities</div>
+      </div>
+
+<pre><code><span class="kw">class</span> <span class="tp">Animal</span>:                          <span class="cm"># Parent class</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, name):
+        <span class="se">self</span>.name = name
+    <span class="kw">def</span> <span class="fn">eat</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">f"</span>{<span class="se">self</span>.name} <span class="st">is eating"</span>)
+
+<span class="kw">class</span> <span class="tp">Dog</span>(<span class="tp">Animal</span>):                      <span class="cm"># Child inherits from Animal</span>
+    <span class="kw">def</span> <span class="fn">bark</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">f"</span>{<span class="se">self</span>.name} <span class="st">says Woof!"</span>)
+
+<span class="kw">class</span> <span class="tp">Cat</span>(<span class="tp">Animal</span>):                      <span class="cm"># Another child</span>
+    <span class="kw">def</span> <span class="fn">purr</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">f"</span>{<span class="se">self</span>.name} <span class="st">purrs..."</span>)
+
+rex = <span class="tp">Dog</span>(<span class="st">"Rex"</span>)
+rex.<span class="fn">eat</span>()     <span class="cm"># Rex is eating   ← inherited!</span>
+rex.<span class="fn">bark</span>()    <span class="cm"># Rex says Woof!  ← its own method</span></code></pre>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogies</div>
+        <ul>
+          <li><strong>Family tree</strong> — you inherit eye color, height from parents. But you also develop your own unique talents</li>
+          <li><strong>Vehicles</strong> — All vehicles have wheels & engine. A Truck adds cargo capacity. A Bus adds passenger seats. A Motorcycle changes wheel count</li>
+          <li><strong>Smartphones</strong> — All phones can call & text (parent). iPhone adds FaceTime. Android adds widgets. Samsung adds S-Pen</li>
+          <li><strong>Social media</strong> — All posts have author & timestamp. A PhotoPost adds image. A VideoPost adds duration. A StoryPost adds expiry time</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 8: super() ==================== -->
+  <div class="card" style="border-left-color: var(--color-tools);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(6,182,212,0.12), transparent);">
+      <span class="card-icon">📞</span>
+      <h3>super() — Calling the Parent</h3>
+    </div>
+    <div class="card-body">
+      <p><code>super()</code> lets a child class <strong>call a method from its parent class</strong>. Useful when you want to extend (not replace) what the parent does.</p>
+
+      <div class="illustration">
+        <svg width="300" height="100" viewBox="0 0 300 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="120" height="36" rx="10" fill="rgba(6,182,212,0.12)" stroke="#06B6D4" stroke-width="2"/>
+          <text x="70" y="33" text-anchor="middle" fill="#06B6D4" font-size="11" font-weight="700">Parent.__init__</text>
+          <path d="M70 46 L70 54" stroke="#06B6D4" stroke-width="1.5" marker-end="url(#arr4)"/>
+          <rect x="10" y="58" width="120" height="36" rx="10" fill="rgba(139,92,246,0.12)" stroke="#8B5CF6" stroke-width="2"/>
+          <text x="70" y="81" text-anchor="middle" fill="#8B5CF6" font-size="11" font-weight="700">Child.__init__</text>
+          <text x="155" y="75" fill="#94A3B8" font-size="10">←</text>
+          <text x="170" y="75" fill="#CBD5E1" font-size="10">super().__init__()</text>
+          <text x="170" y="90" fill="#94A3B8" font-size="9">calls parent first!</text>
+          <defs><marker id="arr4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#06B6D4"/></marker></defs>
+        </svg>
+      </div>
+
+<pre><code><span class="kw">class</span> <span class="tp">Animal</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, name):
+        <span class="se">self</span>.name = name
+
+<span class="kw">class</span> <span class="tp">Dog</span>(<span class="tp">Animal</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, name, breed):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(name)  <span class="cm"># Call parent's __init__</span>
+        <span class="se">self</span>.breed = breed     <span class="cm"># Add own attribute</span>
+
+rex = <span class="tp">Dog</span>(<span class="st">"Rex"</span>, <span class="st">"Labrador"</span>)
+<span class="fn">print</span>(rex.name)    <span class="cm"># Rex (from parent)</span>
+<span class="fn">print</span>(rex.breed)   <span class="cm"># Labrador (own)</span></code></pre>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogy</div>
+        <p>Like calling your parents for advice before making your own decision — <code>super()</code> says <strong>"Hey Parent, do your thing first, then I'll add mine."</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 9: Polymorphism ==================== -->
+  <div class="card" style="border-left-color: var(--color-advanced);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(239,68,68,0.12), transparent);">
+      <span class="card-icon">🎭</span>
+      <h3>Polymorphism</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Polymorphism</strong> = "many forms." The <strong>same method name</strong> behaves <strong>differently</strong> depending on the object.</p>
+
+      <div class="illustration">
+        <svg width="320" height="140" viewBox="0 0 320 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Central action -->
+          <rect x="110" y="5" width="100" height="35" rx="10" fill="rgba(239,68,68,0.12)" stroke="#EF4444" stroke-width="2"/>
+          <text x="160" y="27" text-anchor="middle" fill="#EF4444" font-size="12" font-weight="700">speak()</text>
+          <!-- Lines -->
+          <line x1="120" y1="40" x2="55" y2="65" stroke="#64748B" stroke-width="1.5"/>
+          <line x1="160" y1="40" x2="160" y2="65" stroke="#64748B" stroke-width="1.5"/>
+          <line x1="200" y1="40" x2="265" y2="65" stroke="#64748B" stroke-width="1.5"/>
+          <!-- Dog -->
+          <rect x="10" y="68" width="90" height="60" rx="12" fill="rgba(59,130,246,0.1)" stroke="#3B82F6" stroke-width="1.5"/>
+          <text x="55" y="92" text-anchor="middle" font-size="24">🐕</text>
+          <text x="55" y="112" text-anchor="middle" fill="#3B82F6" font-size="10" font-weight="600">"Woof!"</text>
+          <text x="55" y="124" text-anchor="middle" fill="#94A3B8" font-size="8">Dog.speak()</text>
+          <!-- Cat -->
+          <rect x="115" y="68" width="90" height="60" rx="12" fill="rgba(236,72,153,0.1)" stroke="#EC4899" stroke-width="1.5"/>
+          <text x="160" y="92" text-anchor="middle" font-size="24">🐈</text>
+          <text x="160" y="112" text-anchor="middle" fill="#EC4899" font-size="10" font-weight="600">"Meow!"</text>
+          <text x="160" y="124" text-anchor="middle" fill="#94A3B8" font-size="8">Cat.speak()</text>
+          <!-- Duck -->
+          <rect x="220" y="68" width="90" height="60" rx="12" fill="rgba(16,185,129,0.1)" stroke="#10B981" stroke-width="1.5"/>
+          <text x="265" y="92" text-anchor="middle" font-size="24">🦆</text>
+          <text x="265" y="112" text-anchor="middle" fill="#10B981" font-size="10" font-weight="600">"Quack!"</text>
+          <text x="265" y="124" text-anchor="middle" fill="#94A3B8" font-size="8">Duck.speak()</text>
+        </svg>
+        <div class="illustration-caption">Same method name "speak()" — each animal does it differently!</div>
+      </div>
+
+<pre><code><span class="kw">class</span> <span class="tp">Dog</span>:
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="se">self</span>):
+        <span class="kw">return</span> <span class="st">"Woof!"</span>
+
+<span class="kw">class</span> <span class="tp">Cat</span>:
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="se">self</span>):
+        <span class="kw">return</span> <span class="st">"Meow!"</span>
+
+<span class="kw">class</span> <span class="tp">Duck</span>:
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="se">self</span>):
+        <span class="kw">return</span> <span class="st">"Quack!"</span>
+
+<span class="cm"># Same function works with ANY animal!</span>
+<span class="kw">for</span> animal <span class="kw">in</span> [<span class="tp">Dog</span>(), <span class="tp">Cat</span>(), <span class="tp">Duck</span>()]:
+    <span class="fn">print</span>(animal.<span class="fn">speak</span>())</code></pre>
+      <div class="example-output">Woof!<br>Meow!<br>Quack!</div>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogies</div>
+        <ul>
+          <li><strong>TV remote "play" button</strong> — press it on Netflix, YouTube, or Spotify. Same button, different content plays!</li>
+          <li><strong>"Pay" at checkout</strong> — works with cash, credit card, Apple Pay, UPI. Same action, different payment process each time</li>
+          <li><strong>"Print" command</strong> — same command prints to a laser printer, inkjet, or PDF. Each does it differently</li>
+          <li><strong>"Start" a vehicle</strong> — car uses a key, Tesla uses a button, motorcycle uses a kick. Same concept, different implementation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 10: Abstraction ==================== -->
+  <div class="card" style="border-left-color: var(--color-tips);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(132,204,22,0.12), transparent);">
+      <span class="card-icon">🎨</span>
+      <h3>Abstraction</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Abstraction</strong> = <strong>Hide the complex stuff</strong>, show only what's needed. You define "what to do" but each child decides "how to do it."</p>
+
+      <div class="illustration">
+        <svg width="300" height="110" viewBox="0 0 300 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Car Dashboard -->
+          <rect x="20" y="10" width="260" height="90" rx="16" fill="rgba(132,204,22,0.06)" stroke="#84CC16" stroke-width="2"/>
+          <text x="150" y="30" text-anchor="middle" fill="#84CC16" font-size="10" font-weight="700">Car Dashboard (what you see)</text>
+          <!-- Controls -->
+          <circle cx="65" cy="60" r="22" fill="rgba(59,130,246,0.12)" stroke="#3B82F6" stroke-width="1.5"/>
+          <text x="65" y="58" text-anchor="middle" font-size="14">🔑</text>
+          <text x="65" y="72" text-anchor="middle" fill="#94A3B8" font-size="7">Start</text>
+          <circle cx="140" cy="60" r="22" fill="rgba(16,185,129,0.12)" stroke="#10B981" stroke-width="1.5"/>
+          <text x="140" y="58" text-anchor="middle" font-size="14">⛽</text>
+          <text x="140" y="72" text-anchor="middle" fill="#94A3B8" font-size="7">Gas</text>
+          <circle cx="215" cy="60" r="22" fill="rgba(239,68,68,0.12)" stroke="#EF4444" stroke-width="1.5"/>
+          <text x="215" y="58" text-anchor="middle" font-size="14">🛑</text>
+          <text x="215" y="72" text-anchor="middle" fill="#94A3B8" font-size="7">Brake</text>
+          <!-- Hidden -->
+          <text x="150" y="105" text-anchor="middle" fill="#64748B" font-size="9">🔧 Engine, transmission, fuel injection — HIDDEN from you!</text>
+        </svg>
+      </div>
+
+<pre><code><span class="kw">from</span> abc <span class="kw">import</span> ABC, abstractmethod
+
+<span class="kw">class</span> <span class="tp">Shape</span>(ABC):            <span class="cm"># Abstract class</span>
+    @abstractmethod
+    <span class="kw">def</span> <span class="fn">area</span>(<span class="se">self</span>):
+        <span class="kw">pass</span>                  <span class="cm"># No code here — children MUST implement</span>
+
+<span class="kw">class</span> <span class="tp">Circle</span>(<span class="tp">Shape</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, radius):
+        <span class="se">self</span>.radius = radius
+    <span class="kw">def</span> <span class="fn">area</span>(<span class="se">self</span>):
+        <span class="kw">return</span> <span class="nb">3.14</span> * <span class="se">self</span>.radius ** <span class="nb">2</span>
+
+<span class="kw">class</span> <span class="tp">Rectangle</span>(<span class="tp">Shape</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, w, h):
+        <span class="se">self</span>.w, <span class="se">self</span>.h = w, h
+    <span class="kw">def</span> <span class="fn">area</span>(<span class="se">self</span>):
+        <span class="kw">return</span> <span class="se">self</span>.w * <span class="se">self</span>.h
+
+c = <span class="tp">Circle</span>(<span class="nb">5</span>)
+<span class="fn">print</span>(c.<span class="fn">area</span>())        <span class="cm"># 78.5</span></code></pre>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogy</div>
+        <p>A <strong>car dashboard</strong> — you just press Start, Gas, Brake. You don't need to know how the engine, fuel injection, or transmission work inside!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 11: Method Overriding ==================== -->
+  <div class="card" style="border-left-color: var(--color-control);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(245,158,11,0.12), transparent);">
+      <span class="card-icon">🔄</span>
+      <h3>Method Overriding</h3>
+    </div>
+    <div class="card-body">
+      <p>A child class can <strong>replace</strong> (override) a method from the parent class with its own version.</p>
+
+      <div class="illustration">
+        <svg width="280" height="100" viewBox="0 0 280 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="10" width="120" height="35" rx="10" fill="rgba(245,158,11,0.1)" stroke="#F59E0B" stroke-width="1.5"/>
+          <text x="70" y="32" text-anchor="middle" fill="#F59E0B" font-size="10" font-weight="600">Parent: greet()</text>
+          <text x="70" y="58" text-anchor="middle" fill="#94A3B8" font-size="9">"Hello!"</text>
+          <text x="145" y="32" text-anchor="middle" fill="#64748B" font-size="16">→</text>
+          <rect x="160" y="10" width="120" height="35" rx="10" fill="rgba(139,92,246,0.1)" stroke="#8B5CF6" stroke-width="1.5"/>
+          <text x="220" y="32" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="600">Child: greet()</text>
+          <text x="220" y="58" text-anchor="middle" fill="#8B5CF6" font-size="9">"Hey there! 👋"</text>
+          <text x="220" y="72" text-anchor="middle" fill="#94A3B8" font-size="8">overrides parent!</text>
+          <text x="145" y="90" text-anchor="middle" fill="#64748B" font-size="9">Child's version WINS</text>
+        </svg>
+      </div>
+
+<pre><code><span class="kw">class</span> <span class="tp">Animal</span>:
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">"Some sound..."</span>)
+
+<span class="kw">class</span> <span class="tp">Dog</span>(<span class="tp">Animal</span>):
+    <span class="kw">def</span> <span class="fn">speak</span>(<span class="se">self</span>):          <span class="cm"># Override!</span>
+        <span class="fn">print</span>(<span class="st">"Woof Woof!"</span>)
+
+pet = <span class="tp">Dog</span>()
+pet.<span class="fn">speak</span>()   <span class="cm"># Woof Woof!  (not "Some sound...")</span></code></pre>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogy</div>
+        <p>Your family recipe for cookies — your mom has her version, but you <strong>override</strong> it with your own twist (extra chocolate chips!).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 12: Magic Methods ==================== -->
+  <div class="card" style="border-left-color: var(--color-syntax);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(139,92,246,0.12), transparent);">
+      <span class="card-icon">✨</span>
+      <h3>Magic (Dunder) Methods</h3>
+    </div>
+    <div class="card-body">
+      <p>Methods with <strong>double underscores</strong> (<code>__name__</code>) are "magic" — Python calls them automatically in special situations.</p>
+
+      <table class="ref-table">
+        <tr><th>Method</th><th>When Python Calls It</th><th>Example</th></tr>
+        <tr><td><code>__init__</code></td><td>Creating a new object</td><td><code>obj = MyClass()</code></td></tr>
+        <tr><td><code>__str__</code></td><td>Printing the object</td><td><code>print(obj)</code></td></tr>
+        <tr><td><code>__len__</code></td><td>Getting length</td><td><code>len(obj)</code></td></tr>
+        <tr><td><code>__eq__</code></td><td>Comparing with <code>==</code></td><td><code>obj1 == obj2</code></td></tr>
+        <tr><td><code>__add__</code></td><td>Using <code>+</code> operator</td><td><code>obj1 + obj2</code></td></tr>
+        <tr><td><code>__repr__</code></td><td>Developer-friendly display</td><td><code>repr(obj)</code></td></tr>
+      </table>
+
+<pre><code><span class="kw">class</span> <span class="tp">Book</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, title, pages):
+        <span class="se">self</span>.title = title
+        <span class="se">self</span>.pages = pages
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="se">self</span>):
+        <span class="kw">return</span> <span class="st">f"📖 </span>{<span class="se">self</span>.title} <span class="st">(</span>{<span class="se">self</span>.pages} <span class="st">pages)"</span>
+
+    <span class="kw">def</span> <span class="fn">__len__</span>(<span class="se">self</span>):
+        <span class="kw">return</span> <span class="se">self</span>.pages
+
+book = <span class="tp">Book</span>(<span class="st">"Python 101"</span>, <span class="nb">350</span>)
+<span class="fn">print</span>(book)       <span class="cm"># 📖 Python 101 (350 pages)</span>
+<span class="fn">print</span>(<span class="fn">len</span>(book))  <span class="cm"># 350</span></code></pre>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogy</div>
+        <p>Magic methods are like <strong>automatic reflexes</strong>. When someone asks "how tall are you?" you don't think — you just answer. Similarly, when Python asks <code>len(book)</code>, the <code>__len__</code> method fires automatically.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 13: Class vs Instance Variables ==================== -->
+  <div class="card" style="border-left-color: var(--color-data);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(16,185,129,0.12), transparent);">
+      <span class="card-icon">📊</span>
+      <h3>Class vs Instance Variables</h3>
+    </div>
+    <div class="card-body">
+
+      <div class="illustration">
+        <svg width="320" height="130" viewBox="0 0 320 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Class var -->
+          <rect x="10" y="10" width="140" height="110" rx="12" fill="rgba(59,130,246,0.08)" stroke="#3B82F6" stroke-width="1.5"/>
+          <text x="80" y="30" text-anchor="middle" fill="#3B82F6" font-size="11" font-weight="700">Class Variable</text>
+          <text x="80" y="48" text-anchor="middle" fill="#94A3B8" font-size="9">Shared by ALL objects</text>
+          <text x="80" y="68" text-anchor="middle" font-size="22">👥</text>
+          <text x="80" y="88" text-anchor="middle" fill="#CBD5E1" font-size="10">species = "Dog"</text>
+          <text x="80" y="104" text-anchor="middle" fill="#94A3B8" font-size="8">Same for every Dog object</text>
+          <!-- Instance var -->
+          <rect x="170" y="10" width="140" height="110" rx="12" fill="rgba(236,72,153,0.08)" stroke="#EC4899" stroke-width="1.5"/>
+          <text x="240" y="30" text-anchor="middle" fill="#EC4899" font-size="11" font-weight="700">Instance Variable</text>
+          <text x="240" y="48" text-anchor="middle" fill="#94A3B8" font-size="9">Unique to EACH object</text>
+          <text x="240" y="68" text-anchor="middle" font-size="22">👤</text>
+          <text x="240" y="88" text-anchor="middle" fill="#CBD5E1" font-size="10">self.name = "Rex"</text>
+          <text x="240" y="104" text-anchor="middle" fill="#94A3B8" font-size="8">Different for each Dog</text>
+        </svg>
+      </div>
+
+<pre><code><span class="kw">class</span> <span class="tp">Dog</span>:
+    species = <span class="st">"Canis familiaris"</span>  <span class="cm"># Class variable (shared)</span>
+
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, name):
+        <span class="se">self</span>.name = name          <span class="cm"># Instance variable (unique)</span>
+
+rex = <span class="tp">Dog</span>(<span class="st">"Rex"</span>)
+luna = <span class="tp">Dog</span>(<span class="st">"Luna"</span>)
+
+<span class="fn">print</span>(rex.species)    <span class="cm"># Canis familiaris (shared)</span>
+<span class="fn">print</span>(luna.species)   <span class="cm"># Canis familiaris (shared)</span>
+<span class="fn">print</span>(rex.name)       <span class="cm"># Rex   (unique)</span>
+<span class="fn">print</span>(luna.name)      <span class="cm"># Luna  (unique)</span></code></pre>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Real-World Analogy</div>
+        <p><strong>Class variable</strong> = School name (same for all students). <strong>Instance variable</strong> = Student's name (different for each student).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 14: Complete Real-World Example ==================== -->
+  <div class="card wide" style="border-left-color: var(--color-examples);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(249,115,22,0.12), transparent);">
+      <span class="card-icon">🛒</span>
+      <h3>Complete Example: Online Shopping System</h3>
+    </div>
+    <div class="card-body">
+      <p>Let's build a mini shopping system using all the OOP concepts you just learned!</p>
+
+      <div class="illustration">
+        <svg width="560" height="120" viewBox="0 0 560 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="15" width="110" height="90" rx="12" fill="rgba(59,130,246,0.1)" stroke="#3B82F6" stroke-width="1.5"/>
+          <text x="65" y="45" text-anchor="middle" font-size="26">📦</text>
+          <text x="65" y="68" text-anchor="middle" fill="#3B82F6" font-size="10" font-weight="700">Product</text>
+          <text x="65" y="82" text-anchor="middle" fill="#94A3B8" font-size="8">name, price</text>
+          <text x="65" y="94" text-anchor="middle" fill="#94A3B8" font-size="8">display()</text>
+
+          <path d="M125 60 L155 60" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+          <rect x="160" y="15" width="110" height="90" rx="12" fill="rgba(139,92,246,0.1)" stroke="#8B5CF6" stroke-width="1.5"/>
+          <text x="215" y="45" text-anchor="middle" font-size="26">📱</text>
+          <text x="215" y="68" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="700">Electronics</text>
+          <text x="215" y="82" text-anchor="middle" fill="#94A3B8" font-size="8">+ warranty</text>
+          <text x="215" y="94" text-anchor="middle" fill="#94A3B8" font-size="8">inherits Product</text>
+
+          <path d="M275 60 L305 60" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+          <rect x="310" y="15" width="110" height="90" rx="12" fill="rgba(16,185,129,0.1)" stroke="#10B981" stroke-width="1.5"/>
+          <text x="365" y="45" text-anchor="middle" font-size="26">🛒</text>
+          <text x="365" y="68" text-anchor="middle" fill="#10B981" font-size="10" font-weight="700">Cart</text>
+          <text x="365" y="82" text-anchor="middle" fill="#94A3B8" font-size="8">__items (private)</text>
+          <text x="365" y="94" text-anchor="middle" fill="#94A3B8" font-size="8">add(), total()</text>
+
+          <path d="M425 60 L455 60" stroke="#64748B" stroke-width="1.5" marker-end="url(#arr5)"/>
+
+          <rect x="460" y="15" width="90" height="90" rx="12" fill="rgba(236,72,153,0.1)" stroke="#EC4899" stroke-width="1.5"/>
+          <text x="505" y="45" text-anchor="middle" font-size="26">💰</text>
+          <text x="505" y="68" text-anchor="middle" fill="#EC4899" font-size="10" font-weight="700">Checkout!</text>
+          <text x="505" y="82" text-anchor="middle" fill="#94A3B8" font-size="8">Uses all</text>
+          <text x="505" y="94" text-anchor="middle" fill="#94A3B8" font-size="8">OOP concepts</text>
+
+          <defs><marker id="arr5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#64748B"/></marker></defs>
+        </svg>
+      </div>
+
+<pre><code><span class="kw">class</span> <span class="tp">Product</span>:                             <span class="cm"># 📦 Base class</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, name, price):
+        <span class="se">self</span>.name  = name
+        <span class="se">self</span>.price = price
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">f"</span>{<span class="se">self</span>.name} <span class="st">- $</span>{<span class="se">self</span>.price}<span class="st">"</span>)
+
+<span class="kw">class</span> <span class="tp">Electronics</span>(<span class="tp">Product</span>):                 <span class="cm"># 📱 Inheritance!</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, name, price, warranty):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(name, price)       <span class="cm"># super()!</span>
+        <span class="se">self</span>.warranty = warranty
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="se">self</span>):                      <span class="cm"># Polymorphism!</span>
+        <span class="fn">print</span>(<span class="st">f"</span>{<span class="se">self</span>.name} <span class="st">- $</span>{<span class="se">self</span>.price} <span class="st">(</span>{<span class="se">self</span>.warranty} <span class="st">warranty)"</span>)
+
+<span class="kw">class</span> <span class="tp">Cart</span>:                                 <span class="cm"># 🛒 Encapsulation!</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>):
+        <span class="se">self</span>.__items = []                   <span class="cm"># Private list</span>
+
+    <span class="kw">def</span> <span class="fn">add</span>(<span class="se">self</span>, product):
+        <span class="se">self</span>.__items.<span class="fn">append</span>(product)
+        <span class="fn">print</span>(<span class="st">f"Added </span>{product.name} <span class="st">to cart"</span>)
+
+    <span class="kw">def</span> <span class="fn">total</span>(<span class="se">self</span>):
+        <span class="kw">return</span> <span class="fn">sum</span>(item.price <span class="kw">for</span> item <span class="kw">in</span> <span class="se">self</span>.__items)
+
+    <span class="kw">def</span> <span class="fn">show</span>(<span class="se">self</span>):
+        <span class="kw">for</span> item <span class="kw">in</span> <span class="se">self</span>.__items:
+            item.<span class="fn">display</span>()                 <span class="cm"># Polymorphism in action!</span>
+
+<span class="cm"># 🎮 Let's shop!</span>
+phone  = <span class="tp">Electronics</span>(<span class="st">"iPhone"</span>, <span class="nb">999</span>, <span class="st">"2yr"</span>)
+book   = <span class="tp">Product</span>(<span class="st">"Python Book"</span>, <span class="nb">35</span>)
+
+cart = <span class="tp">Cart</span>()
+cart.<span class="fn">add</span>(phone)
+cart.<span class="fn">add</span>(book)
+cart.<span class="fn">show</span>()
+<span class="fn">print</span>(<span class="st">f"Total: $</span>{cart.<span class="fn">total</span>()}<span class="st">"</span>)</code></pre>
+      <div class="example-output">Added iPhone to cart<br>Added Python Book to cart<br>iPhone - $999 (2yr warranty)<br>Python Book - $35<br>Total: $1034</div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 15: Quick Reference Table ==================== -->
+  <div class="card wide" style="border-left-color: var(--color-reference);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(99,102,241,0.12), transparent);">
+      <span class="card-icon">📋</span>
+      <h3>Quick Reference: OOP Cheat Table</h3>
+    </div>
+    <div class="card-body">
+      <table class="ref-table">
+        <tr>
+          <th>Concept</th>
+          <th>What It Means</th>
+          <th>Real-World Analogy</th>
+          <th>Python Syntax</th>
+        </tr>
+        <tr>
+          <td><strong>Class</strong></td>
+          <td>Blueprint / template</td>
+          <td>Cookie cutter</td>
+          <td><code>class Dog:</code></td>
+        </tr>
+        <tr>
+          <td><strong>Object</strong></td>
+          <td>Instance created from class</td>
+          <td>A cookie made from the cutter</td>
+          <td><code>rex = Dog()</code></td>
+        </tr>
+        <tr>
+          <td><strong>Attribute</strong></td>
+          <td>Data the object holds</td>
+          <td>Your eye color, height</td>
+          <td><code>self.name = "Rex"</code></td>
+        </tr>
+        <tr>
+          <td><strong>Method</strong></td>
+          <td>Action the object can do</td>
+          <td>You can walk, talk, eat</td>
+          <td><code>def bark(self):</code></td>
+        </tr>
+        <tr>
+          <td><strong>Constructor</strong></td>
+          <td>Auto-runs when object is created</td>
+          <td>Birth certificate</td>
+          <td><code>def __init__(self):</code></td>
+        </tr>
+        <tr>
+          <td><strong>self</strong></td>
+          <td>Refers to "this specific object"</td>
+          <td>Your name tag</td>
+          <td><code>self.name</code></td>
+        </tr>
+        <tr>
+          <td><strong>Encapsulation</strong></td>
+          <td>Hide internal data</td>
+          <td>ATM machine / medicine capsule</td>
+          <td><code>self.__balance</code></td>
+        </tr>
+        <tr>
+          <td><strong>Inheritance</strong></td>
+          <td>Child gets parent's traits</td>
+          <td>Family genes</td>
+          <td><code>class Dog(Animal):</code></td>
+        </tr>
+        <tr>
+          <td><strong>Polymorphism</strong></td>
+          <td>Same method, different behavior</td>
+          <td>Play button on different apps</td>
+          <td>Override <code>speak()</code> in each class</td>
+        </tr>
+        <tr>
+          <td><strong>Abstraction</strong></td>
+          <td>Show only what's needed</td>
+          <td>Car dashboard</td>
+          <td><code>class Shape(ABC):</code></td>
+        </tr>
+        <tr>
+          <td><strong>super()</strong></td>
+          <td>Call parent's method</td>
+          <td>Calling parents for advice</td>
+          <td><code>super().__init__()</code></td>
+        </tr>
+        <tr>
+          <td><strong>Overriding</strong></td>
+          <td>Replace parent's method</td>
+          <td>Your version of a family recipe</td>
+          <td>Redefine method in child class</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- ==================== CARD: Pizza Ordering System ==================== -->
+  <div class="card wide" style="border-left-color: var(--color-functions);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(236,72,153,0.12), transparent);">
+      <span class="card-icon">🍕</span>
+      <h3>Real-World Example: Pizza Ordering System</h3>
+    </div>
+    <div class="card-body">
+      <p>Let's model a pizza shop — showing <strong>inheritance</strong>, <strong>polymorphism</strong>, and <strong>encapsulation</strong> in one tasty example!</p>
+
+      <div class="illustration">
+        <svg width="480" height="120" viewBox="0 0 480 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="10" y="15" width="100" height="90" rx="12" fill="rgba(236,72,153,0.1)" stroke="#EC4899" stroke-width="1.5"/>
+          <text x="60" y="48" text-anchor="middle" font-size="28">🍕</text>
+          <text x="60" y="70" text-anchor="middle" fill="#EC4899" font-size="10" font-weight="700">Pizza (base)</text>
+          <text x="60" y="84" text-anchor="middle" fill="#94A3B8" font-size="8">size, crust</text>
+          <text x="60" y="96" text-anchor="middle" fill="#94A3B8" font-size="8">price(), describe()</text>
+
+          <path d="M115 40 L145 30" stroke="#64748B" stroke-width="1" stroke-dasharray="3,2"/>
+          <path d="M115 60 L145 60" stroke="#64748B" stroke-width="1" stroke-dasharray="3,2"/>
+          <path d="M115 80 L145 90" stroke="#64748B" stroke-width="1" stroke-dasharray="3,2"/>
+
+          <rect x="150" y="5" width="95" height="42" rx="10" fill="rgba(59,130,246,0.1)" stroke="#3B82F6" stroke-width="1.5"/>
+          <text x="198" y="22" text-anchor="middle" fill="#3B82F6" font-size="10" font-weight="600">🧀 Margherita</text>
+          <text x="198" y="36" text-anchor="middle" fill="#94A3B8" font-size="8">+ extra cheese</text>
+
+          <rect x="150" y="52" width="95" height="42" rx="10" fill="rgba(16,185,129,0.1)" stroke="#10B981" stroke-width="1.5"/>
+          <text x="198" y="68" text-anchor="middle" fill="#10B981" font-size="10" font-weight="600">🥩 Pepperoni</text>
+          <text x="198" y="82" text-anchor="middle" fill="#94A3B8" font-size="8">+ meat type</text>
+
+          <rect x="150" y="75" width="95" height="42" rx="10" fill="rgba(245,158,11,0.1)" stroke="#F59E0B" stroke-width="1.5"/>
+          <text x="198" y="92" text-anchor="middle" fill="#F59E0B" font-size="10" font-weight="600">🥦 Veggie</text>
+          <text x="198" y="106" text-anchor="middle" fill="#94A3B8" font-size="8">+ toppings list</text>
+
+          <rect x="280" y="20" width="190" height="80" rx="12" fill="rgba(139,92,246,0.06)" stroke="#8B5CF6" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="375" y="40" text-anchor="middle" fill="#8B5CF6" font-size="10" font-weight="700">Same call, different results:</text>
+          <text x="375" y="58" text-anchor="middle" fill="#3B82F6" font-size="10">margherita.price() → $12</text>
+          <text x="375" y="72" text-anchor="middle" fill="#10B981" font-size="10">pepperoni.price() → $15</text>
+          <text x="375" y="86" text-anchor="middle" fill="#F59E0B" font-size="10">veggie.price() → $13</text>
+        </svg>
+      </div>
+
+<pre><code><span class="kw">class</span> <span class="tp">Pizza</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, size):
+        <span class="se">self</span>.size = size    <span class="cm"># "small", "medium", "large"</span>
+
+    <span class="kw">def</span> <span class="fn">price</span>(<span class="se">self</span>):       <span class="cm"># Base price by size</span>
+        prices = {<span class="st">"small"</span>: <span class="nb">8</span>, <span class="st">"medium"</span>: <span class="nb">10</span>, <span class="st">"large"</span>: <span class="nb">12</span>}
+        <span class="kw">return</span> prices[<span class="se">self</span>.size]
+
+    <span class="kw">def</span> <span class="fn">describe</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">f"A </span>{<span class="se">self</span>.size} <span class="st">pizza - $</span>{<span class="se">self</span>.<span class="fn">price</span>()}<span class="st">"</span>)
+
+<span class="kw">class</span> <span class="tp">PepperoniPizza</span>(<span class="tp">Pizza</span>):           <span class="cm"># 🧬 Inheritance!</span>
+    <span class="kw">def</span> <span class="fn">price</span>(<span class="se">self</span>):                    <span class="cm"># 🎭 Polymorphism!</span>
+        <span class="kw">return</span> <span class="fn">super</span>().<span class="fn">price</span>() + <span class="nb">5</span>     <span class="cm"># 📞 super() adds base + $5</span>
+
+    <span class="kw">def</span> <span class="fn">describe</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">f"🥩 </span>{<span class="se">self</span>.size} <span class="st">Pepperoni - $</span>{<span class="se">self</span>.<span class="fn">price</span>()}<span class="st">"</span>)
+
+<span class="kw">class</span> <span class="tp">VeggiePizza</span>(<span class="tp">Pizza</span>):
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, size, toppings):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(size)
+        <span class="se">self</span>.toppings = toppings
+
+    <span class="kw">def</span> <span class="fn">describe</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">f"🥦 </span>{<span class="se">self</span>.size} <span class="st">Veggie (</span>{<span class="st">', '</span>.<span class="fn">join</span>(<span class="se">self</span>.toppings)}<span class="st">) - $</span>{<span class="se">self</span>.<span class="fn">price</span>()}<span class="st">"</span>)
+
+<span class="cm"># Order up!</span>
+order = [<span class="tp">PepperoniPizza</span>(<span class="st">"large"</span>), <span class="tp">VeggiePizza</span>(<span class="st">"medium"</span>, [<span class="st">"mushrooms"</span>, <span class="st">"olives"</span>])]
+<span class="kw">for</span> pizza <span class="kw">in</span> order:
+    pizza.<span class="fn">describe</span>()</code></pre>
+      <div class="example-output">🥩 large Pepperoni - $17<br>🥦 medium Veggie (mushrooms, olives) - $10</div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD: Library System ==================== -->
+  <div class="card wide" style="border-left-color: var(--color-data);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(16,185,129,0.12), transparent);">
+      <span class="card-icon">📚</span>
+      <h3>Real-World Example: Library System</h3>
+    </div>
+    <div class="card-body">
+      <p>A library manages books, members, and borrowing — a perfect fit for OOP with <strong>encapsulation</strong> and <strong>methods</strong>.</p>
+
+<pre><code><span class="kw">class</span> <span class="tp">Book</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, title, author):
+        <span class="se">self</span>.title     = title
+        <span class="se">self</span>.author    = author
+        <span class="se">self</span>.available = <span class="nb">True</span>
+
+    <span class="kw">def</span> <span class="fn">__str__</span>(<span class="se">self</span>):
+        status = <span class="st">"✅ Available"</span> <span class="kw">if</span> <span class="se">self</span>.available <span class="kw">else</span> <span class="st">"❌ Borrowed"</span>
+        <span class="kw">return</span> <span class="st">f"📖 </span>{<span class="se">self</span>.title} <span class="st">by </span>{<span class="se">self</span>.author} <span class="st">[</span>{status}<span class="st">]"</span>
+
+<span class="kw">class</span> <span class="tp">Member</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, name):
+        <span class="se">self</span>.name = name
+        <span class="se">self</span>.__borrowed = []       <span class="cm"># 🔒 Private!</span>
+
+    <span class="kw">def</span> <span class="fn">borrow</span>(<span class="se">self</span>, book):
+        <span class="kw">if</span> book.available:
+            book.available = <span class="nb">False</span>
+            <span class="se">self</span>.__borrowed.<span class="fn">append</span>(book)
+            <span class="fn">print</span>(<span class="st">f"</span>{<span class="se">self</span>.name} <span class="st">borrowed '</span>{book.title}<span class="st">'"</span>)
+        <span class="kw">else</span>:
+            <span class="fn">print</span>(<span class="st">f"Sorry, '</span>{book.title}<span class="st">' is not available!"</span>)
+
+    <span class="kw">def</span> <span class="fn">return_book</span>(<span class="se">self</span>, book):
+        book.available = <span class="nb">True</span>
+        <span class="se">self</span>.__borrowed.<span class="fn">remove</span>(book)
+        <span class="fn">print</span>(<span class="st">f"</span>{<span class="se">self</span>.name} <span class="st">returned '</span>{book.title}<span class="st">'"</span>)
+
+<span class="cm"># 📚 Let's use it!</span>
+harry_potter = <span class="tp">Book</span>(<span class="st">"Harry Potter"</span>, <span class="st">"J.K. Rowling"</span>)
+alice = <span class="tp">Member</span>(<span class="st">"Alice"</span>)
+
+<span class="fn">print</span>(harry_potter)         <span class="cm"># 📖 Harry Potter by J.K. Rowling [✅ Available]</span>
+alice.<span class="fn">borrow</span>(harry_potter)  <span class="cm"># Alice borrowed 'Harry Potter'</span>
+<span class="fn">print</span>(harry_potter)         <span class="cm"># 📖 Harry Potter by J.K. Rowling [❌ Borrowed]</span></code></pre>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 See the OOP concepts?</div>
+        <ul>
+          <li><strong>Encapsulation</strong> — <code>__borrowed</code> list is private; members can only borrow/return through methods</li>
+          <li><strong>__str__ magic method</strong> — books display themselves beautifully when printed</li>
+          <li><strong>Objects interact</strong> — a Member object uses a Book object. That's how real systems work!</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD: Social Media Profile ==================== -->
+  <div class="card" style="border-left-color: var(--color-tools);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(6,182,212,0.12), transparent);">
+      <span class="card-icon">📱</span>
+      <h3>Real-World Example: Social Media</h3>
+    </div>
+    <div class="card-body">
+      <p>Model Instagram-like posts with inheritance!</p>
+
+<pre><code><span class="kw">class</span> <span class="tp">Post</span>:                            <span class="cm"># Base post</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, author, caption):
+        <span class="se">self</span>.author  = author
+        <span class="se">self</span>.caption = caption
+        <span class="se">self</span>.likes   = <span class="nb">0</span>
+
+    <span class="kw">def</span> <span class="fn">like</span>(<span class="se">self</span>):
+        <span class="se">self</span>.likes += <span class="nb">1</span>
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">f"@</span>{<span class="se">self</span>.author}<span class="st">: </span>{<span class="se">self</span>.caption} <span class="st">(❤️ </span>{<span class="se">self</span>.likes}<span class="st">)"</span>)
+
+<span class="kw">class</span> <span class="tp">PhotoPost</span>(<span class="tp">Post</span>):                <span class="cm"># 📷 Adds image</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, author, caption, photo):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(author, caption)
+        <span class="se">self</span>.photo = photo
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">f"📷 @</span>{<span class="se">self</span>.author}<span class="st">: </span>{<span class="se">self</span>.caption} <span class="st">[Photo: </span>{<span class="se">self</span>.photo}<span class="st">] (❤️ </span>{<span class="se">self</span>.likes}<span class="st">)"</span>)
+
+<span class="kw">class</span> <span class="tp">ReelPost</span>(<span class="tp">Post</span>):                 <span class="cm"># 🎬 Adds video</span>
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, author, caption, duration):
+        <span class="fn">super</span>().<span class="fn">__init__</span>(author, caption)
+        <span class="se">self</span>.duration = duration
+
+    <span class="kw">def</span> <span class="fn">display</span>(<span class="se">self</span>):
+        <span class="fn">print</span>(<span class="st">f"🎬 @</span>{<span class="se">self</span>.author}<span class="st">: </span>{<span class="se">self</span>.caption} <span class="st">[</span>{<span class="se">self</span>.duration}<span class="st">s] (❤️ </span>{<span class="se">self</span>.likes}<span class="st">)"</span>)
+
+<span class="cm"># Create a feed!</span>
+feed = [
+    <span class="tp">PhotoPost</span>(<span class="st">"tec_in_sec"</span>, <span class="st">"Python is fun!"</span>, <span class="st">"python.jpg"</span>),
+    <span class="tp">ReelPost</span>(<span class="st">"tec_in_sec"</span>, <span class="st">"OOP in 60 sec"</span>, <span class="nb">60</span>),
+]
+feed[<span class="nb">0</span>].<span class="fn">like</span>()
+feed[<span class="nb">0</span>].<span class="fn">like</span>()
+<span class="kw">for</span> post <span class="kw">in</span> feed:
+    post.<span class="fn">display</span>()            <span class="cm"># Polymorphism!</span></code></pre>
+      <div class="example-output">📷 @tec_in_sec: Python is fun! [Photo: python.jpg] (❤️ 2)<br>🎬 @tec_in_sec: OOP in 60 sec [60s] (❤️ 0)</div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD: Game Character ==================== -->
+  <div class="card" style="border-left-color: var(--color-control);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(245,158,11,0.12), transparent);">
+      <span class="card-icon">🎮</span>
+      <h3>Real-World Example: Game Characters</h3>
+    </div>
+    <div class="card-body">
+      <p>Video games are built with OOP! Every character, weapon, and level is an object.</p>
+
+<pre><code><span class="kw">class</span> <span class="tp">Character</span>:
+    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="se">self</span>, name, health=<span class="nb">100</span>):
+        <span class="se">self</span>.name   = name
+        <span class="se">self</span>.health = health
+        <span class="se">self</span>.alive  = <span class="nb">True</span>
+
+    <span class="kw">def</span> <span class="fn">take_damage</span>(<span class="se">self</span>, amount):
+        <span class="se">self</span>.health -= amount
+        <span class="kw">if</span> <span class="se">self</span>.health <= <span class="nb">0</span>:
+            <span class="se">self</span>.alive = <span class="nb">False</span>
+            <span class="fn">print</span>(<span class="st">f"💀 </span>{<span class="se">self</span>.name} <span class="st">has been defeated!"</span>)
+        <span class="kw">else</span>:
+            <span class="fn">print</span>(<span class="st">f"💔 </span>{<span class="se">self</span>.name} <span class="st">HP: </span>{<span class="se">self</span>.health}<span class="st">"</span>)
+
+<span class="kw">class</span> <span class="tp">Warrior</span>(<span class="tp">Character</span>):
+    <span class="kw">def</span> <span class="fn">attack</span>(<span class="se">self</span>, target):
+        <span class="fn">print</span>(<span class="st">f"⚔️ </span>{<span class="se">self</span>.name} <span class="st">slashes </span>{target.name}<span class="st">!"</span>)
+        target.<span class="fn">take_damage</span>(<span class="nb">30</span>)
+
+<span class="kw">class</span> <span class="tp">Mage</span>(<span class="tp">Character</span>):
+    <span class="kw">def</span> <span class="fn">attack</span>(<span class="se">self</span>, target):
+        <span class="fn">print</span>(<span class="st">f"🔮 </span>{<span class="se">self</span>.name} <span class="st">casts fireball at </span>{target.name}<span class="st">!"</span>)
+        target.<span class="fn">take_damage</span>(<span class="nb">50</span>)
+
+hero    = <span class="tp">Warrior</span>(<span class="st">"Arthur"</span>)
+villain = <span class="tp">Mage</span>(<span class="st">"Morgana"</span>)
+
+hero.<span class="fn">attack</span>(villain)
+villain.<span class="fn">attack</span>(hero)</code></pre>
+      <div class="example-output">⚔️ Arthur slashes Morgana!<br>💔 Morgana HP: 70<br>🔮 Morgana casts fireball at Arthur!<br>💔 Arthur HP: 50</div>
+
+      <div class="real-world">
+        <div class="real-world-title">🌍 Why this matters</div>
+        <p>Minecraft, Fortnite, GTA — every game uses OOP. Players, enemies, items, weapons are all objects with attributes (health, damage) and methods (attack, heal, move).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD: OOP is Everywhere ==================== -->
+  <div class="card wide" style="border-left-color: var(--color-basics);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(59,130,246,0.12), transparent);">
+      <span class="card-icon">🌐</span>
+      <h3>OOP is Everywhere in Your Daily Life!</h3>
+    </div>
+    <div class="card-body">
+      <p>Every app you use is built with OOP. Here's how to spot it:</p>
+
+      <div class="illustration">
+        <svg width="560" height="170" viewBox="0 0 560 170" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Spotify -->
+          <rect x="10" y="10" width="100" height="150" rx="14" fill="rgba(16,185,129,0.08)" stroke="#10B981" stroke-width="1.5"/>
+          <text x="60" y="40" text-anchor="middle" font-size="24">🎵</text>
+          <text x="60" y="58" text-anchor="middle" fill="#10B981" font-size="10" font-weight="700">Spotify</text>
+          <text x="60" y="74" text-anchor="middle" fill="#94A3B8" font-size="8">Song object:</text>
+          <text x="60" y="86" text-anchor="middle" fill="#CBD5E1" font-size="8">.title .artist</text>
+          <text x="60" y="98" text-anchor="middle" fill="#CBD5E1" font-size="8">.duration</text>
+          <text x="60" y="114" text-anchor="middle" fill="#10B981" font-size="8">.play()</text>
+          <text x="60" y="126" text-anchor="middle" fill="#10B981" font-size="8">.add_to_playlist()</text>
+          <text x="60" y="138" text-anchor="middle" fill="#10B981" font-size="8">.like()</text>
+          <!-- Uber -->
+          <rect x="120" y="10" width="100" height="150" rx="14" fill="rgba(99,102,241,0.08)" stroke="#6366F1" stroke-width="1.5"/>
+          <text x="170" y="40" text-anchor="middle" font-size="24">🚕</text>
+          <text x="170" y="58" text-anchor="middle" fill="#6366F1" font-size="10" font-weight="700">Uber</text>
+          <text x="170" y="74" text-anchor="middle" fill="#94A3B8" font-size="8">Ride object:</text>
+          <text x="170" y="86" text-anchor="middle" fill="#CBD5E1" font-size="8">.pickup .dest</text>
+          <text x="170" y="98" text-anchor="middle" fill="#CBD5E1" font-size="8">.driver .fare</text>
+          <text x="170" y="114" text-anchor="middle" fill="#6366F1" font-size="8">.request()</text>
+          <text x="170" y="126" text-anchor="middle" fill="#6366F1" font-size="8">.cancel()</text>
+          <text x="170" y="138" text-anchor="middle" fill="#6366F1" font-size="8">.rate_driver()</text>
+          <!-- Instagram -->
+          <rect x="230" y="10" width="100" height="150" rx="14" fill="rgba(236,72,153,0.08)" stroke="#EC4899" stroke-width="1.5"/>
+          <text x="280" y="40" text-anchor="middle" font-size="24">📸</text>
+          <text x="280" y="58" text-anchor="middle" fill="#EC4899" font-size="10" font-weight="700">Instagram</text>
+          <text x="280" y="74" text-anchor="middle" fill="#94A3B8" font-size="8">Post object:</text>
+          <text x="280" y="86" text-anchor="middle" fill="#CBD5E1" font-size="8">.image .caption</text>
+          <text x="280" y="98" text-anchor="middle" fill="#CBD5E1" font-size="8">.likes .comments</text>
+          <text x="280" y="114" text-anchor="middle" fill="#EC4899" font-size="8">.like()</text>
+          <text x="280" y="126" text-anchor="middle" fill="#EC4899" font-size="8">.comment()</text>
+          <text x="280" y="138" text-anchor="middle" fill="#EC4899" font-size="8">.share()</text>
+          <!-- Amazon -->
+          <rect x="340" y="10" width="100" height="150" rx="14" fill="rgba(249,115,22,0.08)" stroke="#F97316" stroke-width="1.5"/>
+          <text x="390" y="40" text-anchor="middle" font-size="24">📦</text>
+          <text x="390" y="58" text-anchor="middle" fill="#F97316" font-size="10" font-weight="700">Amazon</text>
+          <text x="390" y="74" text-anchor="middle" fill="#94A3B8" font-size="8">Order object:</text>
+          <text x="390" y="86" text-anchor="middle" fill="#CBD5E1" font-size="8">.items .total</text>
+          <text x="390" y="98" text-anchor="middle" fill="#CBD5E1" font-size="8">.status .address</text>
+          <text x="390" y="114" text-anchor="middle" fill="#F97316" font-size="8">.place_order()</text>
+          <text x="390" y="126" text-anchor="middle" fill="#F97316" font-size="8">.track()</text>
+          <text x="390" y="138" text-anchor="middle" fill="#F97316" font-size="8">.cancel()</text>
+          <!-- YouTube -->
+          <rect x="450" y="10" width="100" height="150" rx="14" fill="rgba(239,68,68,0.08)" stroke="#EF4444" stroke-width="1.5"/>
+          <text x="500" y="40" text-anchor="middle" font-size="24">▶️</text>
+          <text x="500" y="58" text-anchor="middle" fill="#EF4444" font-size="10" font-weight="700">YouTube</text>
+          <text x="500" y="74" text-anchor="middle" fill="#94A3B8" font-size="8">Video object:</text>
+          <text x="500" y="86" text-anchor="middle" fill="#CBD5E1" font-size="8">.title .views</text>
+          <text x="500" y="98" text-anchor="middle" fill="#CBD5E1" font-size="8">.channel .length</text>
+          <text x="500" y="114" text-anchor="middle" fill="#EF4444" font-size="8">.play()</text>
+          <text x="500" y="126" text-anchor="middle" fill="#EF4444" font-size="8">.subscribe()</text>
+          <text x="500" y="138" text-anchor="middle" fill="#EF4444" font-size="8">.like()</text>
+        </svg>
+        <div class="illustration-caption">Every app you use daily is built with objects — attributes (data) + methods (actions)</div>
+      </div>
+
+      <div class="callout callout-tip">
+        <strong>💡 Exercise:</strong> Pick your favorite app and list 3 objects in it. For each object, write down its attributes and methods. Then try coding it as a Python class!
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD: Practice Challenges ==================== -->
+  <div class="card" style="border-left-color: var(--color-syntax);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(139,92,246,0.12), transparent);">
+      <span class="card-icon">🏋️</span>
+      <h3>Practice: Try These!</h3>
+    </div>
+    <div class="card-body">
+      <p>Model these real-world things as Python classes. Think: what attributes? what methods?</p>
+
+      <table class="ref-table">
+        <tr><th>Challenge</th><th>Hint: Attributes</th><th>Hint: Methods</th></tr>
+        <tr><td>🐾 <strong>Pet Store</strong></td><td>name, species, price, adopted</td><td>adopt(), feed(), display_info()</td></tr>
+        <tr><td>🎬 <strong>Movie Ticket</strong></td><td>movie, seat, time, price</td><td>book(), cancel(), upgrade_seat()</td></tr>
+        <tr><td>☕ <strong>Coffee Shop</strong></td><td>drink, size, milk, sugar</td><td>prepare(), serve(), add_topping()</td></tr>
+        <tr><td>🏋️ <strong>Gym Membership</strong></td><td>member, plan, start_date, active</td><td>renew(), cancel(), freeze()</td></tr>
+        <tr><td>🎵 <strong>Music Playlist</strong></td><td>name, songs, duration, creator</td><td>add_song(), remove(), shuffle()</td></tr>
+        <tr><td>🏥 <strong>Hospital</strong></td><td>Patient → Doctor (inheritance)</td><td>Person base + specialization</td></tr>
+      </table>
+
+      <div class="callout callout-tip">
+        <strong>💡 Bonus:</strong> Try adding inheritance! A <code>HotDrink</code> and <code>ColdDrink</code> both inherit from <code>Drink</code>. A <code>GoldMember</code> inherits from <code>Member</code> with extra perks.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 16: Common Mistakes ==================== -->
+  <div class="card" style="border-left-color: var(--color-advanced);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(239,68,68,0.12), transparent);">
+      <span class="card-icon">🚫</span>
+      <h3>Common Beginner Mistakes</h3>
+    </div>
+    <div class="card-body">
+      <div class="callout callout-warn">
+        <strong>❌ Forgetting <code>self</code></strong><br>
+        Every method's first parameter must be <code>self</code>.<br>
+        <code>def bark():</code> → <code>def bark(self):</code>
+      </div>
+
+      <div class="callout callout-warn">
+        <strong>❌ Forgetting <code>self.</code> when accessing attributes</strong><br>
+        <code>print(name)</code> → <code>print(self.name)</code>
+      </div>
+
+      <div class="callout callout-warn">
+        <strong>❌ Not calling <code>super().__init__()</code></strong><br>
+        If your child class has <code>__init__</code>, call <code>super().__init__()</code> to initialize parent attributes.
+      </div>
+
+      <div class="callout callout-warn">
+        <strong>❌ Using mutable default class variables</strong><br>
+        <code>class Dog: tricks = []</code> — this list is shared by ALL dogs! Use <code>self.tricks = []</code> in <code>__init__</code> instead.
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CARD 17: Tips for Success ==================== -->
+  <div class="card" style="border-left-color: var(--color-tips);">
+    <div class="card-header" style="background: linear-gradient(135deg, rgba(132,204,22,0.12), transparent);">
+      <span class="card-icon">🌟</span>
+      <h3>Tips for Success</h3>
+    </div>
+    <div class="card-body">
+      <div class="callout callout-tip">
+        <strong>💡 Think in real-world objects first.</strong> Before writing code, ask: "What things exist? What properties do they have? What can they do?"
+      </div>
+
+      <div class="callout callout-tip">
+        <strong>💡 Start simple.</strong> Begin with a class, add <code>__init__</code>, add one method. Test it. Then grow.
+      </div>
+
+      <div class="callout callout-tip">
+        <strong>💡 Use meaningful names.</strong> <code>class Car</code> not <code>class C</code>. <code>self.speed</code> not <code>self.s</code>.
+      </div>
+
+      <div class="callout callout-tip">
+        <strong>💡 Practice by modeling things you see every day</strong> — your phone, a library, a pizza order, a game character!
+      </div>
+
+      <div class="step-flow">
+        <div class="step-item">
+          <div class="step-num" style="background: var(--color-basics);">1</div>
+          <div class="step-content">
+            <h4>Identify the "thing"</h4>
+            <p>What real-world object are you modeling?</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background: var(--color-data);">2</div>
+          <div class="step-content">
+            <h4>List its properties</h4>
+            <p>What data does it hold? → attributes</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background: var(--color-functions);">3</div>
+          <div class="step-content">
+            <h4>List its actions</h4>
+            <p>What can it do? → methods</p>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num" style="background: var(--color-syntax);">4</div>
+          <div class="step-content">
+            <h4>Write the class</h4>
+            <p>Turn it into Python code!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>Python OOP Cheat Sheet &bull; Created for absolute beginners &bull; May 2026</p>
+  <p>Sources: <a href="https://docs.python.org/3/tutorial/classes.html" target="_blank">Python Official Docs — Classes</a> &bull; <a href="https://quickref.me/python" target="_blank">QuickRef.me</a></p>
+  <p style="margin-top: 8px;">Developed by <strong>tec_in_sec</strong> &bull;
+    <a href="https://www.linkedin.com/in/sukumar-p/" target="_blank">LinkedIn</a> &bull;
+    <a href="https://www.instagram.com/tec_in_sec/" target="_blank">Instagram</a> &bull;
+    <a href="https://www.youtube.com/@tec_in_sec" target="_blank">YouTube</a>
+  </p>
+</footer>
+
+<script>
+  function toggleTheme() {
+    const html = document.documentElement;
+    const current = html.getAttribute('data-theme');
+    html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+  }
+</script>
+
+</body>
+</html>
